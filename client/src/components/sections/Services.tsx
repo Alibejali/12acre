@@ -10,6 +10,7 @@ import {
   Briefcase
 } from "lucide-react";
 import architectureImage from "@/assets/architecture-detail.jpg";
+import concreteTexture from "@/assets/concrete-texture.jpg";
 
 const services = [
   {
@@ -56,8 +57,18 @@ const services = [
 
 export function Services() {
   return (
-    <section id="services" className="py-24 bg-muted/30 relative">
-      <div className="container px-4 md:px-6">
+    <section id="services" className="py-24 bg-muted/30 relative overflow-hidden">
+      {/* Background Texture Overlay */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src={concreteTexture} 
+          alt="Concrete Texture" 
+          className="w-full h-full object-cover opacity-10 mix-blend-multiply"
+        />
+        <div className="absolute inset-0 bg-background/50 mix-blend-overlay" />
+      </div>
+
+      <div className="container px-4 md:px-6 relative z-10">
         <div className="flex flex-col md:flex-row gap-12 mb-16 items-end">
           <div className="max-w-3xl">
             <h2 className="text-sm font-bold text-primary tracking-widest uppercase mb-3">Our Expertise</h2>
@@ -79,7 +90,7 @@ export function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-background p-6 rounded-xl shadow-sm border border-border hover:shadow-md transition-all hover:-translate-y-1 group"
+              className="bg-background/80 backdrop-blur-sm p-6 rounded-xl shadow-sm border border-border hover:shadow-md transition-all hover:-translate-y-1 group"
             >
               <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-5 group-hover:bg-primary/10 transition-colors">
                 <service.icon className="w-6 h-6 text-primary" />
