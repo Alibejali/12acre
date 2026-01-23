@@ -45,7 +45,7 @@ export function Footer() {
         <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
           <p>&copy; {new Date().getFullYear()} 12Acre Consulting. All rights reserved.</p>
           <div className="flex gap-4">
-            <span>Woman-Owned Business Enterprise</span>
+            <span>Minority Woman-Owned Business Enterprise</span>
           </div>
         </div>
       </div>
