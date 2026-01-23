@@ -63,7 +63,7 @@ export function Contact() {
               Let's Build Something <br /> Great Together.
             </h3>
             <p className="text-white/80 text-lg mb-12 max-w-md">
-              Ready to optimize your construction management and supply chain operations? Reach out to discuss how 12Acre can help.
+              Ready to scale your operations or optimize your infrastructure? Contact us to discuss how our expert consultants can support your goals.
             </p>
 
             <div className="space-y-6">
@@ -73,8 +73,8 @@ export function Contact() {
                 </div>
                 <div>
                   <p className="text-sm text-white/60">Email</p>
-                  <a href="mailto:alijohnson@gmail.com" className="text-lg font-medium hover:text-secondary transition-colors">
-                    alijohnson@gmail.com
+                  <a href="mailto:ali@12acre.us" className="text-lg font-medium hover:text-secondary transition-colors">
+                    ali@12acre.us
                   </a>
                 </div>
               </div>
@@ -144,7 +144,7 @@ export function Contact() {
                       <FormLabel>Message</FormLabel>
                       <FormControl>
                         <Textarea 
-                          placeholder="How can we help you?" 
+                          placeholder="Tell us about your project or consulting needs..." 
                           className="min-h-[120px] bg-muted/30 border-border" 
                           {...field} 
                         />

@@ -5,40 +5,52 @@ import {
   ShieldCheck, 
   TrendingUp, 
   Users, 
-  FileCheck 
+  Cpu,
+  BarChart4,
+  Briefcase
 } from "lucide-react";
 import architectureImage from "@/assets/architecture-detail.jpg";
 
 const services = [
   {
-    icon: Globe,
-    title: "Global Program Controls",
-    description: "Managing program level controls, governance, and creating global frameworks for infrastructure delivery."
-  },
-  {
     icon: TrendingUp,
-    title: "Strategic Sourcing",
-    description: "Developing sourcing strategies to scale global data center construction and mission-critical equipment."
+    title: "Operations at Scale",
+    description: "Helping companies transition from startup to enterprise. We design scalable operational frameworks that grow with your business ambition."
   },
   {
-    icon: ShieldCheck,
-    title: "Risk Management",
-    description: "Evaluating country-level risks and implementing portfolio risk management frameworks."
-  },
-  {
-    icon: Users,
-    title: "Vendor Management",
-    description: "Optimizing service delivery of construction support services and managing strategic partner relationships."
-  },
-  {
-    icon: FileCheck,
-    title: "Contract Negotiation",
-    description: "Modeling and negotiating commercial terms, global discount structures, and commodity index variants."
+    icon: Cpu,
+    title: "AI & Platform Intelligence",
+    description: "Creation and delivery of integrated platform solutions. Leveraging AI and business intelligence to drive data-backed decision making."
   },
   {
     icon: Building2,
-    title: "Construction Management",
-    description: "End-to-end management of large-scale construction programs, retrofits, and office portfolios."
+    title: "Hyperscale Construction",
+    description: "Subject matter expertise in retail and commercial construction. Delivering complex infrastructure projects with precision."
+  },
+  {
+    icon: Globe,
+    title: "Program Controls",
+    description: "In-depth global cost and schedule analysis. We bring rigorous control methodologies to ensure projects land on time and on budget."
+  },
+  {
+    icon: ShieldCheck,
+    title: "Risk & Governance",
+    description: "Comprehensive risk mitigation strategies, governance frameworks, and compliance management for high-stakes environments."
+  },
+  {
+    icon: BarChart4,
+    title: "Financial Acumen",
+    description: "Sound financial strategy and analysis. We align operational execution with fiscal goals to maximize ROI and efficiency."
+  },
+  {
+    icon: Users,
+    title: "Strategic Sourcing",
+    description: "Global supply chain optimization and vendor management. We build resilient networks that withstand market volatility."
+  },
+  {
+    icon: Briefcase,
+    title: "Strategic Insights",
+    description: "Management consulting rooted in Fortune 5 experience. We provide the roadmap for navigating industry shifts and market opportunities."
   }
 ];
 
@@ -47,19 +59,19 @@ export function Services() {
     <section id="services" className="py-24 bg-muted/30 relative">
       <div className="container px-4 md:px-6">
         <div className="flex flex-col md:flex-row gap-12 mb-16 items-end">
-          <div className="max-w-2xl">
+          <div className="max-w-3xl">
             <h2 className="text-sm font-bold text-primary tracking-widest uppercase mb-3">Our Expertise</h2>
             <h3 className="font-display text-3xl md:text-4xl font-bold text-foreground">
-              Strategic Solutions for <br />
-              <span className="text-primary">Complex Environments</span>
+              Scaling Capabilities for <br />
+              <span className="text-primary">The Modern Enterprise</span>
             </h3>
           </div>
           <p className="text-muted-foreground max-w-xl pb-2">
-            From boutique retail builds to massive hyperscale infrastructure, we provide the grounded expertise needed to navigate complexity.
+            We combine deep industry experience with cutting-edge technology to deliver integrated solutions for construction, operations, and strategy.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service, index) => (
             <motion.div
               key={index}
@@ -67,13 +79,13 @@ export function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-background p-8 rounded-xl shadow-sm border border-border hover:shadow-md transition-shadow group"
+              className="bg-background p-6 rounded-xl shadow-sm border border-border hover:shadow-md transition-all hover:-translate-y-1 group"
             >
-              <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary/10 transition-colors">
+              <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-5 group-hover:bg-primary/10 transition-colors">
                 <service.icon className="w-6 h-6 text-primary" />
               </div>
-              <h4 className="font-display text-xl font-bold mb-3">{service.title}</h4>
-              <p className="text-muted-foreground leading-relaxed">
+              <h4 className="font-display text-lg font-bold mb-3">{service.title}</h4>
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 {service.description}
               </p>
             </motion.div>
@@ -90,7 +102,7 @@ export function Services() {
           <div className="absolute inset-0 bg-primary/20 mix-blend-multiply" />
           <div className="absolute inset-0 flex items-center justify-center">
             <h3 className="font-display text-3xl md:text-5xl font-bold text-white text-center px-4">
-              Building the Foundation for Growth
+              From Strategy to Execution
             </h3>
           </div>
         </div>

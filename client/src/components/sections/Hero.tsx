@@ -23,30 +23,29 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="max-w-3xl"
+          className="max-w-4xl"
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white text-sm font-medium mb-6">
             <span className="w-2 h-2 rounded-full bg-secondary"></span>
-            Strategic Consulting & Construction Management
+            Management Consulting • Operational Scaling • AI Solutions
           </div>
           
           <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tight mb-6">
             Grounded Expertise. <br />
-            <span className="text-white/90">Infinite Possibility.</span>
+            <span className="text-white/90">Infinite Scalability.</span>
           </h1>
           
           <p className="text-lg md:text-xl text-white/80 max-w-2xl mb-10 leading-relaxed font-light">
-            We deliver specialized consulting that optimizes construction management, 
-            operations, and supply chain for specialty retail and hyperscale environments.
-            Passion meets pragmatism.
+            We partner with industry leaders to deliver integrated platform solutions, risk mitigation, and operational excellence. 
+            From hyperscale construction to AI-driven business intelligence, we help you build the future.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
             <Button size="lg" className="rounded-full text-base h-12 px-8 bg-white text-primary hover:bg-white/90 border-0">
-              Our Services
+              Explore Our Services
             </Button>
             <Button size="lg" variant="outline" className="rounded-full text-base h-12 px-8 border-white/30 text-white hover:bg-white/10 hover:text-white bg-transparent">
-              About 12Acre
+              Partner With Us
             </Button>
           </div>
         </motion.div>

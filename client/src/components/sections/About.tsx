@@ -1,14 +1,14 @@
 import { motion } from "framer-motion";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Users, Network } from "lucide-react";
 import profileImage from "@/assets/profile.png";
 
 export function About() {
   const highlights = [
-    "Sr Manager, Global Program Controls at Google",
-    "Strategic Sourcing Leader at Meta/Facebook",
-    "Director of Sourcing at ViaWest",
-    "Managed $21.7B+ in cumulative spend",
-    "Led teams across global infrastructure & construction"
+    "Fortune 5 Leadership Experience (Google, Meta)",
+    "Hyperscale & Retail Construction Expertise",
+    "Network of Highly Qualified Consultants",
+    "Global Management Consulting Services",
+    "Proven Track Record in Operational Scaling"
   ];
 
   return (
@@ -22,22 +22,35 @@ export function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-sm font-bold text-primary tracking-widest uppercase mb-3">About The Founder</h2>
+            <h2 className="text-sm font-bold text-primary tracking-widest uppercase mb-3">Who We Are</h2>
             <h3 className="font-display text-3xl md:text-4xl font-bold mb-6 text-foreground">
-              Ali Johnson-Levy
+              Strategic Partners for <br/>
+              <span className="text-primary">Operational Excellence</span>
             </h3>
+            
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              I am an experienced Senior Strategic Leader with a proven track record of building and leading 
-              global, scalable high-performing teams. I thrive in ambiguity and act as a catalyst for change, 
-              driving operational rigor to enable reliability with keen business acumen.
+              12Acre is a premier management consulting firm dedicated to helping companies scale their operations with precision and integrity. Founded by Ali Johnson-Levy, we bring decades of experience from the world's most innovative tech giants to your business.
             </p>
+            
             <p className="text-muted-foreground mb-8 leading-relaxed">
-              With deep understanding of controls and governance, I cultivate process and talent to deliver 
-              impactful results. My career spans from start-ups to tenured Fortune 100 environments like 
-              Google and Meta, managing multi-billion dollar programs.
+              We are more than just a consultancy; we are an entrepreneurial force multiplier. 
+              By combining our in-house expertise with a vast network of highly skilled consultants, 
+              we deliver bespoke teams tailored to your specific challenges—whether that's navigating 
+              complex construction programs, implementing AI-driven business intelligence, or 
+              optimizing global supply chains.
             </p>
 
-            <div className="grid gap-3">
+            <div className="grid gap-4 bg-muted/30 p-6 rounded-xl border border-border">
+              <h4 className="font-display font-bold text-lg flex items-center gap-2">
+                <Users className="w-5 h-5 text-secondary" />
+                The 12Acre Network
+              </h4>
+              <p className="text-sm text-muted-foreground">
+                We don't just advise; we execute. Our deep bench of qualified experts allows us to embed directly with your teams, filling critical capability gaps and driving projects from concept to completion.
+              </p>
+            </div>
+
+            <div className="grid gap-3 mt-8">
               {highlights.map((item, i) => (
                 <div key={i} className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-secondary shrink-0 mt-0.5" />
@@ -58,9 +71,13 @@ export function About() {
             <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl bg-muted relative z-10">
               <img 
                 src={profileImage} 
-                alt="Ali Johnson-Levy" 
+                alt="Ali Johnson-Levy, Founder of 12Acre" 
                 className="w-full h-full object-cover"
               />
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-8">
+                <p className="text-white font-display font-bold text-xl">Ali Johnson-Levy</p>
+                <p className="text-white/80 text-sm">Founder & Principal</p>
+              </div>
             </div>
             {/* Decorative Element */}
             <div className="absolute -bottom-6 -right-6 w-full h-full border-2 border-secondary/30 rounded-2xl z-0" />
