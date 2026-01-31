@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
-import { CheckCircle2, Users, Network } from "lucide-react";
+import { CheckCircle2, Users, Network, Lock } from "lucide-react";
 import profileImage from "@/assets/profile.png";
 
 export function About() {
   const highlights = [
     "Fortune 5 Leadership Experience (Google, Meta)",
     "Hyperscale & Retail Construction Expertise",
-    "Network of Highly Qualified Consultants",
-    "Global Management Consulting Services",
+    "Deep Bench of Industry Titans & Experts",
+    "Strict Client Confidentiality Standards",
     "Proven Track Record in Operational Scaling"
   ];
 
@@ -33,20 +33,21 @@ export function About() {
             </p>
             
             <p className="text-muted-foreground mb-8 leading-relaxed">
-              We are more than just a consultancy; we are an entrepreneurial force multiplier. 
-              By combining our in-house expertise with a vast network of highly skilled consultants, 
-              we deliver bespoke teams tailored to your specific challenges—whether that's navigating 
-              complex construction programs, implementing AI-driven business intelligence, or 
-              optimizing global supply chains.
+              What makes us unique: we find, source, cultivate, and grow excellent people and resources. 
+              Our consultants are industry titans and experts—well-connected across multiple industries with 
+              the bench depth to participate meaningfully in your most critical projects. They don't just 
+              work for us; under strict client confidentiality, they are tasked specifically for their expertise.
             </p>
 
             <div className="grid gap-4 bg-muted/30 p-6 rounded-xl border border-border">
               <h4 className="font-display font-bold text-lg flex items-center gap-2">
-                <Users className="w-5 h-5 text-secondary" />
-                The 12Acre Network
+                <Lock className="w-5 h-5 text-secondary" />
+                Trusted Expertise, Complete Confidentiality
               </h4>
               <p className="text-sm text-muted-foreground">
-                We don't just advise; we execute. Our deep bench of qualified experts allows us to embed directly with your teams, filling critical capability gaps and driving projects from concept to completion.
+                Our network of consultants operates under the highest standards of client confidentiality. 
+                Each engagement is tailored precisely to your needs—whether you need a CEO-level strategist, 
+                a Six Sigma Black Belt, or a specialized electrical engineer, we have the right resource for your request.
               </p>
             </div>
 
