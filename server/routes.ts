@@ -47,5 +47,18 @@ export async function registerRoutes(
     }
   });
 
+  // Delete a contact submission
+  app.delete("/api/contact/:id", async (req, res) => {
+    try {
+      await storage.deleteContactSubmission(req.params.id);
+      return res.json({ success: true });
+    } catch (error) {
+      console.error("Error deleting contact submission:", error);
+      return res.status(500).json({ 
+        error: "Failed to delete submission" 
+      });
+    }
+  });
+
   return httpServer;
 }
