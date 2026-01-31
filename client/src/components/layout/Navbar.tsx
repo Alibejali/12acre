@@ -40,12 +40,6 @@ export function Navbar() {
               alt="12Acre Logo" 
               className="h-10 w-10 object-contain transition-transform group-hover:scale-105" 
             />
-            <span className={cn(
-              "font-display font-bold text-xl tracking-tight",
-              isScrolled ? "text-foreground" : "text-foreground md:text-white"
-            )}>
-              12Acre
-            </span>
         </Link>
 
         {/* Desktop Nav */}

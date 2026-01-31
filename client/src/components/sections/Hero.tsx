@@ -31,13 +31,12 @@ export function Hero() {
           </div>
           
           <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tight mb-6">
-            Grounded Expertise. <br />
-            <span className="text-white/90">Infinite Scalability.</span>
+            Grounded Expertise, Infinite Scalability.<br />
+            <span className="text-white/90">Welcome to 12Acre.</span>
           </h1>
           
           <p className="text-lg md:text-xl text-white/80 max-w-2xl mb-10 leading-relaxed font-light">
-            We partner with industry leaders to deliver integrated platform solutions, risk mitigation, and operational excellence. 
-            From hyperscale construction to AI-driven business intelligence, we help you build the future.
+            12Acre is a non-traditional consultancy. We partner with industry leaders to deliver integrated platform solutions, operational scaling, and risk mitigation\u2014from hyperscale construction to AI-driven business intelligence.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
