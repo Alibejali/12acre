@@ -3,6 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertContactSubmissionSchema } from "@shared/schema";
 import { fromError } from "zod-validation-error";
+import { sendContactNotification } from "./email";
 
 export async function registerRoutes(
   httpServer: Server,
@@ -21,6 +22,11 @@ export async function registerRoutes(
       }
 
       const submission = await storage.createContactSubmission(validation.data);
+      
+      // Send email notification (don't block the response)
+      sendContactNotification(validation.data).catch(err => {
+        console.error("Email notification failed:", err);
+      });
       
       return res.status(201).json({ 
         success: true, 
