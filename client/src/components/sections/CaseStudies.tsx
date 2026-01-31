@@ -11,20 +11,20 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const caseStudies = [
   {
-    id: "bms-controls",
+    id: "equipment-supply-chain",
     icon: Cpu,
     category: "Strategic Sourcing & Manufacturing",
-    title: "Custom BMS Control Panel Program",
+    title: "Mission-Critical Equipment Supply Chain",
     client: "Global Technology Company",
-    challenge: "A leading hyperscale technology company required a reliable supply chain for custom Building Management System (BMS) control panels to support their aggressive data center expansion roadmap. With complex specifications and tight delivery windows, traditional sourcing approaches were failing to meet demand.",
-    solution: "We developed and executed a comprehensive strategic sourcing strategy that combined vendor management, logistics optimization, and operational excellence. By modeling demand and supply patterns, we built an entirely new custom manufactured control panel supply chain worth over $120M.",
+    challenge: "A leading technology company required a reliable supply chain for specialized infrastructure equipment to support their aggressive expansion roadmap. With complex specifications and tight delivery windows, traditional sourcing approaches were failing to meet demand.",
+    solution: "We developed and executed a comprehensive strategic sourcing strategy that combined vendor management, logistics optimization, and operational excellence. By modeling demand and supply patterns, we built an entirely new custom manufactured supply chain.",
     outcomes: [
-      "Delivered 1,000+ custom BMS control panels on schedule",
-      "Maintained 100% on-time delivery during global supply chain disruptions",
+      "Delivered thousands of specialized units on schedule",
+      "Maintained on-time delivery during global supply chain disruptions",
       "Ensured limited risk and highest availability through multi-vendor strategy",
-      "Created scalable framework supporting continued hyperscale growth"
+      "Created scalable framework supporting continued growth"
     ],
-    impact: "$120M+ supply chain built from ground up"
+    impact: "$100M+ supply chain built from ground up"
   },
   {
     id: "infrastructure-risk",
@@ -32,31 +32,31 @@ const caseStudies = [
     category: "Risk Management & Due Diligence",
     title: "Global Infrastructure Investment Platform",
     client: "Fortune 10 Technology Company",
-    challenge: "A major technology company needed to evaluate country-level risks before making significant infrastructure investments globally, including a transformative subsea cable project designed to bring connectivity to an entire continent. The stakes were enormous—billions in investment requiring rigorous due diligence.",
-    solution: "We developed a comprehensive platform to handle workflow, secure documents, and support organizational programs for infrastructure investment decisions. This included building a team of risk managers to evaluate geopolitical, regulatory, and operational risks across multiple countries.",
+    challenge: "A major technology company needed to evaluate country-level risks before making significant infrastructure investments globally. The stakes were enormous, with billions in investment requiring rigorous due diligence across geopolitical, regulatory, and operational dimensions.",
+    solution: "We developed a comprehensive platform to handle workflow, secure documents, and support organizational programs for infrastructure investment decisions. This included building a team of risk managers to evaluate risks across multiple countries and major connectivity projects.",
     outcomes: [
-      "Led prioritization for network investment and connectivity projects totaling $450M+",
-      "Enabled due diligence for continent-spanning subsea cable project",
-      "Created standardized risk evaluation framework for global infrastructure decisions",
+      "Led prioritization for network investment and connectivity projects",
+      "Enabled due diligence for large-scale global infrastructure projects",
+      "Created standardized risk evaluation framework for international investments",
       "Reduced time-to-decision for major capital expenditures"
     ],
-    impact: "$450M+ in projects prioritized and de-risked"
+    impact: "Billions in infrastructure investments de-risked"
   },
   {
-    id: "hyperscale-platform",
+    id: "source-to-pay",
     icon: Building2,
     category: "Platform Development & Operations",
-    title: "Hyperscale Data Center Source-to-Pay Platform",
-    client: "Major Social Media Company",
-    challenge: "Supporting hyperscale data center construction required managing billions in strategic sourcing across A&E services, mission-critical equipment, and professional services globally. Existing tools couldn't handle the complexity, compliance requirements, or scale needed.",
-    solution: "We championed comprehensive S2P (Source-to-Pay) tooling priorities and recommended integrated solutions for optimized organizational performance. This included developing strategic sourcing strategies exceeding $4B to scale global data center construction.",
+    title: "Enterprise Source-to-Pay Platform",
+    client: "Major Technology Company",
+    challenge: "Supporting large-scale construction required managing billions in strategic sourcing across A&E services, mission-critical equipment, and professional services globally. Existing tools couldn't handle the complexity, compliance requirements, or scale needed.",
+    solution: "We championed comprehensive source-to-pay tooling priorities and recommended integrated solutions for optimized organizational performance. This included developing strategic sourcing strategies to scale global construction programs.",
     outcomes: [
-      "Implemented $4B+ strategic sourcing strategy across global operations",
-      "Standardized compliance and payment workflows for hyperscale construction",
+      "Implemented multi-billion dollar strategic sourcing strategy",
+      "Standardized compliance and payment workflows across operations",
       "Optimized vendor relationships through strategic commercial negotiations",
-      "Enabled global scaling of data center construction programs"
+      "Enabled global scaling of construction programs"
     ],
-    impact: "$4B+ in sourcing strategy implemented"
+    impact: "Multi-billion dollar sourcing strategy implemented"
   },
   {
     id: "support-center",
@@ -70,9 +70,9 @@ const caseStudies = [
       "Expanded from limited hours to full 24/7 operation",
       "Successfully offshored and trained international support teams",
       "Optimized service levels and response times across all contact types",
-      "Scaled program to cover all brand portfolios (3,000+ locations)"
+      "Scaled program to cover all brand portfolios across thousands of locations"
     ],
-    impact: "3,000+ retail locations supported globally"
+    impact: "Thousands of retail locations supported globally"
   }
 ];
 

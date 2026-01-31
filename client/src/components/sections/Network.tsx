@@ -31,12 +31,16 @@ const fractionalRoles = [
   "Fractional CEOs",
   "Fractional CFOs",
   "Fractional CTOs",
+  "Controllers",
   "Full-Stack Developers",
   "Sales Operations Executives",
   "Procurement Specialists",
   "Financial Experts & Accountants",
   "Legal Teams",
   "Business Development Executives",
+  "Strategy & Insights Consultants",
+  "AI & Technology Specialists",
+  "Operations Excellence Experts",
 ];
 
 const consultantTypes = [
