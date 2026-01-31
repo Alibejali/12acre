@@ -24,6 +24,7 @@ const industries = [
   { icon: Building, name: "Commercial Construction" },
   { icon: Server, name: "Hyperscale Construction" },
   { icon: HardDrive, name: "Co-location Management" },
+  { icon: Building, name: "Real Estate & Property Management" },
 ];
 
 const fractionalRoles = [
@@ -40,10 +41,9 @@ const fractionalRoles = [
 const consultantTypes = [
   { icon: Crown, title: "CEOs & C-Suite Executives", description: "Strategic leadership for high-stakes initiatives" },
   { icon: GraduationCap, title: "Tenured Professors", description: "Academic rigor and research expertise" },
-  { icon: Zap, title: "Electrical Engineers", description: "Technical specialists for infrastructure projects" },
-  { icon: ClipboardCheck, title: "Owner's Representatives", description: "Your advocate throughout the project lifecycle" },
-  { icon: Target, title: "Program Managers", description: "Execution excellence at scale" },
   { icon: Award, title: "Six Sigma Black Belts", description: "Process optimization and quality assurance" },
+  { icon: Zap, title: "Commercial Construction & MEP Expertise", description: "Technical specialists for mechanical, electrical, and plumbing infrastructure" },
+  { icon: ClipboardCheck, title: "Owner's Reps, Project & Portfolio Managers", description: "Your advocate from project inception through completion and beyond" },
 ];
 
 export function Network() {
