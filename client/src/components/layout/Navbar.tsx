@@ -36,7 +36,7 @@ export function Navbar() {
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3 group">
             <img 
-              src="/logo.png" 
+              src={isScrolled ? "/logo-dark.png" : "/logo-light.png"}
               alt="12Acre Logo" 
               className="h-10 w-10 object-contain transition-transform group-hover:scale-105" 
             />
