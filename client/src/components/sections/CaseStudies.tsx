@@ -56,7 +56,7 @@ const caseStudies = [
       "Optimized vendor relationships through strategic commercial negotiations",
       "Enabled global scaling of construction programs"
     ],
-    impact: "$4B dollar sourcing strategy implemented"
+    impact: "$4B sourcing strategy implemented"
   },
   {
     id: "support-center",
