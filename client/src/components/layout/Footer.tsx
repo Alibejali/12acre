@@ -17,7 +17,7 @@ export function Footer() {
                 </span>
             </Link>
             <p className="text-muted-foreground max-w-xs text-sm leading-relaxed">
-              Bound ambition. Harnessing finite resources to cultivate vast opportunities.
+              Bound by ambition. Harnessing resources to cultivate limitless opportunity.
             </p>
           </div>
           
@@ -43,7 +43,7 @@ export function Footer() {
         </div>
         
         <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
-          <p>&copy; 2007 12Acre Consulting. All rights reserved.</p>
+          <p>&copy; 2007-2026 12Acre Consulting. All rights reserved.</p>
           <div className="flex gap-4">
             <span>Minority Woman-Owned Business Enterprise</span>
           </div>

@@ -4,7 +4,7 @@ import profileImage from "@/assets/profile.png";
 
 export function About() {
   const highlights = [
-    "Fortune 5 Leadership Experience (Google, Meta)",
+    "Fortune 5 Leadership Experience",
     "Hyperscale & Retail Construction Expertise",
     "Deep Bench of Industry Titans & Experts",
     "Strict Client Confidentiality Standards",
@@ -29,7 +29,7 @@ export function About() {
             </h3>
             
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              12Acre is a premier management consulting firm dedicated to helping companies scale their operations with precision and integrity. Founded by Ali Johnson-Levy, we bring decades of experience from the world's most innovative tech giants to your business.
+              12Acre is a premier management firm dedicated to helping companies grow and maintain there operations with precision and integrity. Founded by Ali Johnson-Levy, we bring decades of experience from the world's most innovative tech giants to your business.
             </p>
             
             <p className="text-muted-foreground mb-8 leading-relaxed">

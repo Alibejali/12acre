@@ -24,7 +24,7 @@ const caseStudies = [
       "Ensured limited risk and highest availability through multi-vendor strategy",
       "Created scalable framework supporting continued growth"
     ],
-    impact: "$100M+ supply chain built from ground up"
+    impact: "$120M supply chain built from the ground up"
   },
   {
     id: "infrastructure-risk",
@@ -40,7 +40,7 @@ const caseStudies = [
       "Created standardized risk evaluation framework for international investments",
       "Reduced time-to-decision for major capital expenditures"
     ],
-    impact: "Billions in infrastructure investments de-risked"
+    impact: "$11B in infrastructure investments de-risked"
   },
   {
     id: "source-to-pay",
@@ -56,7 +56,7 @@ const caseStudies = [
       "Optimized vendor relationships through strategic commercial negotiations",
       "Enabled global scaling of construction programs"
     ],
-    impact: "Multi-billion dollar sourcing strategy implemented"
+    impact: "$4B dollar sourcing strategy implemented"
   },
   {
     id: "support-center",
@@ -72,7 +72,7 @@ const caseStudies = [
       "Optimized service levels and response times across all contact types",
       "Scaled program to cover all brand portfolios across thousands of locations"
     ],
-    impact: "Thousands of retail locations supported globally"
+    impact: "3,100+ retail locations supported globally"
   }
 ];
 

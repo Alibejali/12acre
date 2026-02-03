@@ -4,3 +4,5 @@ dist
 server/public
 vite.config.ts.*
 *.tar.gz
+# DATA Tools - All sensitive data in one place (added by DATA Tools)
+.replit-tools/

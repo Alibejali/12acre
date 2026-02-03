@@ -26,7 +26,7 @@ const services = [
   {
     icon: Building2,
     title: "Hyperscale Construction",
-    description: "Subject matter expertise in retail and commercial construction. Delivering complex infrastructure projects with precision."
+    description: "Subject matter expertise in retail, commercial and mission critical construction."
   },
   {
     icon: Globe,
@@ -46,7 +46,7 @@ const services = [
   {
     icon: Users,
     title: "Strategic Sourcing",
-    description: "Global supply chain optimization and vendor management. We build resilient networks that withstand market volatility."
+    description: "Global supply chain optimization and Supplier Management."
   },
   {
     icon: Briefcase,

@@ -36,7 +36,7 @@ export function Hero() {
           </h1>
           
           <p className="text-lg md:text-xl text-white/80 max-w-2xl mb-10 leading-relaxed font-light">
-            12Acre is a non-traditional consultancy. We partner with industry leaders to deliver integrated platform solutions, operational scaling, and risk mitigation across hyperscale construction, real estate, and AI-driven business intelligence.
+            12Acre is a non-traditional consultancy. We partner with industry leaders to deliver integrated platform solutions, operational scaling, and risk mitigation across hyperscale construction, real estate, and AI-driven business intelligence firms.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">

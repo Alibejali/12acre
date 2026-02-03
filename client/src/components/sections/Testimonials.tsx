@@ -12,15 +12,15 @@ import {
 const testimonials = [
   {
     quote: "Ali is a catalyst for change who drives operational rigor to enable reliability. Her ability to thrive in ambiguity while maintaining keen business acumen is unmatched.",
-    author: "Former Colleague",
-    role: "Director of Infrastructure",
+    author: "M.E.",
+    role: "Director",
     company: "Meta"
   },
   {
     quote: "She cultivated high-performing global teams and built resilient supply chains for our custom manufactured equipment. A true servant leader.",
-    author: "Senior Executive",
-    role: "VP of Engineering",
-    company: "Google"
+    author: "J.P.",
+    role: "VP",
+    company: "Facebook"
   },
   {
     quote: "Ali defined requirements and launched critical applications to track workflow and risks for our data center construction. Her impact was immediate and lasting.",

@@ -28,9 +28,9 @@ const industries = [
 ];
 
 const fractionalRoles = [
-  "Fractional CEOs",
-  "Fractional CFOs",
-  "Fractional CTOs",
+  "CEOs",
+  "CFOs",
+  "CTOs",
   "Controllers",
   "Full-Stack Developers",
   "Sales Operations Executives",
