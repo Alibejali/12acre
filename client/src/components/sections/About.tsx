@@ -5,10 +5,12 @@ import profileImage from "@/assets/profile.png";
 export function About() {
   const highlights = [
     "Fortune 5 Leadership Experience",
-    "Hyperscale & Retail Construction Expertise",
+    "AI Agent Architecture — Built & Deployed",
+    "CEO, AI-Native Agriculture Marketplace",
+    "Founder-Operator: We Run What We Build",
     "Deep Bench of Industry Titans & Experts",
     "Strict Client Confidentiality Standards",
-    "Proven Track Record in Operational Scaling"
+    "Small Business to Enterprise Scaling"
   ];
 
   return (
@@ -29,13 +31,17 @@ export function About() {
             </h3>
             
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              12Acre is a premier management firm dedicated to helping companies grow and maintain there operations with precision and integrity. Founded by Ali Johnson-Levy, we bring decades of experience from the world's most innovative tech giants to your business.
+              12Acre is a premier management and technology firm dedicated to helping companies build, scale, and operate with precision and integrity. Founded by Ali Johnson-Levy, we bring decades of Fortune 5 leadership experience combined with hands-on AI platform development to businesses of every size.
             </p>
-            
+
+            <p className="text-muted-foreground mb-4 leading-relaxed">
+              Ali is also CEO of an AI-native agriculture marketplace, leveraging producer data to deliver business intelligence that drives yield optimization and margin growth across the agricultural supply chain. She co-architects multi-agent AI orchestration systems and has built an operational intelligence platform that powers her own businesses—the same infrastructure 12Acre deploys for clients.
+            </p>
+
             <p className="text-muted-foreground mb-8 leading-relaxed">
-              What makes us unique: we find, source, cultivate, and grow excellent people and resources. 
-              Our consultants are industry titans and experts—well-connected across multiple industries with 
-              the bench depth to participate meaningfully in your most critical projects. They don't just 
+              What makes us unique: we build what we sell, and we sell what we run. Our AI agent infrastructure manages our own operations daily—from research and legal analysis to financial monitoring and client communications.
+              Our consultants are industry titans and experts—well-connected across multiple industries with
+              the bench depth to participate meaningfully in your most critical projects. They don't just
               work for us; under strict client confidentiality, they are tasked specifically for their expertise.
             </p>
 

@@ -53,7 +53,7 @@ export async function sendContactNotification(data: {
     
     await client.emails.send({
       from: fromEmail,
-      to: 'ali@12acre.us',
+      to: 'ali@12acre.com',
       subject: `New Contact Submission from ${data.name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">

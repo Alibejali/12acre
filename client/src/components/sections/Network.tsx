@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
-import { 
-  Store, 
-  Utensils, 
-  Leaf, 
-  Radio, 
-  Building, 
-  Server, 
+import {
+  Store,
+  Utensils,
+  Leaf,
+  Radio,
+  Building,
+  Server,
   HardDrive,
   UserCheck,
   Crown,
@@ -13,7 +13,10 @@ import {
   Zap,
   ClipboardCheck,
   Target,
-  Award
+  Award,
+  Bot,
+  Palette,
+  Sprout
 } from "lucide-react";
 
 const industries = [
@@ -25,6 +28,9 @@ const industries = [
   { icon: Server, name: "Hyperscale Construction" },
   { icon: HardDrive, name: "Co-location Management" },
   { icon: Building, name: "Real Estate & Property Management" },
+  { icon: Bot, name: "AI & SaaS Platforms" },
+  { icon: Palette, name: "Creator Economy" },
+  { icon: Sprout, name: "AgTech & Food Systems" },
 ];
 
 const fractionalRoles = [
@@ -41,6 +47,9 @@ const fractionalRoles = [
   "Strategy & Insights Consultants",
   "AI & Technology Specialists",
   "Operations Excellence Experts",
+  "AI Operations Architects",
+  "Marketplace Platform Developers",
+  "M&A & Asset Integration Specialists",
 ];
 
 const consultantTypes = [

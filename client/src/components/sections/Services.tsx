@@ -1,13 +1,15 @@
 import { motion } from "framer-motion";
-import { 
-  Building2, 
-  Globe, 
-  ShieldCheck, 
-  TrendingUp, 
-  Users, 
+import {
+  Building2,
+  Globe,
+  ShieldCheck,
+  TrendingUp,
+  Users,
   Cpu,
   BarChart4,
-  Briefcase
+  Briefcase,
+  Bot,
+  ShoppingBag
 } from "lucide-react";
 import architectureImage from "@/assets/architecture-detail.jpg";
 import concreteTexture from "@/assets/concrete-texture.jpg";
@@ -52,6 +54,16 @@ const services = [
     icon: Briefcase,
     title: "Strategic Insights",
     description: "Management consulting rooted in Fortune 5 experience. We provide the roadmap for navigating industry shifts and market opportunities."
+  },
+  {
+    icon: Bot,
+    title: "AI-Native Business Architecture",
+    description: "We don't just advise on AI—we build and deploy it. From multi-agent orchestration systems to intelligent workflow automation, we architect AI-native platforms that run your operations, not just analyze them."
+  },
+  {
+    icon: ShoppingBag,
+    title: "Creator & Marketplace Platforms",
+    description: "We build platforms that handle the business of the business—so founders can focus on what they love. From invoicing and compliance to supply chain and customer management, our entrepreneur enablement platforms give creators, producers, and small business owners the operational backbone they need without the overhead they don't."
   }
 ];
 
@@ -78,11 +90,11 @@ export function Services() {
             </h3>
           </div>
           <p className="text-muted-foreground max-w-xl pb-2">
-            We combine deep industry experience with cutting-edge technology to deliver integrated solutions for construction, operations, and strategy.
+            We combine deep industry experience with AI-native platform development to deliver integrated solutions for operations, intelligence, and growth—from startup to enterprise.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
           {services.map((service, index) => (
             <motion.div
               key={index}

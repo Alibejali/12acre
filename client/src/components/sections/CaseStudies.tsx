@@ -1,11 +1,13 @@
 import { motion } from "framer-motion";
-import { 
-  Cpu, 
-  Globe, 
-  Building2, 
+import {
+  Cpu,
+  Globe,
+  Building2,
   Users,
   ArrowRight,
-  CheckCircle2
+  CheckCircle2,
+  Leaf,
+  Bot
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -73,6 +75,38 @@ const caseStudies = [
       "Scaled program to cover all brand portfolios across thousands of locations"
     ],
     impact: "3,100+ retail locations supported globally"
+  },
+  {
+    id: "ai-agriculture-marketplace",
+    icon: Leaf,
+    category: "AI Platform Development & CEO Leadership",
+    title: "AI-Native Agriculture Marketplace",
+    client: "Agriculture Technology Venture",
+    challenge: "Agricultural producers and ranchers lacked integrated tools to connect their operational data with business intelligence. Existing solutions treated farming and business as separate domains, leaving producers without visibility into how daily decisions impacted yield and margin across their supply chain.",
+    solution: "As CEO, Ali led the design and build of an AI-native marketplace from the ground up—integrating producer data pipelines, business intelligence engines, and supply chain connectivity into a single platform. The architecture leverages AI agents for automated market analysis, yield forecasting, and margin optimization. Strategic asset acquisition was negotiated to accelerate platform capabilities and market entry.",
+    outcomes: [
+      "Built AI-powered BI layer transforming producer data into yield and margin insights",
+      "Designed end-to-end marketplace connecting producers to buyers and services",
+      "Negotiated strategic asset acquisition to accelerate platform capabilities",
+      "Architected scalable platform serving producers, ranchers, and agricultural businesses"
+    ],
+    impact: "AI-native platform from concept to deployment"
+  },
+  {
+    id: "ai-operations-infrastructure",
+    icon: Bot,
+    category: "AI Agent Architecture & Deployment",
+    title: "AI-Powered Operational Intelligence Platform",
+    client: "Internal Deployment — 12Acre & Portfolio Companies",
+    challenge: "Running multiple business entities with lean headcount required operational capabilities that traditional staffing couldn't deliver at the needed speed or cost. Every function—research, legal review, financial monitoring, communications, infrastructure management—needed to operate continuously without scaling headcount linearly.",
+    solution: "Co-architected and deployed a multi-agent AI orchestration system with 10 specialized agents handling distinct operational domains. The platform includes intelligent routing across multiple LLM providers, persistent memory architecture, automated monitoring, and a governance framework ensuring quality and safety. This is the same infrastructure 12Acre deploys for clients—proven in production on our own operations first.",
+    outcomes: [
+      "10 specialized AI agents running daily business operations autonomously",
+      "Multi-provider LLM routing with local and cloud inference optimization",
+      "Fractional intelligence capability at near-zero marginal cost",
+      "Battle-tested platform now available for client deployment"
+    ],
+    impact: "Operational AI dogfooded and proven in production"
   }
 ];
 
@@ -86,7 +120,7 @@ export function CaseStudies() {
             Proven Results at <span className="text-primary">Enterprise Scale</span>
           </h3>
           <p className="text-muted-foreground text-lg">
-            Real-world examples of how we've helped Fortune 100 companies solve complex operational challenges.
+            Real-world examples of how we solve complex operational challenges—from Fortune 100 programs to AI-native startups.
           </p>
         </div>
 

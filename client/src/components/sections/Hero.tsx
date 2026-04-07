@@ -27,7 +27,7 @@ export function Hero() {
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white text-sm font-medium mb-6">
             <span className="w-2 h-2 rounded-full bg-secondary"></span>
-            Management Consulting • Operational Scaling • AI Solutions
+            Management Consulting • AI-Native Platforms • Operational Intelligence
           </div>
           
           <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tight mb-6">
@@ -36,7 +36,7 @@ export function Hero() {
           </h1>
           
           <p className="text-lg md:text-xl text-white/80 max-w-2xl mb-10 leading-relaxed font-light">
-            12Acre is a non-traditional consultancy. We partner with industry leaders to deliver integrated platform solutions, operational scaling, and risk mitigation across hyperscale construction, real estate, and AI-driven business intelligence firms.
+            12Acre is a non-traditional consultancy built for the AI era. We partner with businesses—from startups to Fortune 100—to architect AI-native operations, build intelligent platforms, and scale with precision. We don't just advise on AI; we build, deploy, and run it ourselves every day.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
