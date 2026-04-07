@@ -58,6 +58,7 @@ const consultantTypes = [
   { icon: Award, title: "Six Sigma Black Belts", description: "Process optimization and quality assurance" },
   { icon: Zap, title: "Commercial Construction & MEP Expertise", description: "Technical specialists for mechanical, electrical, and plumbing infrastructure" },
   { icon: ClipboardCheck, title: "Owner's Reps, Project & Portfolio Managers", description: "Your advocate from project inception through completion and beyond" },
+  { icon: Bot, title: "AI Development & Integration", description: "Custom AI agent systems, intelligent automation, and seamless integration into existing or AI-native applications and platforms" },
 ];
 
 export function Network() {

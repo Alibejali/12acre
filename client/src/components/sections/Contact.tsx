@@ -100,8 +100,8 @@ export function Contact() {
                 </div>
                 <div>
                   <p className="text-sm text-white/60">Email</p>
-                  <a href="mailto:inquiries@12acre.com" className="text-lg font-medium hover:text-secondary transition-colors">
-                    inquiries@12acre.com
+                  <a href="mailto:ali@12acre.com" className="text-lg font-medium hover:text-secondary transition-colors">
+                    ali@12acre.com
                   </a>
                 </div>
               </div>

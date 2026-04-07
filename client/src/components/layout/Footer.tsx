@@ -24,10 +24,11 @@ export function Footer() {
           <div>
             <h4 className="font-bold mb-4 text-sm uppercase tracking-wider">Services</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><a href="#" className="hover:text-primary transition-colors">Program Controls</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Strategic Sourcing</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Risk Management</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Construction Mgmt</a></li>
+              <li><a href="#services" className="hover:text-primary transition-colors">AI-Native Architecture</a></li>
+              <li><a href="#services" className="hover:text-primary transition-colors">Operations at Scale</a></li>
+              <li><a href="#services" className="hover:text-primary transition-colors">Marketplace Platforms</a></li>
+              <li><a href="#services" className="hover:text-primary transition-colors">Strategic Sourcing</a></li>
+              <li><a href="#services" className="hover:text-primary transition-colors">Risk & Governance</a></li>
             </ul>
           </div>
           
