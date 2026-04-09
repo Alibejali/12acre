@@ -11,22 +11,16 @@ import {
 
 const testimonials = [
   {
-    quote: "Ali is a catalyst for change who drives operational rigor to enable reliability. Her ability to thrive in ambiguity while maintaining keen business acumen is unmatched.",
-    author: "M.E.",
-    role: "Director",
-    company: "Meta"
+    quote: "12acre delivered exceptional project management on our tower construction program. Their professionalism and technical expertise were evident from day one — they executed on an aggressive timeline without compromising quality. The level of precision and coordination they brought to every site was outstanding.",
+    author: "J.L.",
+    role: "President",
+    company: "Internet & Telecom Provider"
   },
   {
-    quote: "She cultivated high-performing global teams and built resilient supply chains for our custom manufactured equipment. A true servant leader.",
-    author: "J.P.",
-    role: "VP",
-    company: "Facebook"
-  },
-  {
-    quote: "Ali defined requirements and launched critical applications to track workflow and risks for our data center construction. Her impact was immediate and lasting.",
-    author: "Project Lead",
-    role: "Construction Manager",
-    company: "Facebook"
+    quote: "12acre delivered a comprehensive strategy, cost-benefit analysis, and a detailed program and project plan for our programmatic retrofit rollout. They minimized the impact to our operational stores, limited disruptions to store staff, and maintained budgets even while managing second and third shift labor. An invaluable partner for complex, large-scale retail programs.",
+    author: "R.M.",
+    role: "Executive Brand Director",
+    company: "Global Retailer"
   }
 ];
 
@@ -40,7 +34,7 @@ export function Testimonials() {
             Trusted by Industry Leaders
           </h3>
           <p className="text-muted-foreground">
-            A legacy of delivering impactful results for the world's leading technology companies.
+            A legacy of delivering impactful results across industries.
           </p>
         </div>
 
