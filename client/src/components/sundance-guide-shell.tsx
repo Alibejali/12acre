@@ -76,6 +76,7 @@ export function SundanceGuideShell({ children }: { children: ReactNode }) {
             <Link href="/sundance/guide" className={navClass("/sundance/guide")}>Overview</Link>
             <Link href="/sundance/guide/map" className={navClass("/sundance/guide/map")}>Map</Link>
             <Link href="/sundance/guide/plan" className={navClass("/sundance/guide/plan")}>Plan</Link>
+            <Link href="/sundance/guide/ask" aria-label="Ask the guide" className={navClass("/sundance/guide/ask")}>Ask</Link>
             <Link href="/sundance/guide/eat" className={navClass("/sundance/guide/eat")}>Eat</Link>
             <Link href="/sundance/guide/transit" className={navClass("/sundance/guide/transit")}>Transit</Link>
             <Link href="/sundance" className="ml-1 rounded-full bg-white px-4 py-2 text-sm font-medium text-primary transition-colors hover:bg-white/90">

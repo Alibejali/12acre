@@ -19,6 +19,11 @@ const routeMetadata: Record<string, { title: string; description: string; canoni
     description: "Build an ordered venue day plan for Sundance Boulder week — leave-by times between screenings, walk/drive legs, Q&A buffer. Independent companion; enter your own showtimes.",
     canonical: "https://12acre.com/sundance/guide/plan",
   },
+  "/sundance/guide/ask": {
+    title: "Ask the Sundance Boulder Guide | Film & Venue Concierge | 12Acre",
+    description: "Ask about films, venues, and festival-week tips for Sundance Boulder 2027. Live link-outs to Sundance, FilmFreeway, and IMDb — independent companion, not affiliated with Sundance Institute.",
+    canonical: "https://12acre.com/sundance/guide/ask",
+  },
   "/sundance/guide/eat": {
     title: "Where to Eat During Sundance Boulder 2027 | 12Acre Guide",
     description: "Neighborhood pocket eateries near Sundance Boulder venues — between screenings, group-friendly, quiet notes. Independent local companion.",
