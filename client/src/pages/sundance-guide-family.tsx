@@ -27,7 +27,7 @@ export default function SundanceGuideFamily() {
             <p className="text-xs font-semibold uppercase tracking-widest text-amber-700">Start with the official program</p>
             <h2 className="mt-4 text-2xl font-semibold">Do not assume a screening is for children.</h2>
             <p className="mt-3 leading-7 text-slate-600">Themes, length, timing, and venue rules vary. Review the current official listing and your ticket details before bringing a child; this guide does not invent or mirror a kids slate.</p>
-            <a href="https://www.sundance.org/" target="_blank" rel="noreferrer" className="mt-5 inline-flex items-center gap-2 font-semibold underline underline-offset-4">Check Sundance directly <ExternalLink className="h-4 w-4" /></a>
+            <a href="https://www.sundance.org/" target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-2 font-semibold underline underline-offset-4">Check Sundance directly <ExternalLink className="h-4 w-4" /></a>
           </article>
           <article className="rounded-3xl bg-[#e9eee9] p-7">
             <p className="text-xs font-semibold uppercase tracking-widest text-amber-700">A softer landing</p>
@@ -39,13 +39,13 @@ export default function SundanceGuideFamily() {
             <p className="text-xs font-semibold uppercase tracking-widest text-amber-700">Easy reset</p>
             <h2 className="mt-4 text-2xl font-semibold">Chautauqua paths</h2>
             <p className="mt-3 leading-7 text-slate-600">The Chautauqua area offers open space and high-level trail options, but January surfaces and weather matter. Choose a route appropriate to your family and current conditions.</p>
-            <a href={directionsUrl("Chautauqua Park Boulder Colorado")} target="_blank" rel="noreferrer" className="mt-5 inline-flex rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white"><MapPin className="mr-1 h-4 w-4" />Directions · {directionLabel}</a>
+            <a href={directionsUrl("Chautauqua Park Boulder Colorado")} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white"><MapPin className="mr-1 h-4 w-4" />Directions · {directionLabel} <ExternalLink className="ml-1 h-4 w-4" /></a>
           </article>
           <article className="rounded-3xl border border-slate-900/10 bg-white p-7 shadow-sm">
             <p className="text-xs font-semibold uppercase tracking-widest text-amber-700">Easy reset</p>
             <h2 className="mt-4 text-2xl font-semibold">Pearl Street stroll</h2>
             <p className="mt-3 leading-7 text-slate-600">The pedestrian mall provides a straightforward downtown walk between plans. Keep the reset flexible rather than treating it as another timed attraction.</p>
-            <a href={directionsUrl("Pearl Street Mall Boulder Colorado")} target="_blank" rel="noreferrer" className="mt-5 inline-flex rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white"><MapPin className="mr-1 h-4 w-4" />Directions · {directionLabel}</a>
+            <a href={directionsUrl("Pearl Street Mall Boulder Colorado")} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white"><MapPin className="mr-1 h-4 w-4" />Directions · {directionLabel} <ExternalLink className="ml-1 h-4 w-4" /></a>
           </article>
           <article className="rounded-3xl border border-dashed border-slate-400 bg-white p-7">
             <p className="text-xs font-semibold uppercase tracking-widest text-amber-700">Childcare</p>

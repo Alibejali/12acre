@@ -10,6 +10,7 @@ import { applySundanceSeo } from "./sundance-seo";
 const viteLogger = createLogger();
 
 export async function setupVite(server: Server, app: Express) {
+  let lastKnownGoodTemplate: string | undefined;
   const serverOptions = {
     middlewareMode: true,
     hmr: { server, path: "/vite-hmr" },
@@ -49,10 +50,19 @@ export async function setupVite(server: Server, app: Express) {
         `src="/src/main.tsx"`,
         `src="/src/main.tsx?v=${nanoid()}"`,
       );
+      lastKnownGoodTemplate = template;
       const page = applySundanceSeo(await vite.transformIndexHtml(url, template), url);
       res.status(200).set({ "Content-Type": "text/html" }).end(page);
     } catch (e) {
       vite.ssrFixStacktrace(e as Error);
+      console.error(`Failed to render SPA fallback for ${url}:`, e);
+
+      // A transform or SEO failure should not replace a navigable SPA page
+      // with Express's default error response when we have a shell available.
+      if (lastKnownGoodTemplate) {
+        return res.status(200).type("html").send(lastKnownGoodTemplate);
+      }
+
       next(e);
     }
   });

@@ -57,11 +57,11 @@ export default function SundanceGuideEat() {
               <p className="mt-3 leading-7 text-slate-600">{place.note}</p>
               <p className="mt-4 text-sm text-slate-500">{place.address}</p>
               <div className="mt-5 flex flex-wrap gap-2">
-                <a href={directionsUrl(place.address)} target="_blank" rel="noreferrer" className="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white">
-                  <MapPin className="mr-1 inline h-4 w-4" />Directions · {provider === "apple" ? "Apple" : "Google"}
+                <a href={directionsUrl(place.address)} target="_blank" rel="noopener noreferrer" className="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white">
+                  <MapPin className="mr-1 inline h-4 w-4" />Directions · {provider === "apple" ? "Apple" : "Google"} <ExternalLink className="ml-1 inline h-4 w-4" />
                 </a>
                 <button type="button" onClick={() => addMeal(place)} className="rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold">Add meal stop</button>
-                <a href={place.url} target="_blank" rel="noreferrer" className="rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold">
+                <a href={place.url} target="_blank" rel="noopener noreferrer" className="rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold">
                   Check hours <ExternalLink className="ml-1 inline h-4 w-4" />
                 </a>
               </div>

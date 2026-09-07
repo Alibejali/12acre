@@ -2,6 +2,7 @@ import { useEffect, useState, type FormEvent } from "react";
 import { ArrowRight, ExternalLink, Loader2, MapPin, MessageCircleQuestion, Plus } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { GuideDocumentHead, SundanceGuideShell } from "@/components/sundance-guide-shell";
+import { GuideHelp } from "@/components/sundance-guide-help";
 import { useGuidePreferences, YourBaseStrip } from "@/components/sundance-guide-preferences";
 import { readPlanner, savePlanner } from "@/components/sundance-planner-data";
 
@@ -12,7 +13,7 @@ const historyKey = "sundanceGuide.askHistory";
 
 type AskSource = { label: string; url: string };
 type AskAnswer = {
-  intent: "film" | "venue" | "logistics" | "other";
+  intent: "film" | "venue" | "logistics" | "festival_status" | "other";
   answer: string;
   sources: AskSource[];
   venue?: { name: string; address: string; pocket: string; walk: number; drive: number };
@@ -89,6 +90,7 @@ export default function SundanceGuideAsk() {
         <section className="mx-auto mt-10 max-w-3xl">
           <form onSubmit={ask} className="rounded-3xl border border-slate-900/10 bg-white p-5 shadow-sm">
             <label htmlFor="guide-question" className="text-sm font-semibold">What can I help you find?</label>
+            <GuideHelp>Try a venue, practical festival question, or film title. Answers stay rule-based and point to official or public sources.</GuideHelp>
             <div className="mt-3 flex flex-col gap-3 sm:flex-row">
               <input id="guide-question" value={question} onChange={(event) => setQuestion(event.target.value)}
                 placeholder="What should I know about [film title]?" maxLength={500}
@@ -102,6 +104,7 @@ export default function SundanceGuideAsk() {
                 ["Film lookup", "What should I know about "],
                 ["Venue walk time", "How far is Chautauqua Auditorium from my base?"],
                 ["Between-screening tip", "Where should I eat between screenings?"],
+                ["When is the lineup announced?", "When is the lineup announced?"],
                 ["Official tickets", "Where do I find official tickets and showtimes?"],
               ].map(([label, prompt]) => (
                 <button key={label} type="button" onClick={() => setQuestion(prompt)} className="rounded-full border border-slate-200 px-3 py-2 text-sm text-slate-600 hover:border-slate-500">{label}</button>
@@ -120,8 +123,8 @@ export default function SundanceGuideAsk() {
                   <p className="font-semibold">From your base: {base.label}</p>
                   <p className="mt-1 text-sm text-slate-600">Live conditions vary; verify this route before leaving.</p>
                   <div className="mt-4 flex flex-wrap gap-2">
-                    <a href={directionsUrl(answer.venue.address)} target="_blank" rel="noreferrer" className="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white">
-                      <MapPin className="mr-1 inline h-4 w-4" />Directions · {provider === "apple" ? "Apple" : "Google"}
+                    <a href={directionsUrl(answer.venue.address)} target="_blank" rel="noopener noreferrer" className="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white">
+                      <MapPin className="mr-1 inline h-4 w-4" />Directions · {provider === "apple" ? "Apple" : "Google"} <ExternalLink className="ml-1 inline h-4 w-4" />
                     </a>
                     <button type="button" onClick={addVenue} className="rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold">
                       <Plus className="mr-1 inline h-4 w-4" />Add venue to plan
@@ -133,7 +136,7 @@ export default function SundanceGuideAsk() {
                 {answer.sources.map((source) => source.url.startsWith("/") ? (
                   <Link key={source.url} href={source.url} className="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold">{source.label} <ArrowRight className="ml-1 inline h-4 w-4" /></Link>
                 ) : (
-                  <a key={source.url} href={source.url} target="_blank" rel="noreferrer" className="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold">{source.label} <ExternalLink className="ml-1 inline h-4 w-4" /></a>
+                  <a key={source.url} href={source.url} target="_blank" rel="noopener noreferrer" className="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold">{source.label} <ExternalLink className="ml-1 inline h-4 w-4" /></a>
                 ))}
               </div>
               <Link href="/sundance" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">Stay at Sanitas View <ArrowRight className="h-4 w-4" /></Link>

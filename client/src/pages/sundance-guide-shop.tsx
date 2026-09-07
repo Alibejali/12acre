@@ -44,10 +44,10 @@ export default function SundanceGuideShop() {
               <p className="mt-3 flex-1 leading-7 text-slate-600">{shop.angle}</p>
               <p className="mt-4 text-xs text-slate-500">Check current hours directly before going.</p>
               <div className="mt-5 flex flex-wrap gap-2">
-                <a href={directionsUrl(shop.query)} target="_blank" rel="noreferrer" className="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white">
-                  <MapPin className="mr-1 inline h-4 w-4" />Directions · {provider === "apple" ? "Apple" : "Google"}
+                <a href={directionsUrl(shop.query)} target="_blank" rel="noopener noreferrer" className="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white">
+                  <MapPin className="mr-1 inline h-4 w-4" />Directions · {provider === "apple" ? "Apple" : "Google"} <ExternalLink className="ml-1 inline h-4 w-4" />
                 </a>
-                <a href={shop.site} target="_blank" rel="noreferrer" aria-label={`${shop.name} website`} className="rounded-full border border-slate-300 px-3 py-2 text-sm font-semibold">
+                <a href={shop.site} target="_blank" rel="noopener noreferrer" aria-label={`${shop.name} website`} className="rounded-full border border-slate-300 px-3 py-2 text-sm font-semibold">
                   Site <ExternalLink className="ml-1 inline h-4 w-4" />
                 </a>
               </div>

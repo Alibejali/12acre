@@ -62,19 +62,6 @@ app.use((req, res, next) => {
 (async () => {
   await registerRoutes(httpServer, app);
 
-  app.use((err: any, _req: Request, res: Response, next: NextFunction) => {
-    const status = err.status || err.statusCode || 500;
-    const message = err.message || "Internal Server Error";
-
-    console.error("Internal Server Error:", err);
-
-    if (res.headersSent) {
-      return next(err);
-    }
-
-    return res.status(status).json({ message });
-  });
-
   // importantly only setup vite in development and after
   // setting up all the other routes so the catch-all route
   // doesn't interfere with the other routes
@@ -84,6 +71,38 @@ app.use((req, res, next) => {
     const { setupVite } = await import("./vite");
     await setupVite(httpServer, app);
   }
+
+  // This must be registered after the SPA fallback middleware. Otherwise
+  // fallback rendering errors bypass it and Express emits its plain-text
+  // default "Internal Server Error" response.
+  app.use((err: any, req: Request, res: Response, _next: NextFunction) => {
+    const requestedStatus = err?.status || err?.statusCode;
+    const status =
+      typeof requestedStatus === "number" && requestedStatus >= 400 && requestedStatus < 600
+        ? requestedStatus
+        : 500;
+
+    console.error(`Unhandled request error for ${req.method} ${req.originalUrl}:`, err);
+
+    // There is no safe way to replace an already-started response. Ending it
+    // here avoids delegating to Express's default error handler.
+    if (res.headersSent) {
+      return res.end();
+    }
+
+    if (req.path.startsWith("/api")) {
+      return res.status(status).json({
+        error: status >= 500 ? "Internal Server Error" : "Bad Request",
+      });
+    }
+
+    return res
+      .status(status)
+      .type("html")
+      .send(
+        "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Unable to load page</title></head><body><main><h1>Unable to load page</h1><p>Please try again shortly.</p></main></body></html>",
+      );
+  });
 
   // ALWAYS serve the app on the port specified in the environment variable PORT
   // Other ports are firewalled. Default to 5000 if not specified.

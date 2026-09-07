@@ -50,6 +50,15 @@ export async function registerRoutes(
     });
     const source = (label: string, url: string) => ({ label, url });
 
+    // Future: Gemma4 primary + rare Claude/Grok escalation on RBC; do not wire LLM.
+    if (/(lineup|line up|festival status|films?.*(selected|selection)|did.*(film|movie).*(selected|selection)|when.*(announce|lineup|know)|festival.*(confirm|announce|update)|is.*festival.*(confirm|happen))/.test(normalized)) {
+      return res.json({
+        intent: "festival_status",
+        answer: "I know it is hard to plan around an evolving festival. I don’t publish or predict lineup timing or status here; Sundance is the source to trust for announcements and current festival details.",
+        sources: [source("Check Sundance updates", "https://www.sundance.org/")],
+      });
+    }
+
     if (venue) {
       const isSanitasBase = normalizeAsk(base).includes("sanitas view") || normalizeAsk(base).includes("3303 3339 broadway");
       return res.json({

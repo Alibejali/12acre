@@ -58,13 +58,11 @@ export default function SundanceGuideMap() {
       </section>
 
       <section className="mx-auto grid max-w-6xl gap-8 px-4 pb-16 md:grid-cols-[0.9fr_1.1fr] md:px-6 md:pb-24">
-        <div className="min-h-[360px] overflow-hidden rounded-3xl border border-slate-900/10 bg-white md:sticky md:top-24 md:h-[620px]">
-          <iframe
-            title="OpenStreetMap of Boulder, Colorado"
-            src="https://www.openstreetmap.org/export/embed.html?bbox=-105.315%2C39.975%2C-105.225%2C40.065&layer=mapnik&marker=40.035%2C-105.282"
-            className="h-full min-h-[360px] w-full border-0"
-            loading="lazy"
-          />
+        <div className="flex min-h-[360px] flex-col justify-end rounded-3xl border border-slate-900/10 bg-[#e9eee9] p-8 md:sticky md:top-24 md:h-[620px]">
+          <MapPin className="h-9 w-9 text-amber-700" />
+          <h2 className="mt-4 text-2xl font-semibold">Open the Boulder map</h2>
+          <p className="mt-3 leading-7 text-slate-600">Use the venue list for neighborhood pockets, then open a live map when you are ready to route.</p>
+          <a href="https://www.openstreetmap.org/#map=13/40.015/-105.270" target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white">Open map <ExternalLink className="h-4 w-4" /></a>
         </div>
 
         <div>
@@ -84,9 +82,9 @@ export default function SundanceGuideMap() {
                               <h3 className="mt-3 text-lg font-semibold">{venue.name}</h3>
                               {venue.note && <p className="mt-1 text-sm leading-6 text-slate-500">{venue.note}</p>}
                             </div>
-                            <div className="flex shrink-0 flex-col items-end gap-2"><a href={directions} target="_blank" rel="noreferrer" aria-label={`Directions to ${venue.name}`}
+                            <div className="flex shrink-0 flex-col items-end gap-2"><a href={directions} target="_blank" rel="noopener noreferrer" aria-label={`Directions to ${venue.name}`}
                               className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-slate-200 px-3 py-2 text-sm font-semibold hover:bg-slate-50">
-                              <MapPin className="h-4 w-4" /> Directions · {provider === "apple" ? "Apple" : "Google"}
+                              <MapPin className="h-4 w-4" /> Directions · {provider === "apple" ? "Apple" : "Google"} <ExternalLink className="h-3.5 w-3.5" />
                             </a><button type="button" onClick={() => { savePlanner([...readPlanner(), { id: `${venue.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-${Date.now()}`, name: venue.name, address: `${venue.name} Boulder, CO`, kind: "venue" }]); setLocation("/sundance/guide/plan"); }} className="inline-flex items-center gap-1.5 rounded-full bg-amber-700 px-3 py-2 text-sm font-semibold text-white hover:bg-amber-800"><Plus className="h-4 w-4" />Add to plan</button></div>
                           </div>
                         </article>
@@ -108,7 +106,7 @@ export default function SundanceGuideMap() {
 
           <div className="mt-8 flex flex-col gap-3 border-t border-slate-900/10 pt-6 text-sm text-slate-600 sm:flex-row sm:items-center sm:justify-between">
             <p>Not affiliated with Sundance Institute. Official program and tickets: sundance.org</p>
-            <a href="https://www.sundance.org/" target="_blank" rel="noreferrer" className="inline-flex shrink-0 items-center gap-1.5 font-semibold text-slate-950">
+            <a href="https://www.sundance.org/" target="_blank" rel="noopener noreferrer" className="inline-flex shrink-0 items-center gap-1.5 font-semibold text-slate-950">
               Official festival venue map <ExternalLink className="h-4 w-4" />
             </a>
           </div>

@@ -1,6 +1,7 @@
 import { ArrowRight, ExternalLink, Mail, MapPin, Star } from "lucide-react";
 import { Link } from "wouter";
 import { GuideDocumentHead, SundanceGuideShell } from "@/components/sundance-guide-shell";
+import { GuideHelp } from "@/components/sundance-guide-help";
 import { useGuidePreferences, YourBaseStrip } from "@/components/sundance-guide-preferences";
 
 const title = "Lodging for Sundance Boulder 2027 | Sanitas View & Other Stays | 12Acre";
@@ -39,10 +40,11 @@ export default function SundanceGuideLodging() {
               <h2 className="mt-6 text-4xl font-semibold !text-white">Sanitas View</h2>
               <p className="mt-3 max-w-2xl text-lg leading-8 text-white/70">Eleven contiguous, approximately 3,000-square-foot townhomes on Broadway in Newlands—available as one residence, an adjacent sub-block, or a full team campus.</p>
               <p className="mt-4 text-sm text-white/60">3303–3339 Broadway, Boulder · No rate claims are published here.</p>
+              <GuideHelp dark>Featured means this guide’s suggested group base, not a Sundance Institute affiliation. Verify availability and details directly.</GuideHelp>
               <div className="mt-7 flex flex-wrap gap-3">
                 <a href="/sundance#sundance-contact" className="rounded-full bg-white px-5 py-3 font-semibold text-primary">Inquire</a>
                 <Link href="/sundance" className="rounded-full border border-white/30 px-5 py-3 font-semibold text-white">See the lodging story <ArrowRight className="ml-1 inline h-4 w-4" /></Link>
-                <a href={directionsUrl("Sanitas View 3303 Broadway Boulder Colorado")} target="_blank" rel="noreferrer" className="rounded-full border border-white/30 px-5 py-3 font-semibold text-white"><MapPin className="mr-1 inline h-4 w-4" />Directions · {mapLabel}</a>
+                <a href={directionsUrl("Sanitas View 3303 Broadway Boulder Colorado")} target="_blank" rel="noopener noreferrer" className="rounded-full border border-white/30 px-5 py-3 font-semibold text-white"><MapPin className="mr-1 inline h-4 w-4" />Directions · {mapLabel} <ExternalLink className="ml-1 inline h-4 w-4" /></a>
               </div>
             </div>
             <div className="min-h-64 bg-[url('/logo-light.png')] bg-center bg-no-repeat opacity-20" aria-hidden="true" />
@@ -54,7 +56,7 @@ export default function SundanceGuideLodging() {
             <p className="text-xs font-semibold uppercase tracking-widest text-amber-700">Official information</p>
             <h2 className="mt-4 text-2xl font-semibold">Check Sundance directly.</h2>
             <p className="mt-3 leading-7 text-slate-600">Use Sundance’s public site for official festival information and any lodging resources it publishes. This companion does not mirror festival inventory.</p>
-            <a href="https://www.sundance.org/" target="_blank" rel="noreferrer" className="mt-5 inline-flex items-center gap-2 font-semibold underline underline-offset-4">Open sundance.org <ExternalLink className="h-4 w-4" /></a>
+            <a href="https://www.sundance.org/" target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-2 font-semibold underline underline-offset-4">Open sundance.org <ExternalLink className="h-4 w-4" /></a>
           </article>
           <article className="rounded-3xl border border-dashed border-slate-400 bg-white p-7">
             <p className="text-xs font-semibold uppercase tracking-widest text-amber-700">Sponsored stays</p>
@@ -73,8 +75,8 @@ export default function SundanceGuideLodging() {
               <article key={item.name} className="rounded-2xl border border-slate-900/10 bg-white p-5">
                 <h3 className="font-semibold">{item.name}</h3>
                 <div className="mt-5 flex flex-wrap gap-2">
-                  <a href={item.url} target="_blank" rel="noreferrer" className="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white">Open search <ExternalLink className="ml-1 inline h-4 w-4" /></a>
-                  <a href={directionsUrl(item.query)} target="_blank" rel="noreferrer" className="rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold"><MapPin className="mr-1 inline h-4 w-4" />Maps</a>
+                  <a href={item.url} target="_blank" rel="noopener noreferrer" className="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white">Open search <ExternalLink className="ml-1 inline h-4 w-4" /></a>
+                  <a href={directionsUrl(item.query)} target="_blank" rel="noopener noreferrer" className="rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold"><MapPin className="mr-1 inline h-4 w-4" />Maps <ExternalLink className="ml-1 inline h-4 w-4" /></a>
                 </div>
               </article>
             ))}

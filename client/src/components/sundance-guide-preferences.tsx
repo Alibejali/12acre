@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { Link } from "wouter";
+import { GuideHelp } from "@/components/sundance-guide-help";
 
 export type GuideBase = { id: string; label: string; address: string };
 export type MapsProvider = "google" | "apple";
@@ -146,6 +147,7 @@ export function YourBaseStrip({ showProvider = false }: { showProvider?: boolean
           <p className="text-xs font-medium uppercase tracking-widest text-white/55">Your base · Saved on this device</p>
           <h2 className="mt-2 text-2xl font-bold text-white">{base.label}</h2>
           <p className="mt-1 text-white/65">{base.address}</p>
+          <GuideHelp dark>Your base is saved only on this device and starts guide directions. You can change it at any time.</GuideHelp>
         </div>
         <div className="flex flex-wrap items-center gap-3">
           <button type="button" onClick={openBaseEditor} className="rounded-full border border-white/35 px-4 py-2 text-sm font-medium hover:bg-white/10">

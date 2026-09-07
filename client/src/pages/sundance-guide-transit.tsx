@@ -34,7 +34,7 @@ export default function SundanceGuideTransit() {
             <TrainFront className="h-7 w-7 text-amber-700" />
             <h2 className="mt-6 text-2xl font-semibold">RTD, bike, rideshare</h2>
             <p className="mt-3 leading-7 text-slate-600">RTD can connect Broadway / Newlands with Pearl, CU, and central corridors; use its live trip planner for the day’s service. Cycling can be efficient in clear conditions. A rideshare pickup one block away may be easier than a crowded venue curb.</p>
-            <a href="https://www.rtd-denver.com/" target="_blank" rel="noreferrer" className="mt-5 inline-flex items-center gap-2 font-semibold underline underline-offset-4">
+            <a href="https://www.rtd-denver.com/" target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-2 font-semibold underline underline-offset-4">
               RTD official service <ExternalLink className="h-4 w-4" />
             </a>
           </article>
@@ -42,7 +42,7 @@ export default function SundanceGuideTransit() {
             <ShieldCheck className="h-7 w-7 text-amber-700" />
             <h2 className="mt-6 text-2xl font-semibold">Parking and a Denver day</h2>
             <p className="mt-3 leading-7 text-slate-600">Do not assume a venue has festival parking. Read posted signs and respect residential areas. For an Around-the-fest day trip to Denver, compare driving with RTD and make a complete return plan using official regional transit and venue information.</p>
-            <a href="https://bouldercolorado.gov/services/parking" target="_blank" rel="noreferrer" className="mt-5 inline-flex items-center gap-2 font-semibold underline underline-offset-4">
+            <a href="https://bouldercolorado.gov/services/parking" target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-2 font-semibold underline underline-offset-4">
               Boulder parking information <ExternalLink className="h-4 w-4" />
             </a>
           </article>
