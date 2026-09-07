@@ -62,21 +62,21 @@ export function SundanceGuideShell({ children }: { children: ReactNode }) {
   const [location] = useLocation();
   const navClass = (href: string) =>
     `rounded-full px-3 py-2 text-sm font-medium transition-colors ${
-      location === href ? "bg-slate-900 text-white" : "text-slate-600 hover:bg-slate-100 hover:text-slate-950"
+      location === href ? "bg-white text-primary" : "text-white/70 hover:bg-white/10 hover:text-white"
     }`;
 
   return (
-    <div className="min-h-screen bg-[#f4f1ea] text-slate-900">
-      <header className="sticky top-0 z-50 border-b border-slate-900/10 bg-[#f4f1ea]/95 backdrop-blur">
+    <div className="min-h-screen overflow-x-hidden bg-background font-sans text-foreground selection:bg-primary/20">
+      <header className="sticky top-0 z-50 border-b border-white/15 bg-slate-950/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3 md:px-6">
           <Link href="/sundance/guide" aria-label="12Acre Sundance guide" className="shrink-0">
-            <img src="/logo-dark.png" alt="12Acre" className="h-10 w-10 object-contain" />
+            <img src="/logo-light.png" alt="12Acre" className="h-10 w-10 object-contain" />
           </Link>
           <nav aria-label="Sundance guide" className="flex flex-wrap items-center justify-end gap-1">
             <Link href="/sundance/guide" className={navClass("/sundance/guide")}>Overview</Link>
             <Link href="/sundance/guide/map" className={navClass("/sundance/guide/map")}>Map</Link>
-            <span className="hidden text-xs text-slate-400 sm:inline" title="Coming soon">Plan · Eat · Transit</span>
-            <Link href="/sundance" className="ml-1 rounded-full bg-amber-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-amber-700">
+            <span className="hidden text-xs text-white/40 sm:inline" title="Coming soon">Plan · Eat · Transit</span>
+            <Link href="/sundance" className="ml-1 rounded-full bg-white px-4 py-2 text-sm font-medium text-primary transition-colors hover:bg-white/90">
               Stay with us
             </Link>
           </nav>

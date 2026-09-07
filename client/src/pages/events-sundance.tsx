@@ -426,6 +426,14 @@ export default function EventsSundance() {
                   Why Not a Hotel?
                 </a>
               </div>
+              <div className="mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm">
+                <a href="/sundance/guide" className="font-medium text-white underline decoration-white/40 underline-offset-4 transition-colors hover:decoration-white">
+                  Festival week guide
+                </a>
+                <a href="/sundance/guide/map" className="text-white/70 transition-colors hover:text-white">
+                  Venues &amp; map
+                </a>
+              </div>
             </motion.div>
           </div>
         </section>

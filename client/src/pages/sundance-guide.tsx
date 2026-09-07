@@ -1,6 +1,8 @@
 import { ArrowRight, ExternalLink, Map, CalendarDays, Home } from "lucide-react";
 import { Link } from "wouter";
 import { GuideDocumentHead, SundanceGuideShell } from "@/components/sundance-guide-shell";
+import { YourBaseStrip } from "@/components/sundance-guide-preferences";
+import eventsHero from "@/assets/events-hero.jpg";
 
 const title = "Sundance Boulder 2027 Guide | Venues, Map & Stay | 12Acre";
 const description = "Independent companion for Sundance Film Festival week in Boulder (Jan 21–31, 2027): venue map, neighborhood pockets, and Sanitas View lodging on Broadway. Link-outs to official festival info — not a scraped schedule.";
@@ -10,19 +12,26 @@ export default function SundanceGuide() {
   return (
     <SundanceGuideShell>
       <GuideDocumentHead title={title} description={description} canonical={canonical} />
-      <section className="border-b border-slate-900/10">
+      <section className="relative overflow-hidden border-b border-border bg-slate-900">
+        <img src={eventsHero} alt="" className="absolute inset-0 h-full w-full object-cover opacity-35" />
+        <div className="absolute inset-0 bg-slate-950/65" />
         <div className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-24">
-          <p className="mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-amber-700">January 21–31, 2027 · Independent guide</p>
-          <h1 className="max-w-4xl text-5xl font-semibold leading-[0.98] text-slate-950 md:text-7xl">Your Boulder festival week companion</h1>
-          <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-600">
+          <div className="relative z-10">
+          <p className="mb-5 text-sm font-medium uppercase tracking-widest text-white/65">January 21–31, 2027 · Independent guide</p>
+          <h1 className="max-w-4xl text-5xl font-bold leading-[1.05] tracking-tight text-white md:text-7xl">Your Boulder festival week companion</h1>
+          <p className="mt-7 max-w-2xl text-lg font-light leading-8 text-white/75">
             A practical, locally minded guide to venues, neighborhood pockets, and a smoother week in Boulder—without duplicating the official program.
           </p>
-          <Link href="/sundance" className="mt-9 inline-flex items-center gap-2 rounded-full bg-slate-950 px-6 py-3 font-semibold text-white hover:bg-slate-800">
+          <Link href="/sundance" className="mt-9 inline-flex items-center gap-2 rounded-full bg-white/90 px-6 py-3 font-medium text-primary hover:bg-white">
             Stay at Sanitas View <ArrowRight className="h-4 w-4" />
           </Link>
+          </div>
         </div>
       </section>
 
+      <section className="mx-auto max-w-6xl px-4 pt-12 md:px-6">
+        <YourBaseStrip showProvider />
+      </section>
       <section className="mx-auto grid max-w-6xl gap-8 px-4 py-14 md:grid-cols-[1.2fr_0.8fr] md:px-6 md:py-20">
         <div>
           <h2 className="text-3xl font-semibold text-slate-950">Built to help you find your bearings</h2>
@@ -32,7 +41,7 @@ export default function SundanceGuide() {
             <p>World premieres are scheduled for January 21–26, while the festival continues through January 31. An at-home online program is planned for later in the festival for audiences outside Colorado. Check Sundance’s official site for current details.</p>
           </div>
         </div>
-        <aside className="rounded-3xl bg-slate-950 p-7 text-white">
+        <aside className="rounded-lg bg-slate-950 p-7 text-white">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-400">Your Boulder base</p>
           <h2 className="mt-4 text-3xl font-semibold text-white">Sanitas View</h2>
           <p className="mt-4 leading-7 text-slate-300">Eleven contiguous townhomes on Broadway in Newlands, available for teams and creatives during festival week.</p>

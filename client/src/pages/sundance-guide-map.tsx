@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ExternalLink, MapPin } from "lucide-react";
 import { Link } from "wouter";
 import { GuideDocumentHead, SundanceGuideShell } from "@/components/sundance-guide-shell";
+import { YourBaseStrip, useGuidePreferences } from "@/components/sundance-guide-preferences";
 
 const title = "Sundance Boulder Venues & Map 2027 | 12Acre Guide";
 const description = "Official Sundance Boulder screening venues by neighborhood pocket, plus Around the fest filter for Front Range companion showings. Base: Sanitas View, 3303–3339 Broadway.";
@@ -28,34 +29,30 @@ export default function SundanceGuideMap() {
   const [filter, setFilter] = useState<Filter>("Official");
   const showOfficial = filter !== "Around the fest";
   const showAround = filter !== "Official";
+  const { directionsUrl, provider } = useGuidePreferences();
 
   return (
     <SundanceGuideShell>
       <GuideDocumentHead title={title} description={description} canonical={canonical} />
-      <section className="mx-auto max-w-6xl px-4 py-12 md:px-6 md:py-18">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-700">Boulder · 2027</p>
-        <h1 className="mt-4 max-w-4xl text-4xl font-semibold leading-tight text-slate-950 md:text-6xl">Venues by neighborhood pocket</h1>
-        <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">Confirmed venue names, grouped to make Boulder easier to navigate. No invented drive times or showtimes.</p>
+      <section className="border-b border-white/10 bg-slate-900 text-white">
+      <div className="mx-auto max-w-6xl px-4 py-12 md:px-6 md:py-18">
+        <p className="text-sm font-medium uppercase tracking-widest text-white/60">Boulder · 2027</p>
+        <h1 className="mt-4 max-w-4xl text-4xl font-bold leading-tight tracking-tight text-white md:text-6xl">Venues by neighborhood pocket</h1>
+        <p className="mt-5 max-w-2xl text-lg font-light leading-8 text-white/70">Confirmed venue names, grouped to make Boulder easier to navigate. No invented drive times or showtimes.</p>
 
         <div className="mt-8 flex flex-wrap gap-2" role="group" aria-label="Venue filters">
           {(["Official", "Around the fest", "All"] as Filter[]).map((item) => (
             <button key={item} type="button" onClick={() => setFilter(item)} aria-pressed={filter === item}
-              className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${filter === item ? "bg-slate-950 text-white" : "bg-white text-slate-600 hover:text-slate-950"}`}>
+              className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${filter === item ? "bg-white text-primary" : "border border-white/30 text-white hover:bg-white/10"}`}>
               {item}
             </button>
           ))}
         </div>
+      </div>
       </section>
 
       <section className="mx-auto max-w-6xl px-4 pb-8 md:px-6">
-        <div className="flex flex-col gap-5 rounded-3xl bg-amber-600 p-6 text-white md:flex-row md:items-center md:justify-between">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-100">Your base · Always shown</p>
-            <h2 className="mt-2 text-2xl font-semibold text-white">Sanitas View</h2>
-            <p className="mt-1 text-amber-50">3303–3339 Broadway, Newlands, Boulder · Stay</p>
-          </div>
-          <Link href="/sundance" className="shrink-0 rounded-full bg-white px-5 py-3 text-sm font-semibold text-amber-800 hover:bg-amber-50">View lodging</Link>
-        </div>
+        <div className="-mt-1 pt-8"><YourBaseStrip showProvider /></div>
       </section>
 
       <section className="mx-auto grid max-w-6xl gap-8 px-4 pb-16 md:grid-cols-[0.9fr_1.1fr] md:px-6 md:pb-24">
@@ -76,7 +73,7 @@ export default function SundanceGuideMap() {
                   <h2 className="border-b border-slate-900/15 pb-3 text-xl font-semibold text-slate-950">{group.pocket}</h2>
                   <div className="mt-3 space-y-3">
                     {group.venues.map((venue) => {
-                      const directions = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${venue.name} Boulder CO`)}`;
+                      const directions = directionsUrl(`${venue.name} Boulder, CO`);
                       return (
                         <article key={venue.name} className="rounded-2xl bg-white p-5">
                           <div className="flex items-start justify-between gap-4">
@@ -87,7 +84,7 @@ export default function SundanceGuideMap() {
                             </div>
                             <a href={directions} target="_blank" rel="noreferrer" aria-label={`Directions to ${venue.name}`}
                               className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-slate-200 px-3 py-2 text-sm font-semibold hover:bg-slate-50">
-                              <MapPin className="h-4 w-4" /> Directions
+                              <MapPin className="h-4 w-4" /> Directions · {provider === "apple" ? "Apple" : "Google"}
                             </a>
                           </div>
                         </article>

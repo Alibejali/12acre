@@ -1,0 +1,51 @@
+Companion polish A–D for 12acre.com. Match existing code in sundance-guide*, sundance-guide-shell, events-sundance / /sundance lodging page. Do NOT invent prices. Do NOT scrape Sundance film schedules. Do NOT break /sundance inquire or /events/sundance → /sundance 301.
+
+=== A) Links from main lodging page → guide ===
+On /sundance (events-sundance or equivalent) ONLY — add clear, on-brand links to the companion:
+1) Primary in-page CTA or secondary button near hero / festival-week section: "Festival week guide" → /sundance/guide
+2) Optional smaller text link "Venues & map" → /sundance/guide/map
+Keep minimal lodging header (logo + Inquire / Back to top). Do not add full consulting nav. Do not overwhelm the inquire conversion — one strong guide CTA + optional map text link is enough. Style buttons to match existing lodging button classes.
+
+=== B) Visual sync with /sundance ===
+Guide pages currently look like a different product (fonts, background, colors). Make /sundance/guide and /sundance/guide/map feel like the SAME design system as /sundance lodging:
+- Reuse the lodging page’s font stack, heading weights, letter-spacing, body text color, background (including any image/gradient/overlay patterns), accent/primary button styles, border radii, card treatments, and spacing rhythm.
+- Shared shell (sundance-guide-shell) should inherit lodging aesthetic: same header bar treatment as lodging minimal header (logo treatment, link/button styles), same footer tone.
+- Prefer extracting shared tokens/classes from the lodging page rather than inventing a new “guide theme.”
+- After change: side-by-side, a visitor should not feel they left the Sanitas View / 12Acre Sundance site.
+- Keep guide-specific content/layout; only sync look-and-feel.
+
+=== C) Assignable “Your Base” (device-local) ===
+Replace locked-only Sanitas View base with a user-assignable base, persisted per browser/device (localStorage).
+
+Behavior:
+- Default base on first visit: Sanitas View · 3303–3339 Broadway, Newlands, Boulder · link /sundance (and soft lodging CTA remains).
+- Always-visible “Your base” strip remains on Overview + Map.
+- Add “Set as my base” / “Change base” control on the strip.
+- User can set base to:
+  (1) Sanitas View (preset),
+  (2) any Official venue from the map list,
+  (3) a custom label + address (short text fields).
+- Persist: label, address (or venue id), optional lat/lng if you already have it, maps preference (see D). Key e.g. `sundanceGuide.base` in localStorage.
+- Directions / “from your base” framing should use the saved base, not always Sanitas View.
+- Soft monetization: when base is NOT Sanitas View, keep a discreet “Prefer a private compound? Stay at Sanitas View” link → /sundance. When base IS Sanitas View, CTA can be “Inquire” → /sundance.
+- Do not require login. Do not sync to a server for MVP.
+
+=== D) Maps provider choice (Google or Apple) ===
+Directions must not hard-default to Google only.
+
+- Add a compact control (header of Map page and/or Your Base strip): “Directions with: Google Maps | Apple Maps”
+- Persist choice in localStorage e.g. `sundanceGuide.mapsProvider` = `google` | `apple` (default: detect iOS/Mac Safari → apple, else google — or default google if detection is messy; either OK if choice is one tap away).
+- Every “Directions” link builds the correct URL:
+  - Google: https://www.google.com/maps/dir/?api=1&destination=URL_ENCODED_ADDRESS (optional origin= saved base address)
+  - Apple: https://maps.apple.com/?daddr=URL_ENCODED_ADDRESS (optional saddr= saved base)
+- OpenStreetMap embed for the overview map visual may stay (no API key); this preference is for outbound directions links.
+- Optional later: “Other” — skip for now unless trivial.
+
+=== VERIFY ===
+- /sundance shows guide (+ optional map) links; inquire still works; minimal header unchanged in role
+- /sundance/guide and /map match lodging look-and-feel (fonts/colors/bg/buttons)
+- Your Base defaults to Sanitas View; can change to a venue or custom; survives refresh (localStorage)
+- Directions respect Google vs Apple selection
+- /events/sundance 301 + query preserve still works
+- No consulting nav on guide or lodging Sundance pages
+Report files touched + how base/maps prefs are stored. Do not Republish — Don will.
