@@ -69,7 +69,7 @@ export function SundanceGuideShell({ children }: { children: ReactNode }) {
     <div className="min-h-screen overflow-x-hidden bg-background font-sans text-foreground selection:bg-primary/20">
       <header className="sticky top-0 z-50 border-b border-white/15 bg-slate-950/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3 md:px-6">
-          <Link href="/sundance/guide" aria-label="12Acre Sundance guide" className="shrink-0">
+          <Link href="/" aria-label="12Acre home" className="shrink-0">
             <img src="/logo-light.png" alt="12Acre" className="h-10 w-10 object-contain" />
           </Link>
           <nav aria-label="Sundance guide" className="flex flex-wrap items-center justify-end gap-1">
