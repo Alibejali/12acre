@@ -20,7 +20,6 @@ import {
   Newspaper,
   Loader2,
 } from "lucide-react";
-import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import {
@@ -173,6 +172,28 @@ const formSchema = z.object({
   message: z.string().min(10, { message: "Message must be at least 10 characters." }),
 });
 
+function SundanceHeader() {
+  return (
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/15 bg-slate-950/45 py-4 backdrop-blur-md">
+      <div className="container mx-auto flex items-center justify-between px-4 md:px-6">
+        <a href="/sundance" aria-label="12Acre Sundance lodging" className="group">
+          <img
+            src="/logo-light.png"
+            alt="12Acre"
+            className="h-10 w-10 object-contain transition-transform group-hover:scale-105"
+          />
+        </a>
+        <a
+          href="#sundance-contact"
+          className="inline-flex h-10 items-center justify-center rounded-full bg-white px-6 text-sm font-medium text-primary transition-colors hover:bg-white/90"
+        >
+          Inquire
+        </a>
+      </div>
+    </header>
+  );
+}
+
 function PropertyGallery() {
   const [index, setIndex] = useState(0);
   const prev = () => setIndex((i) => (i === 0 ? gallery.length - 1 : i - 1));
@@ -266,7 +287,7 @@ export default function EventsSundance() {
 
   return (
     <div className="min-h-screen bg-background font-sans text-foreground overflow-x-hidden selection:bg-primary/20">
-      <Navbar />
+      <SundanceHeader />
       <main>
         <section className="relative min-h-[90vh] w-full overflow-hidden flex items-center justify-center">
           <div className="absolute inset-0 z-0">
