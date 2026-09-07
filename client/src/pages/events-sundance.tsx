@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -173,6 +173,32 @@ const formSchema = z.object({
 });
 
 function SundanceHeader() {
+  const [isInContactSection, setIsInContactSection] = useState(false);
+
+  useEffect(() => {
+    const contactSection = document.getElementById("sundance-contact");
+    if (!contactSection) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsInContactSection(entry.isIntersecting),
+      { rootMargin: "0px 0px -30% 0px", threshold: 0.05 },
+    );
+
+    observer.observe(contactSection);
+    return () => observer.disconnect();
+  }, []);
+
+  const handleCtaClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+
+    if (isInContactSection) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
+    document.getElementById("sundance-contact")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/15 bg-slate-950/45 py-4 backdrop-blur-md">
       <div className="container mx-auto flex items-center justify-between px-4 md:px-6">
@@ -184,10 +210,11 @@ function SundanceHeader() {
           />
         </a>
         <a
-          href="#sundance-contact"
+          href={isInContactSection ? "#top" : "#sundance-contact"}
+          onClick={handleCtaClick}
           className="inline-flex h-10 items-center justify-center rounded-full bg-white px-6 text-sm font-medium text-primary transition-colors hover:bg-white/90"
         >
-          Inquire
+          {isInContactSection ? "Back to top" : "Inquire"}
         </a>
       </div>
     </header>
