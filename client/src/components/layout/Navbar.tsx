@@ -35,13 +35,24 @@ export function Navbar() {
       )}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3 group">
+        <div className="flex items-center gap-3">
+          <Link href="/" className="group" aria-label="12Acre home">
             <img 
               src={isScrolled ? "/logo-dark.png" : "/logo-light.png"}
               alt="12Acre Logo" 
               className="h-10 w-10 object-contain transition-transform group-hover:scale-105" 
             />
-        </Link>
+          </Link>
+          <Link
+            href="/sundance"
+            className={cn(
+              "text-xs font-medium tracking-wide transition-colors hover:text-primary",
+              isScrolled ? "text-muted-foreground" : "text-white/70 hover:text-white",
+            )}
+          >
+            Sundance
+          </Link>
+        </div>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">

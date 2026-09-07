@@ -15,7 +15,6 @@ import {
   Users,
   Loader2,
 } from "lucide-react";
-import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -29,7 +28,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import eventsHero from "@/assets/events-hero.jpg";
-import { SundanceHeader } from "@/components/sundance-guide-shell";
+import { SundanceFooter, SundanceHeader } from "@/components/sundance-guide-shell";
 
 const sundanceTitle = "Sundance Boulder 2027 Lodging | Sanitas View Basecamp | 12Acre";
 const sundanceDescription =
@@ -797,7 +796,7 @@ export default function EventsSundance() {
           </p>
         </section>
       </main>
-      <Footer />
+      <SundanceFooter />
     </div>
   );
 }

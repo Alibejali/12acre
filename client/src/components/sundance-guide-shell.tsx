@@ -99,6 +99,12 @@ export function SundanceHeader() {
     else document.getElementById("sundance-contact")?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const handleSundanceNav = () => {
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, behavior: isLodging ? "smooth" : "auto" });
+    });
+  };
+
   return (
     <header className="sticky top-0 z-50 border-b border-white/15 bg-slate-950/90 backdrop-blur-md">
       <div className="relative mx-auto flex max-w-7xl items-center justify-between gap-2 px-3 py-2.5 md:px-6 md:py-3">
@@ -106,7 +112,7 @@ export function SundanceHeader() {
           <img src="/logo-light.png" alt="12Acre" className="h-8 w-8 object-contain md:h-10 md:w-10" />
         </Link>
         <nav aria-label="Sundance companion" className="hidden flex-1 flex-wrap items-center justify-end gap-1 md:flex">
-          <Link href="/sundance" className={navClass("/sundance")}>Sundance</Link>
+          <Link href="/sundance" onClick={handleSundanceNav} className={navClass("/sundance")}>Sundance</Link>
           <Link href="/sundance/guide" className={navClass("/sundance/guide")}>Overview</Link>
           <Link href="/sundance/guide/lodging" className={navClass("/sundance/guide/lodging")}>Lodging</Link>
           <Link href="/sundance/guide/map" className={navClass("/sundance/guide/map")}>Map</Link>
@@ -125,7 +131,7 @@ export function SundanceHeader() {
           </a>
         </nav>
         <nav aria-label="Sundance companion mobile" className="flex min-w-0 flex-1 items-center justify-end gap-0.5 md:hidden">
-          <Link href="/sundance" className={mobileNavClass("/sundance")}>Sundance</Link>
+          <Link href="/sundance" onClick={handleSundanceNav} className={mobileNavClass("/sundance")}>Sundance</Link>
           <Link href="/sundance/guide" className={mobileNavClass("/sundance/guide")}>Overview</Link>
           <Link href="/sundance/guide/lodging" className={mobileNavClass("/sundance/guide/lodging")}>Lodging</Link>
           <button
@@ -167,6 +173,32 @@ export function SundanceHeader() {
   );
 }
 
+export function SundanceFooter() {
+  return (
+    <footer className="border-t border-slate-900/10 bg-slate-950 text-slate-300">
+      <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 text-sm md:flex-row md:items-center md:justify-between md:px-6">
+        <div className="space-y-2">
+          <p>Independent Boulder companion by 12Acre / Sanitas View — not affiliated with Sundance Institute.</p>
+          <p className="text-xs text-slate-500">
+            Homes also available for purchase —{" "}
+            <a
+              href="https://www.sanitasview.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline decoration-slate-600 underline-offset-4 transition-colors hover:text-slate-300"
+            >
+              sanitasview.com
+            </a>
+          </p>
+        </div>
+        <a href="https://www.sundance.org/" target="_blank" rel="noreferrer" className="font-medium text-white underline decoration-white/30 underline-offset-4 hover:decoration-white">
+          Official festival info
+        </a>
+      </div>
+    </footer>
+  );
+}
+
 export function SundanceGuideShell({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen overflow-x-clip bg-background font-sans text-foreground selection:bg-primary/20">
@@ -174,14 +206,7 @@ export function SundanceGuideShell({ children }: { children: ReactNode }) {
 
       <main>{children}</main>
 
-      <footer className="border-t border-slate-900/10 bg-slate-950 text-slate-300">
-        <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-8 text-sm md:flex-row md:items-center md:justify-between md:px-6">
-          <p>Independent Boulder companion by 12Acre / Sanitas View — not affiliated with Sundance Institute.</p>
-          <a href="https://www.sundance.org/" target="_blank" rel="noreferrer" className="font-medium text-white underline decoration-white/30 underline-offset-4 hover:decoration-white">
-            Official festival info
-          </a>
-        </div>
-      </footer>
+      <SundanceFooter />
     </div>
   );
 }
