@@ -35,6 +35,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import eventsHero from "@/assets/events-hero.jpg";
 
+const sundanceTitle = "Sundance Boulder Lodging 2027 | Sanitas View Townhomes | 12Acre";
+const sundanceDescription =
+  "Private luxury townhome compound on Broadway in Boulder for Sundance Film Festival week, January 21–31, 2027. Eleven contiguous residences for teams and creatives. Inquire via 12Acre.";
+
 const gallery = [
   {
     url: "https://cdn.prod.website-files.com/6467ed03888a40577fd512c6/690d11ccdd85ff991823af59_08.jpg",
@@ -71,10 +75,10 @@ const gallery = [
 ];
 
 const stats = [
-  { value: "90,000", label: "Expected Attendees" },
-  { value: "2,900", label: "Hotel Rooms in Boulder" },
+  { value: "Jan 21–31", label: "2027 Festival Week" },
+  { value: "Broadway", label: "Newlands, Boulder" },
   { value: "11", label: "Luxury Homes at Sanitas View" },
-  { value: "1", label: "Address Like This in Boulder" },
+  { value: "3–4", label: "Bedrooms per Residence" },
 ];
 
 const comparison = {
@@ -171,6 +175,65 @@ const formSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
   message: z.string().min(10, { message: "Message must be at least 10 characters." }),
 });
+
+function SundanceDocumentHead() {
+  useEffect(() => {
+    const previousTitle = document.title;
+    document.title = sundanceTitle;
+
+    const tags = [
+      { selector: 'meta[name="description"]', attribute: "name", key: "description", content: sundanceDescription },
+      { selector: 'meta[property="og:title"]', attribute: "property", key: "og:title", content: sundanceTitle },
+      { selector: 'meta[property="og:description"]', attribute: "property", key: "og:description", content: sundanceDescription },
+      { selector: 'meta[property="og:url"]', attribute: "property", key: "og:url", content: "https://12acre.com/sundance" },
+      { selector: 'meta[name="twitter:title"]', attribute: "name", key: "twitter:title", content: sundanceTitle },
+      { selector: 'meta[name="twitter:description"]', attribute: "name", key: "twitter:description", content: sundanceDescription },
+    ];
+
+    const changes = tags.map(({ selector, attribute, key, content }) => {
+      let element = document.head.querySelector<HTMLMetaElement>(selector);
+      const created = !element;
+      const previousContent = element?.content;
+
+      if (!element) {
+        element = document.createElement("meta");
+        element.setAttribute(attribute, key);
+        document.head.appendChild(element);
+      }
+      element.content = content;
+
+      return { element, created, previousContent };
+    });
+
+    let canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    const canonicalCreated = !canonical;
+    const previousCanonical = canonical?.href;
+    if (!canonical) {
+      canonical = document.createElement("link");
+      canonical.rel = "canonical";
+      document.head.appendChild(canonical);
+    }
+    canonical.href = "https://12acre.com/sundance";
+
+    return () => {
+      document.title = previousTitle;
+      changes.forEach(({ element, created, previousContent }) => {
+        if (created) {
+          element.remove();
+        } else {
+          element.content = previousContent ?? "";
+        }
+      });
+      if (canonicalCreated) {
+        canonical.remove();
+      } else {
+        canonical.href = previousCanonical ?? "";
+      }
+    };
+  }, []);
+
+  return null;
+}
 
 function SundanceHeader() {
   const [isInContactSection, setIsInContactSection] = useState(false);
@@ -314,6 +377,7 @@ export default function EventsSundance() {
 
   return (
     <div className="min-h-screen bg-background font-sans text-foreground overflow-x-hidden selection:bg-primary/20">
+      <SundanceDocumentHead />
       <SundanceHeader />
       <main>
         <section className="relative min-h-[90vh] w-full overflow-hidden flex items-center justify-center">
@@ -343,10 +407,9 @@ export default function EventsSundance() {
                 <span className="text-white/90">for Sundance.</span>
               </h1>
               <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed font-light mb-10">
-                For the first time, Sundance comes to Boulder — and the city has just 2,900 hotel
-                rooms for 90,000 expected attendees. Sanitas View is the only luxury compound
-                available: 11 brand-new townhomes that can be leased individually, in blocks, or as
-                a full private campus.
+                For the first time, Sundance comes to Boulder. Sanitas View offers 11 brand-new,
+                contiguous townhomes that can be leased individually, in blocks, or as a full
+                private campus for festival week.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
@@ -386,6 +449,33 @@ export default function EventsSundance() {
                   </p>
                 </motion.div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-16 md:py-24 border-b border-border">
+          <div className="container px-4 md:px-6">
+            <div className="grid gap-10 md:grid-cols-2 max-w-5xl mx-auto">
+              <div>
+                <h2 className="font-display text-3xl md:text-4xl font-bold tracking-tight mb-4">
+                  Festival week
+                </h2>
+                <p className="text-muted-foreground leading-relaxed">
+                  Sundance Film Festival week runs January 21–31, 2027. Sanitas View is on Broadway
+                  in Boulder’s Newlands neighborhood, providing a residential base with walkable
+                  access to nearby neighborhood amenities and straightforward access to central
+                  Boulder.
+                </p>
+              </div>
+              <div>
+                <h2 className="font-display text-3xl md:text-4xl font-bold tracking-tight mb-4">
+                  Keep the team together
+                </h2>
+                <p className="text-muted-foreground leading-relaxed">
+                  Adjacent residences give creative teams room to stay, meet, prepare, and recharge
+                  in one place throughout the festival window.
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -463,17 +553,17 @@ export default function EventsSundance() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
-                <h2 className="text-sm font-bold text-primary tracking-widest uppercase mb-3">
+                <p className="text-sm font-bold text-primary tracking-widest uppercase mb-3">
                   The Property
+                </p>
+                <h2 className="font-display text-3xl md:text-4xl font-bold tracking-tight mb-6">
+                  The compound
                 </h2>
-                <h3 className="font-display text-3xl md:text-4xl font-bold tracking-tight mb-6">
-                  Don't compete for Boulder.
-                  <br />
-                  Own a piece of it.
-                </h3>
                 <p className="text-muted-foreground leading-relaxed mb-8">
-                  Brand-new construction. Never occupied. Fully furnished. 3,000 sq ft per home.
-                  Rooftop decks, gas fireplaces, chef's kitchens, EV charging, mountain views.
+                  Eleven contiguous, fully furnished townhomes form a private campus on Broadway in
+                  Boulder’s Newlands neighborhood. Each residence offers approximately 3,000 square
+                  feet, with rooftop decks, gas fireplaces, chef's kitchens, EV charging, and
+                  mountain views.
                 </p>
                 <div className="flex items-center gap-2 text-muted-foreground mb-8">
                   <MapPin className="w-4 h-4" />
@@ -517,8 +607,12 @@ export default function EventsSundance() {
               className="text-center mb-12"
             >
               <h2 className="font-display text-3xl md:text-5xl font-bold tracking-tight mb-4">
-                Built for How the Industry Actually Works
+                Who it’s for
               </h2>
+              <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+                A private lodging base for writers, producers, directors, cast, family, and the
+                teams supporting them—so the people working together can stay together.
+              </p>
             </motion.div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
               {useCases.map((item, i) => (
@@ -607,6 +701,48 @@ export default function EventsSundance() {
                 alt="Sanitas View mountain view"
                 className="w-full h-full object-cover"
               />
+            </div>
+          </div>
+        </section>
+
+        <section className="py-16 md:py-24 border-t border-border">
+          <div className="container px-4 md:px-6">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="font-display text-3xl md:text-5xl font-bold tracking-tight mb-10">
+                Frequently asked questions
+              </h2>
+              <div className="grid gap-8 md:grid-cols-2">
+                {[
+                  {
+                    question: "When is festival week?",
+                    answer: "The 2027 Sundance Film Festival week runs January 21–31, 2027.",
+                  },
+                  {
+                    question: "How many homes are available?",
+                    answer: "Sanitas View includes 11 contiguous townhome residences.",
+                  },
+                  {
+                    question: "Where is it?",
+                    answer:
+                      "The compound is located at 3303–3339 Broadway in Boulder’s Newlands neighborhood.",
+                  },
+                  {
+                    question: "Can we lease one home or the whole campus?",
+                    answer:
+                      "Yes. Residences may be leased individually, in adjacent sub-blocks, or as the full 11-home campus.",
+                  },
+                  {
+                    question: "How do we inquire?",
+                    answer:
+                      "Use the inquiry form below or email sundance@12acre.com with your group size and preferred number of residences.",
+                  },
+                ].map((item) => (
+                  <div key={item.question}>
+                    <h3 className="font-display text-xl font-bold mb-3">{item.question}</h3>
+                    <p className="text-muted-foreground leading-relaxed">{item.answer}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
