@@ -61,6 +61,7 @@ export function GuideDocumentHead({ title, description, canonical }: GuideHeadPr
 export function SundanceHeader() {
   const [location] = useLocation();
   const [isInContactSection, setIsInContactSection] = useState(false);
+  const [isMoreOpen, setIsMoreOpen] = useState(false);
   const isLodging = location === "/sundance";
 
   useEffect(() => {
@@ -78,9 +79,17 @@ export function SundanceHeader() {
     return () => observer.disconnect();
   }, [isLodging]);
 
+  useEffect(() => {
+    setIsMoreOpen(false);
+  }, [location]);
+
   const navClass = (href: string) =>
     `rounded-full px-3 py-2 text-sm font-medium transition-colors ${
       location === href ? "bg-white text-primary" : "text-white/70 hover:bg-white/10 hover:text-white"
+    }`;
+  const mobileNavClass = (href: string) =>
+    `rounded-full px-1.5 py-2 text-[11px] font-medium transition-colors ${
+      location === href ? "bg-white text-primary" : "text-white/75 hover:bg-white/10 hover:text-white"
     }`;
 
   const handleInquiry = (event: MouseEvent<HTMLAnchorElement>) => {
@@ -92,13 +101,14 @@ export function SundanceHeader() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/15 bg-slate-950/90 backdrop-blur-md">
-      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-3 md:px-6">
+      <div className="relative mx-auto flex max-w-7xl items-center justify-between gap-2 px-3 py-2.5 md:px-6 md:py-3">
         <Link href="/" aria-label="12Acre home" className="shrink-0">
-          <img src="/logo-light.png" alt="12Acre" className="h-10 w-10 object-contain" />
+          <img src="/logo-light.png" alt="12Acre" className="h-8 w-8 object-contain md:h-10 md:w-10" />
         </Link>
-        <nav aria-label="Sundance companion" className="flex flex-1 flex-wrap items-center justify-end gap-1">
+        <nav aria-label="Sundance companion" className="hidden flex-1 flex-wrap items-center justify-end gap-1 md:flex">
           <Link href="/sundance" className={navClass("/sundance")}>Sundance</Link>
           <Link href="/sundance/guide" className={navClass("/sundance/guide")}>Overview</Link>
+          <Link href="/sundance/guide/lodging" className={navClass("/sundance/guide/lodging")}>Lodging</Link>
           <Link href="/sundance/guide/map" className={navClass("/sundance/guide/map")}>Map</Link>
           <Link href="/sundance/guide/plan" className={navClass("/sundance/guide/plan")}>Plan</Link>
           <Link href="/sundance/guide/ask" aria-label="Ask the guide" className={navClass("/sundance/guide/ask")}>Ask</Link>
@@ -114,6 +124,44 @@ export function SundanceHeader() {
             {isLodging && isInContactSection ? "Back to top" : "Inquire"}
           </a>
         </nav>
+        <nav aria-label="Sundance companion mobile" className="flex min-w-0 flex-1 items-center justify-end gap-0.5 md:hidden">
+          <Link href="/sundance" className={mobileNavClass("/sundance")}>Sundance</Link>
+          <Link href="/sundance/guide" className={mobileNavClass("/sundance/guide")}>Overview</Link>
+          <Link href="/sundance/guide/lodging" className={mobileNavClass("/sundance/guide/lodging")}>Lodging</Link>
+          <button
+            type="button"
+            aria-expanded={isMoreOpen}
+            aria-controls="sundance-mobile-more"
+            onClick={() => setIsMoreOpen((open) => !open)}
+            className="rounded-full px-1.5 py-2 text-[11px] font-medium text-white/75 transition-colors hover:bg-white/10 hover:text-white"
+          >
+            More
+          </button>
+          <a
+            href={isLodging && isInContactSection ? "#top" : "/sundance#sundance-contact"}
+            onClick={handleInquiry}
+            className="ml-0.5 inline-flex h-9 shrink-0 items-center justify-center rounded-full bg-white px-2.5 text-[11px] font-semibold text-primary shadow-sm"
+          >
+            {isLodging && isInContactSection ? "Back to top" : "Inquire"}
+          </a>
+        </nav>
+        {isMoreOpen && (
+          <div id="sundance-mobile-more" className="absolute left-3 right-3 top-full z-50 mt-2 max-h-[70vh] overflow-y-auto rounded-2xl border border-white/15 bg-slate-950 p-2 shadow-2xl md:hidden">
+            {[
+              ["/sundance/guide/map", "Map"],
+              ["/sundance/guide/plan", "Plan"],
+              ["/sundance/guide/ask", "Ask"],
+              ["/sundance/guide/eat", "Eat"],
+              ["/sundance/guide/shop", "Shop"],
+              ["/sundance/guide/family", "Family"],
+              ["/sundance/guide/transit", "Transit"],
+            ].map(([href, label]) => (
+              <Link key={href} href={href} className={`block min-h-11 rounded-xl px-4 py-3 text-base font-medium ${location === href ? "bg-white text-primary" : "text-white/80 hover:bg-white/10 hover:text-white"}`}>
+                {label}
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </header>
   );

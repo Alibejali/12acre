@@ -34,6 +34,11 @@ const routeMetadata: Record<string, { title: string; description: string; canoni
     description: "Honest guidance for families during Sundance Boulder week — not a kids festival — plus soft landings, partner sitters later, and townhome hospitality. Independent companion.",
     canonical: "https://12acre.com/sundance/guide/family",
   },
+  "/sundance/guide/lodging": {
+    title: "Lodging for Sundance Boulder 2027 | Sanitas View & Other Stays | 12Acre",
+    description: "Festival-week lodging in Boulder — Sanitas View private compound as Featured base, plus other stays. Independent companion; sponsorships coming.",
+    canonical: "https://12acre.com/sundance/guide/lodging",
+  },
   "/sundance/guide/eat": {
     title: "Where to Eat During Sundance Boulder 2027 | 12Acre Guide",
     description: "Neighborhood pocket eateries near Sundance Boulder venues — between screenings, group-friendly, quiet notes. Independent local companion.",
