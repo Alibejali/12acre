@@ -17,11 +17,12 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "About", href: "#about" },
-    { name: "Services", href: "#services" },
-    { name: "Network", href: "#network" },
-    { name: "Case Studies", href: "#case-studies" },
-    { name: "Contact", href: "#contact" },
+    { name: "About", href: "/#about" },
+    { name: "Services", href: "/#services" },
+    { name: "Network", href: "/#network" },
+    { name: "Case Studies", href: "/#case-studies" },
+    { name: "Events", href: "/events" },
+    { name: "Contact", href: "/#contact" },
   ];
 
   return (
@@ -44,24 +45,37 @@ export function Navbar() {
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className={cn(
-                "text-sm font-medium transition-colors hover:text-primary",
-                isScrolled ? "text-muted-foreground" : "text-white/90 hover:text-white"
-              )}
-            >
-              {link.name}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link.href.startsWith("/") && !link.href.startsWith("/#") ? (
+              <Link
+                key={link.name}
+                href={link.href}
+                className={cn(
+                  "text-sm font-medium transition-colors hover:text-primary",
+                  isScrolled ? "text-muted-foreground" : "text-white/90 hover:text-white"
+                )}
+              >
+                {link.name}
+              </Link>
+            ) : (
+              <a
+                key={link.name}
+                href={link.href}
+                className={cn(
+                  "text-sm font-medium transition-colors hover:text-primary",
+                  isScrolled ? "text-muted-foreground" : "text-white/90 hover:text-white"
+                )}
+              >
+                {link.name}
+              </a>
+            )
+          )}
           <Button 
             variant={isScrolled ? "default" : "secondary"}
             className="rounded-full px-6"
             asChild
           >
-            <a href="#contact">Get in Touch</a>
+            <a href="/#contact">Get in Touch</a>
           </Button>
         </div>
 
@@ -77,18 +91,29 @@ export function Navbar() {
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="absolute top-full left-0 right-0 bg-background border-b border-border p-4 md:hidden flex flex-col gap-4 shadow-lg animate-in slide-in-from-top-5">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="text-foreground font-medium py-2 px-4 hover:bg-muted rounded-md"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              {link.name}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link.href.startsWith("/") && !link.href.startsWith("/#") ? (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="text-foreground font-medium py-2 px-4 hover:bg-muted rounded-md"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {link.name}
+              </Link>
+            ) : (
+              <a
+                key={link.name}
+                href={link.href}
+                className="text-foreground font-medium py-2 px-4 hover:bg-muted rounded-md"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {link.name}
+              </a>
+            )
+          )}
           <Button className="w-full rounded-full" asChild>
-            <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>
+            <a href="/#contact" onClick={() => setIsMobileMenuOpen(false)}>
               Get in Touch
             </a>
           </Button>

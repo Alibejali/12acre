@@ -1,0 +1,228 @@
+import { motion } from "framer-motion";
+import {
+  Map,
+  Mail,
+  Camera,
+  CloudSun,
+  Compass,
+  MessageCircleHeart,
+  CheckCircle2,
+  Plane,
+} from "lucide-react";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+import { Button } from "@/components/ui/button";
+import eventsHero from "@/assets/events-hero.jpg";
+
+const bullets = [
+  {
+    icon: Map,
+    title: "Multi-leg journeys",
+    description:
+      "Plan connected itineraries with friends — from city weekends to cross-continent arcs, mapped as living dossiers.",
+  },
+  {
+    icon: Mail,
+    title: "Trip invites",
+    description:
+      "Invite your circle into a shared Travellers Club dossier with clear roles, RSVPs, and trip rhythm.",
+  },
+  {
+    icon: Camera,
+    title: "Place photos",
+    description:
+      "Collect the shots that matter — street corners, tables, trails — so the story of the place stays with the group.",
+  },
+  {
+    icon: CloudSun,
+    title: "7-day weather",
+    description:
+      "Glance ahead together with a week of local forecasts baked into the dossier, not buried in another tab.",
+  },
+  {
+    icon: Compass,
+    title: "Local know-how",
+    description:
+      "Drive side, customs, etiquette, and the small things that help you live like a local from day one.",
+  },
+  {
+    icon: MessageCircleHeart,
+    title: "Favorites & comments",
+    description:
+      "Star the places you love and leave notes for each other — a warm layer of community on every map pin.",
+  },
+];
+
+const pilotStops = [
+  {
+    city: "London, Baby",
+    tag: "Leg 1 · United Kingdom",
+    notes: [
+      "Neighborhood dossiers and tube-smart walking loops",
+      "Drive on the left — reminders where they matter",
+      "Pub tables, gallery hours, and friend-vetted favorites",
+    ],
+  },
+  {
+    city: "Iceland",
+    tag: "Leg 2 · Nordic North",
+    notes: [
+      "Reykjavík base with ring-road day possibilities",
+      "Weather windows for light, roads, and hot springs",
+      "Local know-how for customs, cashless norms, and pace",
+    ],
+  },
+];
+
+export default function EventsWanderlust() {
+  return (
+    <div className="min-h-screen bg-background font-sans text-foreground overflow-x-hidden selection:bg-primary/20">
+      <Navbar />
+      <main>
+        <section className="relative min-h-[85vh] w-full overflow-hidden flex items-center justify-center">
+          <div className="absolute inset-0 z-0">
+            <img
+              src={eventsHero}
+              alt="Wanderlust mountain horizon"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-slate-900/50 mix-blend-multiply" />
+            <div className="absolute inset-0 bg-gradient-to-br from-sky-950/40 via-transparent to-amber-950/30" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+          </div>
+          <div className="container relative z-10 px-4 md:px-6 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="max-w-4xl mx-auto"
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white text-sm font-medium mb-6">
+                <span className="w-2 h-2 rounded-full bg-secondary" />
+                12Acre Events · Travellers Club
+              </div>
+              <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tight mb-6">
+                Wanderlust
+              </h1>
+              <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed font-light mb-10">
+                Travellers Club dossiers for friends — live like a local on multi-leg journeys,
+                with maps, stories, invites, weather, and the know-how that turns a trip into a
+                shared adventure. Part of the warm 12Acre Events family.
+              </p>
+              <a
+                href="#pilot"
+                className="inline-flex items-center justify-center rounded-full text-base font-medium h-12 px-8 bg-white/90 text-primary transition-all duration-200 hover:bg-white hover:shadow-lg"
+              >
+                Explore the pilot
+              </a>
+            </motion.div>
+          </div>
+        </section>
+
+        <section className="py-16 md:py-24">
+          <div className="container px-4 md:px-6">
+            <div className="max-w-3xl mx-auto text-center mb-14">
+              <h2 className="text-sm font-bold text-primary tracking-widest uppercase mb-3">
+                The Story
+              </h2>
+              <h3 className="font-display text-3xl md:text-4xl font-bold tracking-tight mb-6">
+                Travel as a circle, not a checklist
+              </h3>
+              <p className="text-muted-foreground leading-relaxed text-lg">
+                Wanderlust is where friends gather before the bags are packed. Build a living
+                dossier together — destinations, photos, invites, and local wisdom — so when you
+                land, you already feel a little at home. It belongs beside Sundance nights,
+                Supper Club tables, Moreovers kitchens, and Crafternoon sessions: community first,
+                always.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              {bullets.map((item, index) => (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.08 }}
+                  className="rounded-lg border border-border bg-card p-6 md:p-8 hover:shadow-md hover:border-primary/20 transition-all"
+                >
+                  <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary mb-5">
+                    <item.icon className="w-6 h-6" />
+                  </div>
+                  <h3 className="font-display text-lg font-bold mb-3">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {item.description}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="pilot" className="py-16 md:py-24 bg-muted/30 scroll-mt-24">
+          <div className="container px-4 md:px-6">
+            <div className="max-w-3xl mx-auto text-center mb-12">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
+                <Plane className="w-4 h-4" />
+                Pilot preview
+              </div>
+              <h2 className="font-display text-3xl md:text-5xl font-bold tracking-tight mb-4">
+                London, Baby → Iceland
+              </h2>
+              <p className="text-muted-foreground leading-relaxed text-lg">
+                Our first multi-leg Travellers Club dossier. Two places, one circle of friends —
+                and a warm preview of the interactive app shipping next.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto mb-12">
+              {pilotStops.map((stop, index) => (
+                <motion.div
+                  key={stop.city}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="rounded-lg border border-border bg-card p-8 shadow-sm"
+                >
+                  <p className="text-sm font-bold text-primary uppercase tracking-widest mb-2">
+                    {stop.tag}
+                  </p>
+                  <h3 className="font-display text-2xl md:text-3xl font-bold mb-6">
+                    {stop.city}
+                  </h3>
+                  <ul className="space-y-3">
+                    {stop.notes.map((note) => (
+                      <li key={note} className="flex items-start gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-secondary shrink-0 mt-0.5" />
+                        <span className="text-sm text-muted-foreground leading-relaxed">
+                          {note}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="max-w-2xl mx-auto text-center rounded-2xl border border-border bg-background p-8 md:p-10">
+              <h3 className="font-display text-2xl font-bold mb-3">
+                Interactive app ships next
+              </h3>
+              <p className="text-muted-foreground leading-relaxed mb-6">
+                This landing is the warm welcome. The full Wanderlust experience — shared maps,
+                invites, weather, and dossiers — is on the way. Stay close to the 12Acre Events
+                family for the pilot open.
+              </p>
+              <Button asChild className="rounded-full h-12 px-8">
+                <a href="#pilot">Explore the pilot</a>
+              </Button>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </div>
+  );
+}
