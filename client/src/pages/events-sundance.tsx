@@ -6,18 +6,13 @@ import { useMutation } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import {
   CheckCircle2,
-  XCircle,
   ChevronLeft,
   ChevronRight,
   MapPin,
   Mail,
-  Building2,
   Film,
   Clapperboard,
-  Sparkles,
   Users,
-  Briefcase,
-  Newspaper,
   Loader2,
 } from "lucide-react";
 import { Footer } from "@/components/layout/Footer";
@@ -34,10 +29,11 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import eventsHero from "@/assets/events-hero.jpg";
+import { SundanceHeader } from "@/components/sundance-guide-shell";
 
-const sundanceTitle = "Sundance Boulder Lodging 2027 | Sanitas View Townhomes | 12Acre";
+const sundanceTitle = "Sundance Boulder 2027 Lodging | Sanitas View Basecamp | 12Acre";
 const sundanceDescription =
-  "Private luxury townhome compound on Broadway in Boulder for Sundance Film Festival week, January 21–31, 2027. Eleven contiguous residences for teams and creatives. Inquire via 12Acre.";
+  "Base festival week in Boulder at Sanitas View — 11 contiguous townhomes on Broadway for teams and entourages, Jan 21–31, 2027. Independent lodging + companion guide.";
 
 const gallery = [
   {
@@ -81,25 +77,6 @@ const stats = [
   { value: "3–4", label: "Bedrooms per Residence" },
 ];
 
-const comparison = {
-  hotel: [
-    "400 sq ft per room, shared hallways and elevators",
-    "No private meeting or event space",
-    "Scattered team across multiple floors",
-    "Generic hospitality, lobby networking",
-    "No kitchen, no private dining",
-    "Zero brand activation capability",
-  ],
-  sanitas: [
-    "3,000 sq ft per home — 7x a hotel room",
-    "Living rooms, rooftop decks, and yards become event venues",
-    "Your entire team under one roof or across adjacent homes",
-    "24/7 on-site concierge, Black Car, private catering",
-    "Restaurant-grade chef's kitchen in every unit",
-    "Turn any home into a branded activation or screening lounge",
-  ],
-};
-
 const amenities = [
   "Newly built",
   "Fully furnished",
@@ -116,31 +93,19 @@ const useCases = [
     icon: Clapperboard,
     title: "Studio Basecamp",
     description:
-      "House your team, host screenings, run meetings — all from a private compound one mile from Pearl Street.",
-  },
-  {
-    icon: Sparkles,
-    title: "Brand Activation",
-    description:
-      "Transform a home into a living showroom. Rooftop events, branded interiors, experiential hospitality for press and VIPs.",
+      "Keep a creative pod together with room to prepare, meet, eat, and decompress between festival commitments.",
   },
   {
     icon: Users,
-    title: "Talent & Agency Housing",
+    title: "Talent, Family & Entourage",
     description:
-      "Private residences for talent and executives who need space, security, and discretion — not a hotel lobby.",
+      "Give talent and the people supporting them adjacent private residences, kitchens, and space for different schedules.",
   },
   {
-    icon: Briefcase,
-    title: "Corporate Buyout",
+    icon: Film,
+    title: "Full-Campus Base",
     description:
-      "Lease the full compound — 11 homes, 33,000+ sq ft — as your private campus for the entire festival window.",
-  },
-  {
-    icon: Newspaper,
-    title: "Press & Production",
-    description:
-      "Dedicated units for press operations, interview suites, or production offices with high-speed connectivity and catering.",
+      "Use all 11 contiguous homes as one cared-for Boulder base for a larger team across the full festival window.",
   },
 ];
 
@@ -150,14 +115,14 @@ const bookingTiers = [
     count: "1",
     unit: "Residence",
     description:
-      "Perfect for talent, executives, or a small creative team. 3-4 bedrooms, full amenities, 24/7 concierge included.",
+      "A private residence for talent, family, executives, or a small creative team, with three to four bedrooms and a full kitchen.",
   },
   {
     tier: "Sub-Block",
     count: "3-5",
     unit: "Residences",
     description:
-      "Adjacent homes for a studio, agency, or brand team. Shared outdoor space between units. Preferred block rates available.",
+      "Adjacent homes for a studio, agency, or production team that needs separate bedrooms with a shared operating base.",
     featured: true,
   },
   {
@@ -165,7 +130,7 @@ const bookingTiers = [
     count: "11",
     unit: "Residences",
     description:
-      "The ultimate festival footprint: 33,000+ sq ft, all contiguous, fully serviced. Your private campus at Sundance Boulder.",
+      "All 11 contiguous residences for one team across the full January 21–31 festival window.",
   },
 ];
 
@@ -232,55 +197,6 @@ function SundanceDocumentHead() {
   }, []);
 
   return null;
-}
-
-function SundanceHeader() {
-  const [isInContactSection, setIsInContactSection] = useState(false);
-
-  useEffect(() => {
-    const contactSection = document.getElementById("sundance-contact");
-    if (!contactSection) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsInContactSection(entry.isIntersecting),
-      { rootMargin: "0px 0px -30% 0px", threshold: 0.05 },
-    );
-
-    observer.observe(contactSection);
-    return () => observer.disconnect();
-  }, []);
-
-  const handleCtaClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
-
-    if (isInContactSection) {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      return;
-    }
-
-    document.getElementById("sundance-contact")?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/15 bg-slate-950/45 py-4 backdrop-blur-md">
-      <div className="container mx-auto flex items-center justify-between px-4 md:px-6">
-        <a href="/" aria-label="12Acre home" className="group">
-          <img
-            src="/logo-light.png"
-            alt="12Acre"
-            className="h-10 w-10 object-contain transition-transform group-hover:scale-105"
-          />
-        </a>
-        <a
-          href={isInContactSection ? "#top" : "#sundance-contact"}
-          onClick={handleCtaClick}
-          className="inline-flex h-10 items-center justify-center rounded-full bg-white px-6 text-sm font-medium text-primary transition-colors hover:bg-white/90"
-        >
-          {isInContactSection ? "Back to top" : "Inquire"}
-        </a>
-      </div>
-    </header>
-  );
 }
 
 function PropertyGallery() {
@@ -375,7 +291,7 @@ export default function EventsSundance() {
   });
 
   return (
-    <div className="min-h-screen bg-background font-sans text-foreground overflow-x-hidden selection:bg-primary/20">
+    <div className="min-h-screen bg-background font-sans text-foreground overflow-x-clip selection:bg-primary/20">
       <SundanceDocumentHead />
       <SundanceHeader />
       <main>
@@ -398,40 +314,30 @@ export default function EventsSundance() {
             >
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white text-sm font-medium mb-6">
                 <span className="w-2 h-2 rounded-full bg-secondary" />
-                Sundance Film Festival 2027 · Boulder, Colorado · January 21-31
+                First Boulder Sundance · January 21–31, 2027 · Keep your people together
               </div>
               <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tight mb-6">
-                Boulder has one address
+                Base festival week
                 <br />
-                <span className="text-white/90">for Sundance.</span>
+                <span className="text-white/90">in Boulder.</span>
               </h1>
               <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed font-light mb-10">
-                For the first time, Sundance comes to Boulder. City officials cite approximately
-                2,900 hotel rooms in Boulder, while recent festival years have drawn about 85,000
-                in-person attendees over the full 11-day festival run. Sanitas View offers 11
-                contiguous townhomes that can be leased individually, in blocks, or as a full
-                private campus for festival week.
+                The first Boulder Sundance runs January 21–31, 2027. Sanitas View is a contiguous
+                Broadway / Newlands campus of 11 townhomes where teams and entourages can stay,
+                prepare, eat, and reset in one place.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
                   href="#sundance-contact"
                   className="inline-flex items-center justify-center rounded-full text-base font-medium h-12 px-8 bg-white/90 text-primary transition-all duration-200 hover:bg-white hover:shadow-lg"
                 >
-                  Inquire & Reserve
+                  Inquire
                 </a>
                 <a
-                  href="#why-not-hotel"
+                  href="/sundance/guide"
                   className="inline-flex items-center justify-center rounded-full text-base font-medium h-12 px-8 border border-white/50 text-white transition-all duration-200 bg-transparent hover:bg-white hover:text-primary hover:border-white"
                 >
-                  Why Not a Hotel?
-                </a>
-              </div>
-              <div className="mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm">
-                <a href="/sundance/guide" className="font-medium text-white underline decoration-white/40 underline-offset-4 transition-colors hover:decoration-white">
                   Festival week guide
-                </a>
-                <a href="/sundance/guide/map" className="text-white/70 transition-colors hover:text-white">
-                  Venues &amp; map
                 </a>
               </div>
             </motion.div>
@@ -470,11 +376,18 @@ export default function EventsSundance() {
                   Festival week
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  Sundance Film Festival week runs January 21–31, 2027. Sanitas View is on Broadway
-                  in Boulder’s Newlands neighborhood, providing a residential base with walkable
-                  access to nearby neighborhood amenities and straightforward access to central
-                  Boulder.
+                  Sundance Film Festival week runs January 21–31, 2027. The opening week carries
+                  the densest arrival, premiere, press, and team movement. Use the official
+                  Sundance program and your ticket details for current screenings.
                 </p>
+                <p className="mt-4 text-sm leading-6 text-muted-foreground">
+                  For scale, Boulder officials have cited approximately 2,900 hotel rooms, while
+                  recent festival years have drawn about 85,000 in-person attendees over the full
+                  11-day run.
+                </p>
+                <a href="https://www.sundance.org/" target="_blank" rel="noreferrer" className="mt-4 inline-flex font-semibold text-primary underline underline-offset-4">
+                  Official program and tickets
+                </a>
               </div>
               <div>
                 <h2 className="font-display text-3xl md:text-4xl font-bold tracking-tight mb-4">
@@ -484,64 +397,44 @@ export default function EventsSundance() {
                   Adjacent residences give creative teams room to stay, meet, prepare, and recharge
                   in one place throughout the festival window.
                 </p>
+                <a href="/sundance/guide" className="mt-4 inline-flex font-semibold text-primary underline underline-offset-4">
+                  Open the independent Boulder companion
+                </a>
               </div>
             </div>
           </div>
         </section>
 
-        <section id="why-not-hotel" className="py-16 md:py-24 scroll-mt-24">
+        <section className="py-16 md:py-24">
           <div className="container px-4 md:px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-center mb-12"
+              className="mx-auto max-w-5xl"
             >
-              <h2 className="font-display text-3xl md:text-5xl font-bold tracking-tight mb-4">
-                Why Not a Hotel?
+              <p className="text-sm font-bold text-primary tracking-widest uppercase mb-3">
+                The lodging problem
+              </p>
+              <h2 className="font-display text-3xl md:text-5xl font-bold tracking-tight mb-6">
+                A contiguous base changes the week.
               </h2>
+              <p className="max-w-3xl text-lg leading-8 text-muted-foreground">
+                Festival days pull people in different directions. Eleven adjacent residences let
+                a team divide into smaller rhythms without scattering its operating base across
+                town. Kitchens, living rooms, rooftops, and on-site hospitality create room for
+                arrivals, meals, preparation, recovery, and private conversations.
+              </p>
+              <div className="mt-8 grid gap-4 md:grid-cols-3">
+                {["Stay together across adjacent homes", "Give talent, family, and crews separate rhythms", "Coordinate concierge, black car, and catering from one base"].map((item) => (
+                  <div key={item} className="rounded-2xl bg-muted/40 p-5">
+                    <CheckCircle2 className="mb-3 h-5 w-5 text-primary" />
+                    <p className="font-medium leading-6">{item}</p>
+                  </div>
+                ))}
+              </div>
             </motion.div>
-            <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                className="rounded-lg border border-border bg-muted/30 p-8"
-              >
-                <h3 className="font-display text-xl font-bold mb-6 text-muted-foreground">
-                  A Hotel Block
-                </h3>
-                <ul className="space-y-4">
-                  {comparison.hotel.map((item) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <XCircle className="w-5 h-5 text-destructive shrink-0 mt-0.5" />
-                      <span className="text-muted-foreground text-sm">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="rounded-lg border-2 border-primary bg-card p-8 shadow-lg"
-              >
-                <h3 className="font-display text-xl font-bold mb-6 text-primary">
-                  Sanitas View Compound
-                </h3>
-                <ul className="space-y-4">
-                  {comparison.sanitas.map((item) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                      <span className="text-sm">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            </div>
           </div>
         </section>
 
@@ -563,16 +456,17 @@ export default function EventsSundance() {
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
                 <p className="text-sm font-bold text-primary tracking-widest uppercase mb-3">
-                  The Property
+                  Your Base · Sanitas View
                 </p>
                 <h2 className="font-display text-3xl md:text-4xl font-bold tracking-tight mb-6">
-                  The compound
+                  Eleven homes, one Broadway address.
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-8">
                   Eleven contiguous, fully furnished townhomes form a private campus on Broadway in
                   Boulder’s Newlands neighborhood. Each residence offers approximately 3,000 square
                   feet, with rooftop decks, gas fireplaces, chef's kitchens, EV charging, and
-                  mountain views.
+                  mountain views. Concierge coordination, black car service, and private catering
+                  can support the week as hospitality care rather than a sales spectacle.
                 </p>
                 <div className="flex items-center gap-2 text-muted-foreground mb-8">
                   <MapPin className="w-4 h-4" />
@@ -589,18 +483,6 @@ export default function EventsSundance() {
                     </span>
                   ))}
                 </div>
-                <p className="text-sm text-muted-foreground border-t border-border pt-6">
-                  Homes also available for purchase from mid $2,400,000s — rental income applied to
-                  price.
-                  <br />
-                  Purchase inquiries:{" "}
-                  <a
-                    href="mailto:lynn.ryan@milehimodern.com"
-                    className="text-primary hover:underline"
-                  >
-                    lynn.ryan@milehimodern.com
-                  </a>
-                </p>
               </motion.div>
             </div>
           </div>
@@ -616,11 +498,11 @@ export default function EventsSundance() {
               className="text-center mb-12"
             >
               <h2 className="font-display text-3xl md:text-5xl font-bold tracking-tight mb-4">
-                Who it’s for
+                How teams use it
               </h2>
               <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-                A private lodging base for writers, producers, directors, cast, family, and the
-                teams supporting them—so the people working together can stay together.
+                A flexible Boulder base for the people making, supporting, and experiencing the
+                week together.
               </p>
             </motion.div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
@@ -657,7 +539,7 @@ export default function EventsSundance() {
                 Flexible Booking
               </h2>
               <h3 className="font-display text-3xl md:text-5xl font-bold tracking-tight">
-                One Home to the Entire Compound
+                One residence, a sub-block, or all 11
               </h3>
             </motion.div>
             <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
@@ -710,6 +592,23 @@ export default function EventsSundance() {
                 alt="Sanitas View mountain view"
                 className="w-full h-full object-cover"
               />
+            </div>
+          </div>
+        </section>
+
+        <section className="border-t border-border bg-muted/30 py-12">
+          <div className="container px-4 md:px-6">
+            <div className="mx-auto flex max-w-5xl flex-col gap-6 rounded-3xl bg-card p-7 shadow-sm ring-1 ring-border md:flex-row md:items-center md:justify-between">
+              <div>
+                <p className="text-sm font-bold uppercase tracking-widest text-primary">Companion tools</p>
+                <h2 className="mt-2 font-display text-2xl font-bold">Map venues, pace the day, ask the guide.</h2>
+                <p className="mt-2 text-muted-foreground">The independent Boulder companion stays available in the header throughout your visit.</p>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                <a href="/sundance/guide/map" className="rounded-full border border-border px-4 py-2 text-sm font-semibold">Map</a>
+                <a href="/sundance/guide/plan" className="rounded-full border border-border px-4 py-2 text-sm font-semibold">Plan</a>
+                <a href="/sundance/guide/ask" className="rounded-full border border-border px-4 py-2 text-sm font-semibold">Ask</a>
+              </div>
             </div>
           </div>
         </section>
@@ -768,11 +667,11 @@ export default function EventsSundance() {
                   Inquire & Reserve
                 </h2>
                 <h3 className="font-display text-4xl md:text-5xl font-bold mb-8 text-white">
-                  Don't compete <br /> for Boulder.
+                  Tell us how your <br /> team moves.
                 </h3>
                 <p className="text-white/80 text-lg mb-12 max-w-md">
-                  Availability is limited. Secure your luxury townhome residence for the 2027
-                  Sundance Film Festival — January 21-31.
+                  Share your dates, group size, and preferred number of residences. We’ll follow up
+                  about a practical Sanitas View base for January 21–31.
                 </p>
                 <div className="space-y-6">
                   <div className="flex items-center gap-4">
@@ -786,20 +685,6 @@ export default function EventsSundance() {
                         className="text-lg font-medium hover:text-secondary transition-colors"
                       >
                         sundance@12acre.com
-                      </a>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center border border-white/20">
-                      <Building2 className="w-5 h-5 text-white" />
-                    </div>
-                    <div>
-                      <p className="text-sm text-white/60">Purchase Inquiries</p>
-                      <a
-                        href="mailto:lynn.ryan@milehimodern.com"
-                        className="text-lg font-medium hover:text-secondary transition-colors"
-                      >
-                        lynn.ryan@milehimodern.com
                       </a>
                     </div>
                   </div>

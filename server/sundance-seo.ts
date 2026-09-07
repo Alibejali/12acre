@@ -1,7 +1,7 @@
 const routeMetadata: Record<string, { title: string; description: string; canonical: string }> = {
   "/sundance": {
-    title: "Sundance Boulder Lodging 2027 | Sanitas View Townhomes | 12Acre",
-    description: "Private luxury townhome compound on Broadway in Boulder for Sundance Film Festival week, January 21–31, 2027. Eleven contiguous residences for teams and creatives. Inquire via 12Acre.",
+    title: "Sundance Boulder 2027 Lodging | Sanitas View Basecamp | 12Acre",
+    description: "Base festival week in Boulder at Sanitas View — 11 contiguous townhomes on Broadway for teams and entourages, Jan 21–31, 2027. Independent lodging + companion guide.",
     canonical: "https://12acre.com/sundance",
   },
   "/sundance/guide": {

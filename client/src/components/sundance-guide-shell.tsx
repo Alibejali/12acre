@@ -1,4 +1,4 @@
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type MouseEvent, type ReactNode } from "react";
 import { Link, useLocation } from "wouter";
 
 type GuideHeadProps = {
@@ -58,35 +58,70 @@ export function GuideDocumentHead({ title, description, canonical }: GuideHeadPr
   return null;
 }
 
-export function SundanceGuideShell({ children }: { children: ReactNode }) {
+export function SundanceHeader() {
   const [location] = useLocation();
+  const [isInContactSection, setIsInContactSection] = useState(false);
+  const isLodging = location === "/sundance";
+
+  useEffect(() => {
+    if (!isLodging) return;
+    const contactSection = document.getElementById("sundance-contact");
+    if (!contactSection) return;
+    if (window.location.hash === "#sundance-contact") {
+      requestAnimationFrame(() => contactSection.scrollIntoView());
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsInContactSection(entry.isIntersecting),
+      { rootMargin: "0px 0px -30% 0px", threshold: 0.05 },
+    );
+    observer.observe(contactSection);
+    return () => observer.disconnect();
+  }, [isLodging]);
+
   const navClass = (href: string) =>
     `rounded-full px-3 py-2 text-sm font-medium transition-colors ${
       location === href ? "bg-white text-primary" : "text-white/70 hover:bg-white/10 hover:text-white"
     }`;
 
+  const handleInquiry = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (!isLodging) return;
+    event.preventDefault();
+    if (isInContactSection) window.scrollTo({ top: 0, behavior: "smooth" });
+    else document.getElementById("sundance-contact")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <div className="min-h-screen overflow-x-hidden bg-background font-sans text-foreground selection:bg-primary/20">
-      <header className="sticky top-0 z-50 border-b border-white/15 bg-slate-950/80 backdrop-blur-md">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3 md:px-6">
-          <Link href="/" aria-label="12Acre home" className="shrink-0">
-            <img src="/logo-light.png" alt="12Acre" className="h-10 w-10 object-contain" />
-          </Link>
-          <nav aria-label="Sundance guide" className="flex flex-wrap items-center justify-end gap-1">
-            <Link href="/sundance/guide" className={navClass("/sundance/guide")}>Overview</Link>
-            <Link href="/sundance/guide/map" className={navClass("/sundance/guide/map")}>Map</Link>
-            <Link href="/sundance/guide/plan" className={navClass("/sundance/guide/plan")}>Plan</Link>
-            <Link href="/sundance/guide/ask" aria-label="Ask the guide" className={navClass("/sundance/guide/ask")}>Ask</Link>
-            <Link href="/sundance/guide/eat" className={navClass("/sundance/guide/eat")}>Eat</Link>
-            <Link href="/sundance/guide/shop" className={navClass("/sundance/guide/shop")}>Shop</Link>
-            <Link href="/sundance/guide/family" className={navClass("/sundance/guide/family")}>Family</Link>
-            <Link href="/sundance/guide/transit" className={navClass("/sundance/guide/transit")}>Transit</Link>
-            <Link href="/sundance" className="ml-1 rounded-full bg-white px-4 py-2 text-sm font-medium text-primary transition-colors hover:bg-white/90">
-              Stay with us
-            </Link>
-          </nav>
-        </div>
-      </header>
+    <header className="sticky top-0 z-50 border-b border-white/15 bg-slate-950/90 backdrop-blur-md">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-3 md:px-6">
+        <Link href="/" aria-label="12Acre home" className="shrink-0">
+          <img src="/logo-light.png" alt="12Acre" className="h-10 w-10 object-contain" />
+        </Link>
+        <nav aria-label="Sundance companion" className="flex flex-1 flex-wrap items-center justify-end gap-1">
+          <Link href="/sundance/guide" className={navClass("/sundance/guide")}>Overview</Link>
+          <Link href="/sundance/guide/map" className={navClass("/sundance/guide/map")}>Map</Link>
+          <Link href="/sundance/guide/plan" className={navClass("/sundance/guide/plan")}>Plan</Link>
+          <Link href="/sundance/guide/ask" aria-label="Ask the guide" className={navClass("/sundance/guide/ask")}>Ask</Link>
+          <Link href="/sundance/guide/eat" className={navClass("/sundance/guide/eat")}>Eat</Link>
+          <Link href="/sundance/guide/shop" className={navClass("/sundance/guide/shop")}>Shop</Link>
+          <Link href="/sundance/guide/family" className={navClass("/sundance/guide/family")}>Family</Link>
+          <Link href="/sundance/guide/transit" className={navClass("/sundance/guide/transit")}>Transit</Link>
+          <a
+            href={isLodging && isInContactSection ? "#top" : "/sundance#sundance-contact"}
+            onClick={handleInquiry}
+            className="ml-2 inline-flex h-10 items-center justify-center rounded-full bg-white px-6 text-sm font-semibold text-primary shadow-sm transition-colors hover:bg-amber-200"
+          >
+            {isLodging && isInContactSection ? "Back to top" : "Inquire"}
+          </a>
+        </nav>
+      </div>
+    </header>
+  );
+}
+
+export function SundanceGuideShell({ children }: { children: ReactNode }) {
+  return (
+    <div className="min-h-screen overflow-x-clip bg-background font-sans text-foreground selection:bg-primary/20">
+      <SundanceHeader />
 
       <main>{children}</main>
 
