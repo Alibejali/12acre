@@ -97,6 +97,7 @@ export function SundanceHeader() {
           <img src="/logo-light.png" alt="12Acre" className="h-10 w-10 object-contain" />
         </Link>
         <nav aria-label="Sundance companion" className="flex flex-1 flex-wrap items-center justify-end gap-1">
+          <Link href="/sundance" className={navClass("/sundance")}>Sundance</Link>
           <Link href="/sundance/guide" className={navClass("/sundance/guide")}>Overview</Link>
           <Link href="/sundance/guide/map" className={navClass("/sundance/guide/map")}>Map</Link>
           <Link href="/sundance/guide/plan" className={navClass("/sundance/guide/plan")}>Plan</Link>
