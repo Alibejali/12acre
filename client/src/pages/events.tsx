@@ -53,7 +53,10 @@ export default function Events() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
                 >
-                  <Link href={`/events/${event.slug}`} className="group block h-full">
+                  <Link
+                    href={event.slug === "sundance" ? "/sundance" : `/events/${event.slug}`}
+                    className="group block h-full"
+                  >
                     <div className="h-full rounded-lg border border-border bg-card p-8 md:p-10 transition-all duration-300 hover:shadow-lg hover:border-primary/30 hover:-translate-y-1">
                       <div className="flex items-center gap-4 mb-6">
                         <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">

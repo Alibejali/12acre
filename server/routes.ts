@@ -9,6 +9,14 @@ export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
+  // Permanent redirects for event pages promoted to top-level URLs.
+  // Add future flattened /events/* paths here before the SPA catch-all.
+  app.get("/events/sundance", (req, res) => {
+    const query = req.originalUrl.includes("?")
+      ? req.originalUrl.slice(req.originalUrl.indexOf("?"))
+      : "";
+    return res.redirect(301, `/sundance${query}`);
+  });
   
   // Contact form submission
   app.post("/api/contact", async (req, res) => {
