@@ -82,6 +82,7 @@ export default function SundanceGuideAsk() {
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-300">Independent concierge</p>
           <h1 className="mt-4 text-5xl font-bold !text-white md:text-7xl">Ask the guide</h1>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-white/70">Independent concierge for festival week—we point you to official sources; we don’t republish the Institute catalog.</p>
+          <GuideHelp dark label="About Ask">Ask about lineup timing, venues, or a film title. We answer in plain language and link to official sources. We don’t republish the Institute catalog.</GuideHelp>
         </div>
       </section>
 
@@ -90,7 +91,6 @@ export default function SundanceGuideAsk() {
         <section className="mx-auto mt-10 max-w-3xl">
           <form onSubmit={ask} className="rounded-3xl border border-slate-900/10 bg-white p-5 shadow-sm">
             <label htmlFor="guide-question" className="text-sm font-semibold">What can I help you find?</label>
-            <GuideHelp>Try a venue, practical festival question, or film title. Answers stay rule-based and point to official or public sources.</GuideHelp>
             <div className="mt-3 flex flex-col gap-3 sm:flex-row">
               <input id="guide-question" value={question} onChange={(event) => setQuestion(event.target.value)}
                 placeholder="What should I know about [film title]?" maxLength={500}

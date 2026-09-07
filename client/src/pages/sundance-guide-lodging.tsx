@@ -40,7 +40,7 @@ export default function SundanceGuideLodging() {
               <h2 className="mt-6 text-4xl font-semibold !text-white">Sanitas View</h2>
               <p className="mt-3 max-w-2xl text-lg leading-8 text-white/70">Eleven contiguous, approximately 3,000-square-foot townhomes on Broadway in Newlands—available as one residence, an adjacent sub-block, or a full team campus.</p>
               <p className="mt-4 text-sm text-white/60">3303–3339 Broadway, Boulder · No rate claims are published here.</p>
-              <GuideHelp dark>Featured means this guide’s suggested group base, not a Sundance Institute affiliation. Verify availability and details directly.</GuideHelp>
+              <GuideHelp dark label="About Featured lodging">Sanitas View is our Featured private compound for teams. Other stays and sponsored listings appear below—Inquire keeps you on the festival rental path.</GuideHelp>
               <div className="mt-7 flex flex-wrap gap-3">
                 <a href="/sundance#sundance-contact" className="rounded-full bg-white px-5 py-3 font-semibold text-primary">Inquire</a>
                 <Link href="/sundance" className="rounded-full border border-white/30 px-5 py-3 font-semibold text-white">See the lodging story <ArrowRight className="ml-1 inline h-4 w-4" /></Link>

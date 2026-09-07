@@ -11,15 +11,22 @@ const canonical = "https://12acre.com/sundance/guide";
 
 export default function SundanceGuide() {
   const [showWelcome, setShowWelcome] = useState(false);
+  const [hideWelcome, setHideWelcome] = useState(false);
   useEffect(() => {
     try {
-      setShowWelcome(!localStorage.getItem("sundanceGuide.seenWelcome"));
+      if (localStorage.getItem("sundanceGuide.seenWelcome") === "true") {
+        localStorage.setItem("sundanceGuide.hideWelcome", "true");
+        localStorage.removeItem("sundanceGuide.seenWelcome");
+      }
+      setShowWelcome(localStorage.getItem("sundanceGuide.hideWelcome") !== "true");
     } catch {
-      setShowWelcome(false);
+      setShowWelcome(true);
     }
   }, []);
   const dismissWelcome = () => {
-    try { localStorage.setItem("sundanceGuide.seenWelcome", "true"); } catch {}
+    if (hideWelcome) {
+      try { localStorage.setItem("sundanceGuide.hideWelcome", "true"); } catch {}
+    }
     setShowWelcome(false);
   };
   return (
@@ -108,6 +115,10 @@ export default function SundanceGuide() {
             <li><b className="text-white">Ask</b> · get source-first guidance.</li>
             <li><b className="text-white">Lodging / Stay</b> · consider Sanitas View for your group.</li>
           </ul>
+          <label className="mt-5 flex min-h-11 cursor-pointer items-center gap-3 text-sm text-white/80">
+            <input type="checkbox" checked={hideWelcome} onChange={(event) => setHideWelcome(event.target.checked)} className="h-5 w-5 accent-amber-400" />
+            Don't show this again
+          </label>
           <button type="button" onClick={dismissWelcome} className="mt-5 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-slate-950">Got it</button>
         </section>
       )}
