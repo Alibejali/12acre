@@ -24,6 +24,16 @@ const routeMetadata: Record<string, { title: string; description: string; canoni
     description: "Ask about films, venues, and festival-week tips for Sundance Boulder 2027. Live link-outs to Sundance, FilmFreeway, and IMDb — independent companion, not affiliated with Sundance Institute.",
     canonical: "https://12acre.com/sundance/guide/ask",
   },
+  "/sundance/guide/shop": {
+    title: "Shop & Errands During Sundance Boulder 2027 | 12Acre Guide",
+    description: "Pearl Street shopping, pharmacy and grocery near Broadway, and January layers for Sundance Boulder week. Independent local companion.",
+    canonical: "https://12acre.com/sundance/guide/shop",
+  },
+  "/sundance/guide/family": {
+    title: "Family & Kids at Sundance Boulder 2027 | 12Acre Guide",
+    description: "Honest guidance for families during Sundance Boulder week — not a kids festival — plus soft landings, partner sitters later, and townhome hospitality. Independent companion.",
+    canonical: "https://12acre.com/sundance/guide/family",
+  },
   "/sundance/guide/eat": {
     title: "Where to Eat During Sundance Boulder 2027 | 12Acre Guide",
     description: "Neighborhood pocket eateries near Sundance Boulder venues — between screenings, group-friendly, quiet notes. Independent local companion.",
