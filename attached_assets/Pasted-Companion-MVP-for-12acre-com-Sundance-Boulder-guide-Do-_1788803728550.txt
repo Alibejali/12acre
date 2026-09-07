@@ -1,0 +1,115 @@
+Companion MVP for 12acre.com — Sundance Boulder guide. Do NOT redesign /sundance lodging page chrome or copy. Do NOT invent prices. Do NOT scrape or embed Sundance Institute film schedules, synopses, or stills.
+
+GOAL
+Ship Phase 1 of the companion hub:
+1) /sundance/guide — Overview hub
+2) /sundance/guide/map — Venues & map
+Keep /sundance as lean lodging CTA. Soft-close from guide back to /sundance Inquire.
+
+STACK NOTES
+This Repl is Express + SPA (wouter routes in client/src/App.tsx). Lodging page lives as events-sundance (or equivalent) at /sundance with 301 from /events/sundance. Match existing patterns, Tailwind/UI, and react-helmet-async (or whatever /sundance already uses for per-route head).
+
+ROUTES (client App.tsx + any server SPA fallback)
+- Add Route path="/sundance/guide" → new page component
+- Add Route path="/sundance/guide/map" → new page component
+- Do NOT 301 /sundance/guide anywhere
+- Keep existing /sundance and /events/sundance → /sundance 301 unchanged
+- Register more-specific /sundance/guide* routes BEFORE any catch-all if order matters
+
+FILES
+Create (names flexible if project convention differs):
+- client/src/pages/sundance-guide.tsx (Overview)
+- client/src/pages/sundance-guide-map.tsx (Map)
+- Optional shared: client/src/components/sundance-guide-shell.tsx for shared guide chrome
+
+GUIDE CHROME (both guide pages)
+Minimal header like /sundance (logo + compact actions), NOT the full consulting nav.
+Nav links (mobile-friendly, wrap ok):
+- Overview → /sundance/guide
+- Map → /sundance/guide/map
+- Stay with us → /sundance (primary CTA style)
+Secondary muted text links (Coming soon, not 404): Plan · Eat · Transit (no routes yet — either disable with title "Coming soon" or hash anchors on Overview explaining next)
+Footer: short line "Independent Boulder companion by 12Acre / Sanitas View — not affiliated with Sundance Institute." + link to official festival info https://www.sundance.org/
+
+SEO (per-route head, /sundance/guide and /sundance/guide/map only)
+Overview:
+- title: Sundance Boulder 2027 Guide | Venues, Map & Stay | 12Acre
+- meta description: Independent companion for Sundance Film Festival week in Boulder (Jan 21–31, 2027): venue map, neighborhood pockets, and Sanitas View lodging on Broadway. Link-outs to official festival info — not a scraped schedule.
+- canonical: https://12acre.com/sundance/guide
+- OG title/description matching; og:url canonical
+Map:
+- title: Sundance Boulder Venues & Map 2027 | 12Acre Guide
+- meta description: Official Sundance Boulder screening venues by neighborhood pocket, plus Around the fest filter for Front Range companion showings. Base: Sanitas View, 3303–3339 Broadway.
+- canonical: https://12acre.com/sundance/guide/map
+
+OVERVIEW PAGE (/sundance/guide)
+Hero: "Your Boulder festival week companion"
+Sub: Jan 21–31, 2027 · Independent guide · Soft CTA button "Stay at Sanitas View" → /sundance
+Short body (factual, caring tone — not brochure spam):
+- What this guide is: venues/map, day planning (soon), eat/shop/family/transit (soon), Ask the guide later
+- What it is NOT: not the official Sundance schedule; we link out to sundance.org for tickets/program
+- Premiere stretch vs later/online stretch in plain language (world premieres Jan 21–26; festival runs through Jan 31; at-home online program late festival for those outside Colorado — cite sundance.org, link out)
+- Sanitas View base: 11 contiguous townhomes on Broadway, Newlands — link Inquire
+Cards/sections:
+1) Explore the map → /sundance/guide/map
+2) Official festival info → https://www.sundance.org/ (external)
+3) Stay with your team → /sundance
+Filter chips UI preview (non-functional or state local only): Official · Around the fest · All — note "Around the fest listings appear as partner venues announce"
+
+MAP PAGE (/sundance/guide/map)
+Filter chips: Official | Around the fest | All
+- Official: show official venue list below
+- Around the fest: empty state — "Front Range companion showings (e.g. Denver indie houses) will appear here as partners announce. Not official Sundance Institute screenings."
+- All: Official list + empty Around section
+
+Include a clear pin/card for HOME BASE:
+- Sanitas View · 3303–3339 Broadway, Newlands, Boulder · type: Stay · link /sundance
+Always visible regardless of filter (prefer always-visible "Your base" strip)
+
+OFFICIAL VENUES (publicly announced screening theaters — names + pocket only; link each "Open map" to a Google Maps search URL for the venue name + Boulder CO; do NOT invent showtimes)
+Group by pocket:
+
+Pearl / Downtown
+- Boulder Theater
+- eTown Hall
+- Canyon Theater (Boulder Public Library)
+- Hotel Boulderado (Festival Headquarters — note HQ/programming, not necessarily a screening theater)
+
+North
+- Casey Middle School Auditorium
+
+CU campus
+- Macky Auditorium Concert Hall
+- Muenzinger Auditorium
+- Roe Green Theatre
+
+Chautauqua / Flatirons edge
+- Chautauqua Auditorium
+
+East fringe
+- Boedecker Theater — Dairy Arts Center
+- Gordon Gamm Theater — Dairy Arts Center
+- Cinemark Century Boulder (P&I / additional screenings per Sundance)
+
+Also:
+- Boulder High School Auditorium (near campus / central)
+
+For each venue card: name, pocket tag, badge "Official", button/link "Directions" (maps search). Omit drive times rather than guess.
+
+Map visual: simple OpenStreetMap embed centered on Boulder (no API key) OR cards-only if embed is awkward. No paid Maps API. Link "Official festival venue map" out to sundance.org.
+
+LEGAL / COPY GUARDRAILS
+- Disclaimer: "Not affiliated with Sundance Institute. Official program and tickets: sundance.org"
+- Never use "Greater Sundance" as a product name — use "Around the fest"
+- No film titles, synopses, or scraped schedules
+- On-page spelling Sanitas View is fine
+- Skip dual footer for MVP
+
+VERIFY BEFORE DONE
+- /sundance still 200, minimal header, inquire works
+- /events/sundance still 301 → /sundance
+- /sundance/guide 200
+- /sundance/guide/map 200
+- Guide pages do not show full consulting nav
+- Mobile nav usable
+Report files touched + local check results. Do not Republish unless Don asks — he will Republish from the Repl UI.

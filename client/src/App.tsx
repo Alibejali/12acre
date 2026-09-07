@@ -6,6 +6,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/home";
 import Events from "@/pages/events";
 import EventsSundance from "@/pages/events-sundance";
+import SundanceGuide from "@/pages/sundance-guide";
+import SundanceGuideMap from "@/pages/sundance-guide-map";
 import EventsSupperClub from "@/pages/events-supperclub";
 import EventsMoreovers from "@/pages/events-moreovers";
 import EventsCrafternoon from "@/pages/events-crafternoon";
@@ -18,6 +20,8 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/events" component={Events} />
+      <Route path="/sundance/guide/map" component={SundanceGuideMap} />
+      <Route path="/sundance/guide" component={SundanceGuide} />
       <Route path="/sundance" component={EventsSundance} />
       <Route path="/events/sundance" component={EventsSundance} />
       <Route path="/events/supperclub" component={EventsSupperClub} />

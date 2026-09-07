@@ -1,0 +1,81 @@
+import { ArrowRight, ExternalLink, Map, CalendarDays, Home } from "lucide-react";
+import { Link } from "wouter";
+import { GuideDocumentHead, SundanceGuideShell } from "@/components/sundance-guide-shell";
+
+const title = "Sundance Boulder 2027 Guide | Venues, Map & Stay | 12Acre";
+const description = "Independent companion for Sundance Film Festival week in Boulder (Jan 21–31, 2027): venue map, neighborhood pockets, and Sanitas View lodging on Broadway. Link-outs to official festival info — not a scraped schedule.";
+const canonical = "https://12acre.com/sundance/guide";
+
+export default function SundanceGuide() {
+  return (
+    <SundanceGuideShell>
+      <GuideDocumentHead title={title} description={description} canonical={canonical} />
+      <section className="border-b border-slate-900/10">
+        <div className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-24">
+          <p className="mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-amber-700">January 21–31, 2027 · Independent guide</p>
+          <h1 className="max-w-4xl text-5xl font-semibold leading-[0.98] text-slate-950 md:text-7xl">Your Boulder festival week companion</h1>
+          <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-600">
+            A practical, locally minded guide to venues, neighborhood pockets, and a smoother week in Boulder—without duplicating the official program.
+          </p>
+          <Link href="/sundance" className="mt-9 inline-flex items-center gap-2 rounded-full bg-slate-950 px-6 py-3 font-semibold text-white hover:bg-slate-800">
+            Stay at Sanitas View <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+      </section>
+
+      <section className="mx-auto grid max-w-6xl gap-8 px-4 py-14 md:grid-cols-[1.2fr_0.8fr] md:px-6 md:py-20">
+        <div>
+          <h2 className="text-3xl font-semibold text-slate-950">Built to help you find your bearings</h2>
+          <div className="mt-6 space-y-5 text-base leading-7 text-slate-600">
+            <p>This companion starts with confirmed venues and a neighborhood-based map. Day planning, places to eat and shop, family ideas, transit notes, and an ask-the-guide feature will follow.</p>
+            <p>This is not the official Sundance schedule. For films, tickets, program updates, and final event details, use <a href="https://www.sundance.org/" target="_blank" rel="noreferrer" className="font-semibold text-slate-900 underline underline-offset-4">sundance.org</a>.</p>
+            <p>World premieres are scheduled for January 21–26, while the festival continues through January 31. An at-home online program is planned for later in the festival for audiences outside Colorado. Check Sundance’s official site for current details.</p>
+          </div>
+        </div>
+        <aside className="rounded-3xl bg-slate-950 p-7 text-white">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-400">Your Boulder base</p>
+          <h2 className="mt-4 text-3xl font-semibold text-white">Sanitas View</h2>
+          <p className="mt-4 leading-7 text-slate-300">Eleven contiguous townhomes on Broadway in Newlands, available for teams and creatives during festival week.</p>
+          <Link href="/sundance" className="mt-7 inline-flex items-center gap-2 font-semibold text-white underline decoration-white/30 underline-offset-4 hover:decoration-white">
+            Inquire about lodging <ArrowRight className="h-4 w-4" />
+          </Link>
+        </aside>
+      </section>
+
+      <section className="bg-white/60">
+        <div className="mx-auto max-w-6xl px-4 py-14 md:px-6 md:py-20">
+          <div className="grid gap-5 md:grid-cols-3">
+            <Link href="/sundance/guide/map" className="group rounded-3xl border border-slate-900/10 bg-white p-7 transition-transform hover:-translate-y-1">
+              <Map className="h-7 w-7 text-amber-700" />
+              <h2 className="mt-8 text-2xl font-semibold">Explore the map</h2>
+              <p className="mt-3 leading-7 text-slate-600">Browse official venues by Boulder neighborhood pocket.</p>
+              <span className="mt-7 inline-flex items-center gap-2 font-semibold">Open map <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></span>
+            </Link>
+            <a href="https://www.sundance.org/" target="_blank" rel="noreferrer" className="group rounded-3xl border border-slate-900/10 bg-white p-7 transition-transform hover:-translate-y-1">
+              <CalendarDays className="h-7 w-7 text-amber-700" />
+              <h2 className="mt-8 text-2xl font-semibold">Official festival info</h2>
+              <p className="mt-3 leading-7 text-slate-600">Go straight to Sundance for program details, tickets, and updates.</p>
+              <span className="mt-7 inline-flex items-center gap-2 font-semibold">Visit Sundance <ExternalLink className="h-4 w-4" /></span>
+            </a>
+            <Link href="/sundance" className="group rounded-3xl border border-slate-900/10 bg-white p-7 transition-transform hover:-translate-y-1">
+              <Home className="h-7 w-7 text-amber-700" />
+              <h2 className="mt-8 text-2xl font-semibold">Stay with your team</h2>
+              <p className="mt-3 leading-7 text-slate-600">Make Sanitas View your private base for the festival week.</p>
+              <span className="mt-7 inline-flex items-center gap-2 font-semibold">View lodging <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></span>
+            </Link>
+          </div>
+
+          <div className="mt-12 rounded-3xl border border-dashed border-slate-400 p-6">
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">Map filters</p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {["Official", "Around the fest", "All"].map((filter, index) => (
+                <span key={filter} className={`rounded-full px-4 py-2 text-sm font-medium ${index === 0 ? "bg-slate-950 text-white" : "bg-slate-200 text-slate-600"}`}>{filter}</span>
+              ))}
+            </div>
+            <p className="mt-4 text-sm text-slate-500">Around the fest listings appear as partner venues announce.</p>
+          </div>
+        </div>
+      </section>
+    </SundanceGuideShell>
+  );
+}
