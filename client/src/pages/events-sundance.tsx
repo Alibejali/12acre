@@ -101,8 +101,7 @@ const comparison = {
 };
 
 const amenities = [
-  "Brand-new construction",
-  "Never occupied",
+  "Newly built",
   "Fully furnished",
   "3,000 sq ft per home",
   "Rooftop decks",
@@ -407,9 +406,11 @@ export default function EventsSundance() {
                 <span className="text-white/90">for Sundance.</span>
               </h1>
               <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed font-light mb-10">
-                For the first time, Sundance comes to Boulder. Sanitas View offers 11 brand-new,
-                contiguous townhomes that can be leased individually, in blocks, or as a full
-                private campus for festival week.
+                For the first time, Sundance comes to Boulder. City officials cite approximately
+                2,900 hotel rooms in Boulder, while recent festival years have drawn about 85,000
+                in-person attendees over the full 11-day festival run—not a single weekend. Sanitas
+                View offers 11 contiguous townhomes that can be leased individually, in blocks, or
+                as a full private campus for festival week.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
