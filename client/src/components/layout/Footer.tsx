@@ -24,20 +24,21 @@ export function Footer() {
           <div>
             <h4 className="font-bold mb-4 text-sm uppercase tracking-wider">Services</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><a href="#services" className="hover:text-primary transition-colors">AI-Native Architecture</a></li>
-              <li><a href="#services" className="hover:text-primary transition-colors">Operations at Scale</a></li>
-              <li><a href="#services" className="hover:text-primary transition-colors">Marketplace Platforms</a></li>
-              <li><a href="#services" className="hover:text-primary transition-colors">Strategic Sourcing</a></li>
-              <li><a href="#services" className="hover:text-primary transition-colors">Risk & Governance</a></li>
+              <li><a href="/#services" className="hover:text-primary transition-colors">AI-Native Architecture</a></li>
+              <li><a href="/#services" className="hover:text-primary transition-colors">Operations at Scale</a></li>
+              <li><a href="/#services" className="hover:text-primary transition-colors">Marketplace Platforms</a></li>
+              <li><a href="/#services" className="hover:text-primary transition-colors">Strategic Sourcing</a></li>
+              <li><a href="/#services" className="hover:text-primary transition-colors">Risk & Governance</a></li>
             </ul>
           </div>
           
           <div>
             <h4 className="font-bold mb-4 text-sm uppercase tracking-wider">Company</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><a href="#about" className="hover:text-primary transition-colors">About Us</a></li>
-              <li><a href="#testimonials" className="hover:text-primary transition-colors">Testimonials</a></li>
-              <li><a href="#contact" className="hover:text-primary transition-colors">Contact</a></li>
+              <li><a href="/#about" className="hover:text-primary transition-colors">About Us</a></li>
+              <li><Link href="/events" className="hover:text-primary transition-colors">Events</Link></li>
+              <li><a href="/#testimonials" className="hover:text-primary transition-colors">Testimonials</a></li>
+              <li><a href="/#contact" className="hover:text-primary transition-colors">Contact</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Privacy Policy</a></li>
             </ul>
           </div>
