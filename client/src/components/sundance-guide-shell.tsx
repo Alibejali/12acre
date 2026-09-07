@@ -75,7 +75,9 @@ export function SundanceGuideShell({ children }: { children: ReactNode }) {
           <nav aria-label="Sundance guide" className="flex flex-wrap items-center justify-end gap-1">
             <Link href="/sundance/guide" className={navClass("/sundance/guide")}>Overview</Link>
             <Link href="/sundance/guide/map" className={navClass("/sundance/guide/map")}>Map</Link>
-            <span className="hidden text-xs text-white/40 sm:inline" title="Coming soon">Plan · Eat · Transit</span>
+            <Link href="/sundance/guide/plan" className={navClass("/sundance/guide/plan")}>Plan</Link>
+            <Link href="/sundance/guide/eat" className={navClass("/sundance/guide/eat")}>Eat</Link>
+            <Link href="/sundance/guide/transit" className={navClass("/sundance/guide/transit")}>Transit</Link>
             <Link href="/sundance" className="ml-1 rounded-full bg-white px-4 py-2 text-sm font-medium text-primary transition-colors hover:bg-white/90">
               Stay with us
             </Link>

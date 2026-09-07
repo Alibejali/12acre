@@ -8,6 +8,9 @@ import Events from "@/pages/events";
 import EventsSundance from "@/pages/events-sundance";
 import SundanceGuide from "@/pages/sundance-guide";
 import SundanceGuideMap from "@/pages/sundance-guide-map";
+import SundanceGuidePlan from "@/pages/sundance-guide-plan";
+import SundanceGuideEat from "@/pages/sundance-guide-eat";
+import SundanceGuideTransit from "@/pages/sundance-guide-transit";
 import { GuidePreferencesProvider } from "@/components/sundance-guide-preferences";
 import EventsSupperClub from "@/pages/events-supperclub";
 import EventsMoreovers from "@/pages/events-moreovers";
@@ -19,11 +22,17 @@ import NotFound from "@/pages/not-found";
 function Router() {
   const GuideOverviewRoute = () => <GuidePreferencesProvider><SundanceGuide /></GuidePreferencesProvider>;
   const GuideMapRoute = () => <GuidePreferencesProvider><SundanceGuideMap /></GuidePreferencesProvider>;
+  const GuidePlanRoute = () => <GuidePreferencesProvider><SundanceGuidePlan /></GuidePreferencesProvider>;
+  const GuideEatRoute = () => <GuidePreferencesProvider><SundanceGuideEat /></GuidePreferencesProvider>;
+  const GuideTransitRoute = () => <GuidePreferencesProvider><SundanceGuideTransit /></GuidePreferencesProvider>;
   return (
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/events" component={Events} />
       <Route path="/sundance/guide/map" component={GuideMapRoute} />
+      <Route path="/sundance/guide/plan" component={GuidePlanRoute} />
+      <Route path="/sundance/guide/eat" component={GuideEatRoute} />
+      <Route path="/sundance/guide/transit" component={GuideTransitRoute} />
       <Route path="/sundance/guide" component={GuideOverviewRoute} />
       <Route path="/sundance" component={EventsSundance} />
       <Route path="/events/sundance" component={EventsSundance} />

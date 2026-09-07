@@ -14,6 +14,21 @@ const routeMetadata: Record<string, { title: string; description: string; canoni
     description: "Official Sundance Boulder screening venues by neighborhood pocket, plus Around the fest filter for Front Range companion showings. Base: Sanitas View, 3303–3339 Broadway.",
     canonical: "https://12acre.com/sundance/guide/map",
   },
+  "/sundance/guide/plan": {
+    title: "Sundance Boulder Day Plan 2027 | Multi-stop Guide | 12Acre",
+    description: "Build an ordered venue day plan for Sundance Boulder week — leave-by times between screenings, walk/drive legs, Q&A buffer. Independent companion; enter your own showtimes.",
+    canonical: "https://12acre.com/sundance/guide/plan",
+  },
+  "/sundance/guide/eat": {
+    title: "Where to Eat During Sundance Boulder 2027 | 12Acre Guide",
+    description: "Neighborhood pocket eateries near Sundance Boulder venues — between screenings, group-friendly, quiet notes. Independent local companion.",
+    canonical: "https://12acre.com/sundance/guide/eat",
+  },
+  "/sundance/guide/transit": {
+    title: "Getting Around Sundance Boulder 2027 | Walk, RTD, Parking | 12Acre",
+    description: "Walk-first festival footprint, RTD tips, parking/rideshare notes from Broadway Newlands. Independent companion — not official Sundance transit.",
+    canonical: "https://12acre.com/sundance/guide/transit",
+  },
 };
 
 export function applySundanceSeo(html: string, requestUrl: string): string {

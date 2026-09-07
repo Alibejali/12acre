@@ -27,7 +27,7 @@ type Preferences = {
   provider: MapsProvider;
   setProvider: (provider: MapsProvider) => void;
   openBaseEditor: () => void;
-  directionsUrl: (destination: string) => string;
+  directionsUrl: (destination: string, origin?: string) => string;
 };
 
 const PreferencesContext = createContext<Preferences | null>(null);
@@ -69,8 +69,8 @@ export function GuidePreferencesProvider({ children }: { children: ReactNode }) 
     setEditing(false);
   };
 
-  const directionsUrl = (destination: string) => {
-    const origin = encodeURIComponent(base.address);
+  const directionsUrl = (destination: string, legOrigin?: string) => {
+    const origin = encodeURIComponent(legOrigin ?? base.address);
     const target = encodeURIComponent(destination);
     return provider === "apple"
       ? `https://maps.apple.com/?saddr=${origin}&daddr=${target}`

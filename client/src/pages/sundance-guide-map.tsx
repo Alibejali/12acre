@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { ExternalLink, MapPin } from "lucide-react";
-import { Link } from "wouter";
+import { ExternalLink, MapPin, Plus } from "lucide-react";
+import { Link, useLocation } from "wouter";
 import { GuideDocumentHead, SundanceGuideShell } from "@/components/sundance-guide-shell";
 import { YourBaseStrip, useGuidePreferences } from "@/components/sundance-guide-preferences";
+import { readPlanner, savePlanner } from "@/components/sundance-planner-data";
 
 const title = "Sundance Boulder Venues & Map 2027 | 12Acre Guide";
 const description = "Official Sundance Boulder screening venues by neighborhood pocket, plus Around the fest filter for Front Range companion showings. Base: Sanitas View, 3303–3339 Broadway.";
@@ -26,6 +27,7 @@ const venueGroups = [
 type Filter = "Official" | "Around the fest" | "All";
 
 export default function SundanceGuideMap() {
+  const [, setLocation] = useLocation();
   const [filter, setFilter] = useState<Filter>("Official");
   const showOfficial = filter !== "Around the fest";
   const showAround = filter !== "Official";
@@ -82,10 +84,10 @@ export default function SundanceGuideMap() {
                               <h3 className="mt-3 text-lg font-semibold">{venue.name}</h3>
                               {venue.note && <p className="mt-1 text-sm leading-6 text-slate-500">{venue.note}</p>}
                             </div>
-                            <a href={directions} target="_blank" rel="noreferrer" aria-label={`Directions to ${venue.name}`}
+                            <div className="flex shrink-0 flex-col items-end gap-2"><a href={directions} target="_blank" rel="noreferrer" aria-label={`Directions to ${venue.name}`}
                               className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-slate-200 px-3 py-2 text-sm font-semibold hover:bg-slate-50">
                               <MapPin className="h-4 w-4" /> Directions · {provider === "apple" ? "Apple" : "Google"}
-                            </a>
+                            </a><button type="button" onClick={() => { savePlanner([...readPlanner(), { id: `${venue.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-${Date.now()}`, name: venue.name, address: `${venue.name} Boulder, CO`, kind: "venue" }]); setLocation("/sundance/guide/plan"); }} className="inline-flex items-center gap-1.5 rounded-full bg-amber-700 px-3 py-2 text-sm font-semibold text-white hover:bg-amber-800"><Plus className="h-4 w-4" />Add to plan</button></div>
                           </div>
                         </article>
                       );
