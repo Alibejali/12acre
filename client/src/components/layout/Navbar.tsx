@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
-import { Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isPlacesOpen, setIsPlacesOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,13 +17,13 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: "About", href: "/#about" },
-    { name: "Services", href: "/#services" },
-    { name: "Network", href: "/#network" },
-    { name: "Case Studies", href: "/#case-studies" },
-    { name: "Events", href: "/events" },
-    { name: "Contact", href: "/#contact" },
+  const places = [
+    { name: "Map", href: "/sundance/guide/map" },
+    { name: "Eat", href: "/sundance/guide/eat" },
+    { name: "Shop", href: "/sundance/guide/shop" },
+    { name: "Lodging", href: "/sundance/guide/lodging" },
+    { name: "Transit", href: "/sundance/guide/transit" },
+    { name: "Family", href: "/sundance/guide/family" },
   ];
 
   return (
@@ -55,38 +56,19 @@ export function Navbar() {
         </div>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) =>
-            link.href.startsWith("/") && !link.href.startsWith("/#") ? (
-              <Link
-                key={link.name}
-                href={link.href}
-                className={cn(
-                  "text-sm font-medium transition-colors hover:text-primary",
-                  isScrolled ? "text-muted-foreground" : "text-white/90 hover:text-white"
-                )}
-              >
-                {link.name}
-              </Link>
-            ) : (
-              <a
-                key={link.name}
-                href={link.href}
-                className={cn(
-                  "text-sm font-medium transition-colors hover:text-primary",
-                  isScrolled ? "text-muted-foreground" : "text-white/90 hover:text-white"
-                )}
-              >
-                {link.name}
-              </a>
-            )
-          )}
+        <div className="hidden md:flex items-center gap-5">
+          <Link href="/sundance/guide/plan" className={cn("text-sm font-medium transition-colors hover:text-primary", isScrolled ? "text-muted-foreground" : "text-white/90 hover:text-white")}>Your days</Link>
+          <div className="relative">
+            <button type="button" onClick={() => setIsPlacesOpen((open) => !open)} aria-expanded={isPlacesOpen} className={cn("inline-flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary", isScrolled ? "text-muted-foreground" : "text-white/90 hover:text-white")}>Places <ChevronDown className="h-4 w-4" /></button>
+            {isPlacesOpen && <div className="absolute right-0 top-full mt-3 w-48 rounded-2xl border border-border bg-background p-2 shadow-xl">{places.map((place) => <Link key={place.href} href={place.href} onClick={() => setIsPlacesOpen(false)} className="block rounded-xl px-4 py-3 text-sm font-medium text-foreground hover:bg-muted">{place.name}</Link>)}</div>}
+          </div>
+          <Link href="/sundance/colorado-media" className={cn("text-sm font-medium transition-colors hover:text-primary", isScrolled ? "text-muted-foreground" : "text-white/90 hover:text-white")}>Colorado media</Link>
           <Button 
             variant={isScrolled ? "default" : "secondary"}
             className="rounded-full px-6"
             asChild
           >
-            <a href="/#contact">Get in Touch</a>
+            <a href="/sundance#sundance-contact">Inquire</a>
           </Button>
         </div>
 
@@ -102,30 +84,13 @@ export function Navbar() {
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="absolute top-full left-0 right-0 bg-background border-b border-border p-4 md:hidden flex flex-col gap-4 shadow-lg animate-in slide-in-from-top-5">
-          {navLinks.map((link) =>
-            link.href.startsWith("/") && !link.href.startsWith("/#") ? (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="text-foreground font-medium py-2 px-4 hover:bg-muted rounded-md"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {link.name}
-              </Link>
-            ) : (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-foreground font-medium py-2 px-4 hover:bg-muted rounded-md"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {link.name}
-              </a>
-            )
-          )}
+          <Link href="/sundance/guide/plan" className="text-foreground font-medium py-2 px-4 hover:bg-muted rounded-md" onClick={() => setIsMobileMenuOpen(false)}>Your days</Link>
+          <p className="px-4 pt-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground">Places</p>
+          {places.map((place) => <Link key={place.href} href={place.href} className="text-foreground font-medium py-2 px-6 hover:bg-muted rounded-md" onClick={() => setIsMobileMenuOpen(false)}>{place.name}</Link>)}
+          <Link href="/sundance/colorado-media" className="text-foreground font-medium py-2 px-4 hover:bg-muted rounded-md" onClick={() => setIsMobileMenuOpen(false)}>Colorado media</Link>
           <Button className="w-full rounded-full" asChild>
-            <a href="/#contact" onClick={() => setIsMobileMenuOpen(false)}>
-              Get in Touch
+            <a href="/sundance#sundance-contact" onClick={() => setIsMobileMenuOpen(false)}>
+              Inquire
             </a>
           </Button>
         </div>

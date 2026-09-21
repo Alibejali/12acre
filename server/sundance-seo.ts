@@ -15,8 +15,8 @@ const routeMetadata: Record<string, { title: string; description: string; canoni
     canonical: "https://12acre.com/sundance/guide/map",
   },
   "/sundance/guide/plan": {
-    title: "Sundance Boulder Day Plan 2027 | Multi-stop Guide | 12Acre",
-    description: "Build an ordered venue day plan for Sundance Boulder week — leave-by times between screenings, walk/drive legs, Q&A buffer. Independent companion; enter your own showtimes.",
+    title: "Your days | Sundance Boulder planner and guide | 12Acre",
+    description: "Plan festival days across Boulder with ordered stops, leave-by estimates, directions, and Ask-the-guide help. Independent companion; enter your own ticket times.",
     canonical: "https://12acre.com/sundance/guide/plan",
   },
   "/sundance/guide/ask": {
@@ -38,6 +38,11 @@ const routeMetadata: Record<string, { title: string; description: string; canoni
     title: "Lodging for Sundance Boulder 2027 | Sanitas View & Other Stays | 12Acre",
     description: "Festival-week lodging in Boulder — Sanitas View private compound as Featured base, plus other stays. Independent companion; sponsorships coming.",
     canonical: "https://12acre.com/sundance/guide/lodging",
+  },
+  "/sundance/colorado-media": {
+    title: "Colorado creative media directory | 12Acre",
+    description: "Explore festivals, organizations, training, studios, theaters, media companies, and podcasts across Colorado creative media.",
+    canonical: "https://12acre.com/sundance/colorado-media",
   },
   "/sundance/guide/eat": {
     title: "Where to Eat During Sundance Boulder 2027 | 12Acre Guide",

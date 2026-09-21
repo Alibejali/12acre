@@ -1,6 +1,6 @@
 import { useEffect, useState, type MouseEvent, type ReactNode } from "react";
 import { Link, useLocation } from "wouter";
-import { ExternalLink } from "lucide-react";
+import { ChevronDown, ExternalLink } from "lucide-react";
 
 type GuideHeadProps = {
   title: string;
@@ -63,7 +63,17 @@ export function SundanceHeader() {
   const [location] = useLocation();
   const [isInContactSection, setIsInContactSection] = useState(false);
   const [isMoreOpen, setIsMoreOpen] = useState(false);
+  const [isPlacesOpen, setIsPlacesOpen] = useState(false);
   const isLodging = location === "/sundance";
+  const places = [
+    ["/sundance/guide/map", "Map"],
+    ["/sundance/guide/eat", "Eat"],
+    ["/sundance/guide/shop", "Shop"],
+    ["/sundance/guide/lodging", "Lodging"],
+    ["/sundance/guide/transit", "Transit"],
+    ["/sundance/guide/family", "Family"],
+  ];
+  const isPlacesActive = places.some(([href]) => location === href);
 
   useEffect(() => {
     if (!isLodging) return;
@@ -82,6 +92,7 @@ export function SundanceHeader() {
 
   useEffect(() => {
     setIsMoreOpen(false);
+    setIsPlacesOpen(false);
   }, [location]);
 
   const navClass = (href: string) =>
@@ -109,20 +120,25 @@ export function SundanceHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/15 bg-slate-950/90 backdrop-blur-md">
       <div className="relative mx-auto flex max-w-7xl items-center justify-between gap-2 px-3 py-2.5 md:px-6 md:py-3">
-        <Link href="/" aria-label="12Acre home" className="shrink-0">
-          <img src="/logo-light.png" alt="12Acre" className="h-8 w-8 object-contain md:h-10 md:w-10" />
-        </Link>
+        <div className="flex shrink-0 items-center gap-2">
+          <Link href="/" aria-label="12Acre home">
+            <img src="https://12acre.com/logo-light.png" alt="12Acre" className="h-8 w-8 object-contain md:h-10 md:w-10" />
+          </Link>
+          <Link href="/sundance" onClick={handleSundanceNav} className={`rounded-full px-2 py-2 text-xs font-medium md:px-3 md:text-sm ${location === "/sundance" ? "bg-white text-primary" : "text-white/75 hover:text-white"}`}>Sundance</Link>
+        </div>
         <nav aria-label="Sundance companion" className="hidden flex-1 flex-wrap items-center justify-end gap-1 md:flex">
-          <Link href="/sundance" onClick={handleSundanceNav} className={navClass("/sundance")}>Sundance</Link>
-          <Link href="/sundance/guide" className={navClass("/sundance/guide")}>Overview</Link>
-          <Link href="/sundance/guide/lodging" className={navClass("/sundance/guide/lodging")}>Lodging</Link>
-          <Link href="/sundance/guide/map" className={navClass("/sundance/guide/map")}>Map</Link>
-          <Link href="/sundance/guide/plan" className={navClass("/sundance/guide/plan")}>Plan</Link>
-          <Link href="/sundance/guide/ask" aria-label="Ask the guide" className={navClass("/sundance/guide/ask")}>Ask</Link>
-          <Link href="/sundance/guide/eat" className={navClass("/sundance/guide/eat")}>Eat</Link>
-          <Link href="/sundance/guide/shop" className={navClass("/sundance/guide/shop")}>Shop</Link>
-          <Link href="/sundance/guide/family" className={navClass("/sundance/guide/family")}>Family</Link>
-          <Link href="/sundance/guide/transit" className={navClass("/sundance/guide/transit")}>Transit</Link>
+          <Link href="/sundance/guide/plan" className={navClass("/sundance/guide/plan")}>Your days</Link>
+          <div className="relative">
+            <button type="button" aria-expanded={isPlacesOpen} onClick={() => setIsPlacesOpen((open) => !open)} className={`inline-flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium transition-colors ${isPlacesActive ? "bg-white text-primary" : "text-white/70 hover:bg-white/10 hover:text-white"}`}>
+              Places <ChevronDown className="h-4 w-4" />
+            </button>
+            {isPlacesOpen && (
+              <div className="absolute right-0 top-full z-50 mt-2 w-48 rounded-2xl border border-white/15 bg-slate-950 p-2 shadow-2xl">
+                {places.map(([href, label]) => <Link key={href} href={href} className={`block rounded-xl px-4 py-3 text-sm font-medium ${location === href ? "bg-white text-primary" : "text-white/80 hover:bg-white/10 hover:text-white"}`}>{label}</Link>)}
+              </div>
+            )}
+          </div>
+          <Link href="/sundance/colorado-media" className={navClass("/sundance/colorado-media")}>Colorado media</Link>
           <a
             href={isLodging && isInContactSection ? "#top" : "/sundance#sundance-contact"}
             onClick={handleInquiry}
@@ -132,9 +148,7 @@ export function SundanceHeader() {
           </a>
         </nav>
         <nav aria-label="Sundance companion mobile" className="flex min-w-0 flex-1 items-center justify-end gap-0.5 md:hidden">
-          <Link href="/sundance" onClick={handleSundanceNav} className={mobileNavClass("/sundance")}>Sundance</Link>
-          <Link href="/sundance/guide" className={mobileNavClass("/sundance/guide")}>Overview</Link>
-          <Link href="/sundance/guide/lodging" className={mobileNavClass("/sundance/guide/lodging")}>Lodging</Link>
+          <Link href="/sundance/guide/plan" className={mobileNavClass("/sundance/guide/plan")}>Your days</Link>
           <button
             type="button"
             aria-expanded={isMoreOpen}
@@ -142,8 +156,9 @@ export function SundanceHeader() {
             onClick={() => setIsMoreOpen((open) => !open)}
             className="rounded-full px-1.5 py-2 text-[11px] font-medium text-white/75 transition-colors hover:bg-white/10 hover:text-white"
           >
-            More
+            Places
           </button>
+          <Link href="/sundance/colorado-media" className={mobileNavClass("/sundance/colorado-media")}>Media</Link>
           <a
             href={isLodging && isInContactSection ? "#top" : "/sundance#sundance-contact"}
             onClick={handleInquiry}
@@ -154,15 +169,7 @@ export function SundanceHeader() {
         </nav>
         {isMoreOpen && (
           <div id="sundance-mobile-more" className="absolute left-3 right-3 top-full z-50 mt-2 max-h-[70vh] overflow-y-auto rounded-2xl border border-white/15 bg-slate-950 p-2 shadow-2xl md:hidden">
-            {[
-              ["/sundance/guide/map", "Map"],
-              ["/sundance/guide/plan", "Plan"],
-              ["/sundance/guide/ask", "Ask"],
-              ["/sundance/guide/eat", "Eat"],
-              ["/sundance/guide/shop", "Shop"],
-              ["/sundance/guide/family", "Family"],
-              ["/sundance/guide/transit", "Transit"],
-            ].map(([href, label]) => (
+            {places.map(([href, label]) => (
               <Link key={href} href={href} className={`block min-h-11 rounded-xl px-4 py-3 text-base font-medium ${location === href ? "bg-white text-primary" : "text-white/80 hover:bg-white/10 hover:text-white"}`}>
                 {label}
               </Link>

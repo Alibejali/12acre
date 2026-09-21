@@ -15,6 +15,7 @@ import SundanceGuideAsk from "@/pages/sundance-guide-ask";
 import SundanceGuideShop from "@/pages/sundance-guide-shop";
 import SundanceGuideFamily from "@/pages/sundance-guide-family";
 import SundanceGuideLodging from "@/pages/sundance-guide-lodging";
+import SundanceColoradoMedia from "@/pages/sundance-colorado-media";
 import { GuidePreferencesProvider } from "@/components/sundance-guide-preferences";
 import EventsSupperClub from "@/pages/events-supperclub";
 import EventsMoreovers from "@/pages/events-moreovers";
@@ -33,11 +34,13 @@ function Router() {
   const GuideShopRoute = () => <GuidePreferencesProvider><SundanceGuideShop /></GuidePreferencesProvider>;
   const GuideFamilyRoute = () => <GuidePreferencesProvider><SundanceGuideFamily /></GuidePreferencesProvider>;
   const GuideLodgingRoute = () => <GuidePreferencesProvider><SundanceGuideLodging /></GuidePreferencesProvider>;
+  const ColoradoMediaRoute = () => <GuidePreferencesProvider><SundanceColoradoMedia /></GuidePreferencesProvider>;
   return (
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/events" component={Events} />
       <Route path="/sundance/guide/map" component={GuideMapRoute} />
+      <Route path="/sundance/colorado-media" component={ColoradoMediaRoute} />
       <Route path="/sundance/guide/plan" component={GuidePlanRoute} />
       <Route path="/sundance/guide/ask" component={GuideAskRoute} />
       <Route path="/sundance/guide/shop" component={GuideShopRoute} />
