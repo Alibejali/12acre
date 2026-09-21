@@ -70,7 +70,7 @@ export function SundanceAskPanel() {
   return (
     <section id="ask-guide" className="scroll-mt-24 border-t border-slate-200 bg-[#e9eee9]">
       <div className="mx-auto max-w-6xl px-4 py-14 md:px-6 md:py-20">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-700">Inside Your days</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-700">Inside Itinerary</p>
         <div className="mt-3 flex flex-wrap items-start justify-between gap-4">
           <div>
             <h2 className="text-4xl font-semibold text-slate-950">Ask the guide</h2>
@@ -104,7 +104,7 @@ export function SundanceAskPanel() {
             <article className="mt-6 rounded-3xl bg-white p-6 md:p-8">
               <p className="text-xs font-semibold uppercase tracking-widest text-amber-700">{answer.intent} answer</p>
               <p className="mt-4 text-lg leading-8 text-slate-800">{answer.answer}</p>
-              {answer.venue && <div className="mt-5 rounded-2xl bg-slate-50 p-5"><p className="font-semibold">From your base: {base.label}</p><p className="mt-1 text-sm text-slate-600">Live conditions vary; verify this route before leaving.</p><div className="mt-4 flex flex-wrap gap-2"><a href={directionsUrl(answer.venue.address)} target="_blank" rel="noopener noreferrer" className="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white"><MapPin className="mr-1 inline h-4 w-4" />Directions · {provider === "apple" ? "Apple" : "Google"} <ExternalLink className="ml-1 inline h-4 w-4" /></a><button type="button" onClick={addVenue} className="rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold"><Plus className="mr-1 inline h-4 w-4" />Add venue to Your days</button></div></div>}
+              {answer.venue && <div className="mt-5 rounded-2xl bg-slate-50 p-5"><p className="font-semibold">From your base: {base.label}</p><p className="mt-1 text-sm text-slate-600">Live conditions vary; verify this route before leaving.</p><div className="mt-4 flex flex-wrap gap-2"><a href={directionsUrl(answer.venue.address)} target="_blank" rel="noopener noreferrer" className="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white"><MapPin className="mr-1 inline h-4 w-4" />Directions · {provider === "apple" ? "Apple" : "Google"} <ExternalLink className="ml-1 inline h-4 w-4" /></a><button type="button" onClick={addVenue} className="rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold"><Plus className="mr-1 inline h-4 w-4" />Add venue to Itinerary</button></div></div>}
               <div className="mt-5 flex flex-wrap gap-2">{answer.sources.map((source) => source.url.startsWith("/") ? <Link key={source.url} href={source.url} className="rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold">{source.label} <ArrowRight className="ml-1 inline h-4 w-4" /></Link> : <a key={source.url} href={source.url} target="_blank" rel="noopener noreferrer" className="rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold">{source.label} <ExternalLink className="ml-1 inline h-4 w-4" /></a>)}</div>
             </article>
           )}

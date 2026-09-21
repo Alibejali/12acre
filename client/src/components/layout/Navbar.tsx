@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
+  const [location] = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isPlacesOpen, setIsPlacesOpen] = useState(false);
@@ -13,9 +14,15 @@ export function Navbar() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+    setIsPlacesOpen(false);
+  }, [location]);
 
   const places = [
     { name: "Map", href: "/sundance/guide/map" },
@@ -25,6 +32,9 @@ export function Navbar() {
     { name: "Transit", href: "/sundance/guide/transit" },
     { name: "Family", href: "/sundance/guide/family" },
   ];
+  const isPlacesActive = places.some((place) => place.href === location);
+  const navColor = isScrolled ? "text-muted-foreground" : "text-white/90 hover:text-white";
+  const activeColor = isScrolled ? "text-primary" : "text-amber-300";
 
   return (
     <nav
@@ -48,7 +58,7 @@ export function Navbar() {
             href="/sundance"
             className={cn(
               "text-xs font-medium tracking-wide transition-colors hover:text-primary",
-              isScrolled ? "text-muted-foreground" : "text-white/70 hover:text-white",
+              location === "/sundance" ? activeColor : isScrolled ? "text-muted-foreground" : "text-white/70 hover:text-white",
             )}
           >
             Sundance
@@ -57,12 +67,12 @@ export function Navbar() {
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-5">
-          <Link href="/sundance/guide/plan" className={cn("text-sm font-medium transition-colors hover:text-primary", isScrolled ? "text-muted-foreground" : "text-white/90 hover:text-white")}>Your days</Link>
+          <Link href="/sundance/guide/plan" className={cn("text-sm font-medium transition-colors hover:text-primary", location === "/sundance/guide/plan" ? activeColor : navColor)}>Itinerary</Link>
           <div className="relative">
-            <button type="button" onClick={() => setIsPlacesOpen((open) => !open)} aria-expanded={isPlacesOpen} className={cn("inline-flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary", isScrolled ? "text-muted-foreground" : "text-white/90 hover:text-white")}>Places <ChevronDown className="h-4 w-4" /></button>
-            {isPlacesOpen && <div className="absolute right-0 top-full mt-3 w-48 rounded-2xl border border-border bg-background p-2 shadow-xl">{places.map((place) => <Link key={place.href} href={place.href} onClick={() => setIsPlacesOpen(false)} className="block rounded-xl px-4 py-3 text-sm font-medium text-foreground hover:bg-muted">{place.name}</Link>)}</div>}
+            <button type="button" onClick={() => setIsPlacesOpen((open) => !open)} aria-expanded={isPlacesOpen} aria-controls="desktop-places-menu" className={cn("inline-flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary", isPlacesActive ? activeColor : navColor)}>Places <ChevronDown className="h-4 w-4" /></button>
+            {isPlacesOpen && <div id="desktop-places-menu" className="absolute right-0 top-full mt-3 w-48 rounded-2xl border border-border bg-background p-2 shadow-xl">{places.map((place) => <Link key={place.href} href={place.href} onClick={() => setIsPlacesOpen(false)} className="block rounded-xl px-4 py-3 text-sm font-medium text-foreground hover:bg-muted">{place.name}</Link>)}</div>}
           </div>
-          <Link href="/sundance/colorado-media" className={cn("text-sm font-medium transition-colors hover:text-primary", isScrolled ? "text-muted-foreground" : "text-white/90 hover:text-white")}>Colorado media</Link>
+           <Link href="/sundance/colorado-media" className={cn("text-sm font-medium transition-colors hover:text-primary", location === "/sundance/colorado-media" ? activeColor : navColor)}>Colorado media</Link>
           <Button 
             variant={isScrolled ? "default" : "secondary"}
             className="rounded-full px-6"
@@ -74,8 +84,11 @@ export function Navbar() {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden p-2 text-foreground"
+          className={cn("md:hidden p-2", isScrolled ? "text-foreground" : "text-white")}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={isMobileMenuOpen}
+          aria-controls="mobile-navigation-menu"
         >
           {isMobileMenuOpen ? <X /> : <Menu />}
         </button>
@@ -83,8 +96,8 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="absolute top-full left-0 right-0 bg-background border-b border-border p-4 md:hidden flex flex-col gap-4 shadow-lg animate-in slide-in-from-top-5">
-          <Link href="/sundance/guide/plan" className="text-foreground font-medium py-2 px-4 hover:bg-muted rounded-md" onClick={() => setIsMobileMenuOpen(false)}>Your days</Link>
+        <div id="mobile-navigation-menu" className="absolute top-full left-0 right-0 bg-background border-b border-border p-4 md:hidden flex flex-col gap-4 shadow-lg animate-in slide-in-from-top-5">
+          <Link href="/sundance/guide/plan" className="text-foreground font-medium py-2 px-4 hover:bg-muted rounded-md" onClick={() => setIsMobileMenuOpen(false)}>Itinerary</Link>
           <p className="px-4 pt-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground">Places</p>
           {places.map((place) => <Link key={place.href} href={place.href} className="text-foreground font-medium py-2 px-6 hover:bg-muted rounded-md" onClick={() => setIsMobileMenuOpen(false)}>{place.name}</Link>)}
           <Link href="/sundance/colorado-media" className="text-foreground font-medium py-2 px-4 hover:bg-muted rounded-md" onClick={() => setIsMobileMenuOpen(false)}>Colorado media</Link>

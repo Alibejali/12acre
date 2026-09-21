@@ -1,5 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
+import { readFileSync } from "fs";
+import { resolve } from "path";
 import { storage } from "./storage";
 import { insertContactSubmissionSchema } from "@shared/schema";
 import { fromError } from "zod-validation-error";
@@ -25,10 +27,73 @@ function normalizeAsk(value: string) {
   return value.toLowerCase().replace(/[^a-z0-9 ]/g, " ").replace(/\s+/g, " ").trim();
 }
 
+function parseCsv(source: string) {
+  const rows: string[][] = [];
+  let row: string[] = [];
+  let cell = "";
+  let quoted = false;
+  for (let index = 0; index < source.length; index += 1) {
+    const character = source[index];
+    if (character === '"') {
+      if (quoted && source[index + 1] === '"') {
+        cell += '"';
+        index += 1;
+      } else {
+        quoted = !quoted;
+      }
+    } else if (character === "," && !quoted) {
+      row.push(cell);
+      cell = "";
+    } else if ((character === "\n" || character === "\r") && !quoted) {
+      if (character === "\r" && source[index + 1] === "\n") index += 1;
+      row.push(cell);
+      if (row.some(Boolean)) rows.push(row);
+      row = [];
+      cell = "";
+    } else {
+      cell += character;
+    }
+  }
+  if (cell || row.length) {
+    row.push(cell);
+    rows.push(row);
+  }
+  const [headers, ...values] = rows;
+  return values.map((cells) =>
+    Object.fromEntries(headers.map((header, index) => [header.trim(), (cells[index] ?? "").trim()])),
+  );
+}
+
+let coloradoMediaSeed: ReturnType<typeof parseCsv> | null = null;
+
+function readColoradoMediaSeed() {
+  if (coloradoMediaSeed) return coloradoMediaSeed;
+  const source = readFileSync(
+    resolve(process.cwd(), "attached_assets/0_Colorado-Media-Directory-SEED-2026-09-20_1789953523892.csv"),
+    "utf8",
+  );
+  coloradoMediaSeed = parseCsv(source).map((record) => {
+    if (!record.url && /^https?:\/\//i.test(record.confidence)) {
+      return { ...record, url: record.confidence, confidence: "UNCERTAIN" };
+    }
+    return record;
+  });
+  return coloradoMediaSeed;
+}
+
 export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
+  app.get("/api/colorado-media-directory", (_req, res) => {
+    try {
+      return res.json(readColoradoMediaSeed());
+    } catch (error) {
+      console.error("Unable to read Colorado media seed:", error);
+      return res.status(500).json({ error: "The directory is temporarily unavailable." });
+    }
+  });
+
   app.get("/sundance/guide/ask", (req, res) => {
     const query = req.originalUrl.includes("?")
       ? req.originalUrl.slice(req.originalUrl.indexOf("?"))

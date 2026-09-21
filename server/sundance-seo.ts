@@ -15,7 +15,7 @@ const routeMetadata: Record<string, { title: string; description: string; canoni
     canonical: "https://12acre.com/sundance/guide/map",
   },
   "/sundance/guide/plan": {
-    title: "Your days | Sundance Boulder planner and guide | 12Acre",
+    title: "Itinerary | Sundance Boulder planner and guide | 12Acre",
     description: "Plan festival days across Boulder with ordered stops, leave-by estimates, directions, and Ask-the-guide help. Independent companion; enter your own ticket times.",
     canonical: "https://12acre.com/sundance/guide/plan",
   },

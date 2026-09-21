@@ -1,6 +1,6 @@
-import { useEffect, useState, type MouseEvent, type ReactNode } from "react";
-import { Link, useLocation } from "wouter";
-import { ChevronDown, ExternalLink } from "lucide-react";
+import { useEffect, type ReactNode } from "react";
+import { ExternalLink } from "lucide-react";
+import { Navbar } from "@/components/layout/Navbar";
 
 type GuideHeadProps = {
   title: string;
@@ -60,125 +60,7 @@ export function GuideDocumentHead({ title, description, canonical }: GuideHeadPr
 }
 
 export function SundanceHeader() {
-  const [location] = useLocation();
-  const [isInContactSection, setIsInContactSection] = useState(false);
-  const [isMoreOpen, setIsMoreOpen] = useState(false);
-  const [isPlacesOpen, setIsPlacesOpen] = useState(false);
-  const isLodging = location === "/sundance";
-  const places = [
-    ["/sundance/guide/map", "Map"],
-    ["/sundance/guide/eat", "Eat"],
-    ["/sundance/guide/shop", "Shop"],
-    ["/sundance/guide/lodging", "Lodging"],
-    ["/sundance/guide/transit", "Transit"],
-    ["/sundance/guide/family", "Family"],
-  ];
-  const isPlacesActive = places.some(([href]) => location === href);
-
-  useEffect(() => {
-    if (!isLodging) return;
-    const contactSection = document.getElementById("sundance-contact");
-    if (!contactSection) return;
-    if (window.location.hash === "#sundance-contact") {
-      requestAnimationFrame(() => contactSection.scrollIntoView());
-    }
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsInContactSection(entry.isIntersecting),
-      { rootMargin: "0px 0px -30% 0px", threshold: 0.05 },
-    );
-    observer.observe(contactSection);
-    return () => observer.disconnect();
-  }, [isLodging]);
-
-  useEffect(() => {
-    setIsMoreOpen(false);
-    setIsPlacesOpen(false);
-  }, [location]);
-
-  const navClass = (href: string) =>
-    `rounded-full px-3 py-2 text-sm font-medium transition-colors ${
-      location === href ? "bg-white text-primary" : "text-white/70 hover:bg-white/10 hover:text-white"
-    }`;
-  const mobileNavClass = (href: string) =>
-    `rounded-full px-1.5 py-2 text-[11px] font-medium transition-colors ${
-      location === href ? "bg-white text-primary" : "text-white/75 hover:bg-white/10 hover:text-white"
-    }`;
-
-  const handleInquiry = (event: MouseEvent<HTMLAnchorElement>) => {
-    if (!isLodging) return;
-    event.preventDefault();
-    if (isInContactSection) window.scrollTo({ top: 0, behavior: "smooth" });
-    else document.getElementById("sundance-contact")?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const handleSundanceNav = () => {
-    requestAnimationFrame(() => {
-      window.scrollTo({ top: 0, behavior: isLodging ? "smooth" : "auto" });
-    });
-  };
-
-  return (
-    <header className="sticky top-0 z-50 border-b border-white/15 bg-slate-950/90 backdrop-blur-md">
-      <div className="relative mx-auto flex max-w-7xl items-center justify-between gap-2 px-3 py-2.5 md:px-6 md:py-3">
-        <div className="flex shrink-0 items-center gap-2">
-          <Link href="/" aria-label="12Acre home">
-            <img src="https://12acre.com/logo-light.png" alt="12Acre" className="h-8 w-8 object-contain md:h-10 md:w-10" />
-          </Link>
-          <Link href="/sundance" onClick={handleSundanceNav} className={`rounded-full px-2 py-2 text-xs font-medium md:px-3 md:text-sm ${location === "/sundance" ? "bg-white text-primary" : "text-white/75 hover:text-white"}`}>Sundance</Link>
-        </div>
-        <nav aria-label="Sundance companion" className="hidden flex-1 flex-wrap items-center justify-end gap-1 md:flex">
-          <Link href="/sundance/guide/plan" className={navClass("/sundance/guide/plan")}>Your days</Link>
-          <div className="relative">
-            <button type="button" aria-expanded={isPlacesOpen} onClick={() => setIsPlacesOpen((open) => !open)} className={`inline-flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium transition-colors ${isPlacesActive ? "bg-white text-primary" : "text-white/70 hover:bg-white/10 hover:text-white"}`}>
-              Places <ChevronDown className="h-4 w-4" />
-            </button>
-            {isPlacesOpen && (
-              <div className="absolute right-0 top-full z-50 mt-2 w-48 rounded-2xl border border-white/15 bg-slate-950 p-2 shadow-2xl">
-                {places.map(([href, label]) => <Link key={href} href={href} className={`block rounded-xl px-4 py-3 text-sm font-medium ${location === href ? "bg-white text-primary" : "text-white/80 hover:bg-white/10 hover:text-white"}`}>{label}</Link>)}
-              </div>
-            )}
-          </div>
-          <Link href="/sundance/colorado-media" className={navClass("/sundance/colorado-media")}>Colorado media</Link>
-          <a
-            href={isLodging && isInContactSection ? "#top" : "/sundance#sundance-contact"}
-            onClick={handleInquiry}
-            className="ml-2 inline-flex h-10 items-center justify-center rounded-full bg-white px-6 text-sm font-semibold text-primary shadow-sm transition-colors hover:bg-amber-200"
-          >
-            {isLodging && isInContactSection ? "Back to top" : "Inquire"}
-          </a>
-        </nav>
-        <nav aria-label="Sundance companion mobile" className="flex min-w-0 flex-1 items-center justify-end gap-0.5 md:hidden">
-          <Link href="/sundance/guide/plan" className={mobileNavClass("/sundance/guide/plan")}>Your days</Link>
-          <button
-            type="button"
-            aria-expanded={isMoreOpen}
-            aria-controls="sundance-mobile-more"
-            onClick={() => setIsMoreOpen((open) => !open)}
-            className="rounded-full px-1.5 py-2 text-[11px] font-medium text-white/75 transition-colors hover:bg-white/10 hover:text-white"
-          >
-            Places
-          </button>
-          <Link href="/sundance/colorado-media" className={mobileNavClass("/sundance/colorado-media")}>Media</Link>
-          <a
-            href={isLodging && isInContactSection ? "#top" : "/sundance#sundance-contact"}
-            onClick={handleInquiry}
-            className="ml-0.5 inline-flex h-9 shrink-0 items-center justify-center rounded-full bg-white px-2.5 text-[11px] font-semibold text-primary shadow-sm"
-          >
-            {isLodging && isInContactSection ? "Back to top" : "Inquire"}
-          </a>
-        </nav>
-        {isMoreOpen && (
-          <div id="sundance-mobile-more" className="absolute left-3 right-3 top-full z-50 mt-2 max-h-[70vh] overflow-y-auto rounded-2xl border border-white/15 bg-slate-950 p-2 shadow-2xl md:hidden">
-            {places.map(([href, label]) => (
-              <Link key={href} href={href} className={`block min-h-11 rounded-xl px-4 py-3 text-base font-medium ${location === href ? "bg-white text-primary" : "text-white/80 hover:bg-white/10 hover:text-white"}`}>
-                {label}
-              </Link>
-            ))}
-          </div>
-        )}
-      </div>
-    </header>
-  );
+  return <Navbar />;
 }
 
 export function SundanceFooter() {

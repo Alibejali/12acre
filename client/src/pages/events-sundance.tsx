@@ -605,7 +605,7 @@ export default function EventsSundance() {
               </div>
               <div className="flex flex-wrap gap-2">
                 <a href="/sundance/guide/map" className="rounded-full border border-border px-4 py-2 text-sm font-semibold">Map</a>
-                <a href="/sundance/guide/plan" className="rounded-full border border-border px-4 py-2 text-sm font-semibold">Plan</a>
+                <a href="/sundance/guide/plan" className="rounded-full border border-border px-4 py-2 text-sm font-semibold">Itinerary</a>
                 <a href="/sundance/guide/ask" className="rounded-full border border-border px-4 py-2 text-sm font-semibold">Ask</a>
               </div>
             </div>

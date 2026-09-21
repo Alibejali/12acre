@@ -1,5 +1,5 @@
 export type MediaCategory = "Festivals" | "Theaters" | "Orgs / film office" | "Training" | "Studios" | "Media companies" | "Podcasts";
-export type MediaConfidence = "VERIFIED" | "UNCERTAIN";
+export type MediaConfidence = "HIGH" | "MEDIUM" | "VERIFIED" | "UNCERTAIN";
 
 export type ColoradoMediaListing = {
   name: string;
@@ -9,9 +9,49 @@ export type ColoradoMediaListing = {
   url: string;
   confidence: MediaConfidence;
   keywords: string[];
+  sourceType?: string;
+  sheet?: string;
 };
 
 export const mediaCategories: MediaCategory[] = ["Festivals", "Theaters", "Orgs / film office", "Training", "Studios", "Media companies", "Podcasts"];
+
+export type ColoradoMediaSeedRecord = {
+  name: string;
+  type: string;
+  city: string;
+  url: string;
+  notes: string;
+  confidence: string;
+  sheet: string;
+};
+
+export const categoryTypes: Record<MediaCategory, string[]> = {
+  Festivals: ["festival"],
+  Theaters: ["theater", "venue"],
+  "Orgs / film office": ["org", "film_office", "resource", "grant", "guild"],
+  Training: ["education", "workshop", "lab"],
+  Studios: ["studio"],
+  "Media companies": ["media_company"],
+  Podcasts: ["podcast"],
+};
+
+export function categoryForType(type: string): MediaCategory {
+  return mediaCategories.find((category) => categoryTypes[category].includes(type)) ?? "Orgs / film office";
+}
+
+export function listingFromSeed(record: ColoradoMediaSeedRecord): ColoradoMediaListing {
+  return {
+    name: record.name,
+    category: categoryForType(record.type),
+    location: record.city || "Colorado",
+    description: record.notes || "Public Colorado creative-media listing.",
+    url: record.url,
+    confidence: record.confidence === "MEDIUM" ? "MEDIUM" : record.confidence === "UNCERTAIN" ? "UNCERTAIN" : "HIGH",
+    keywords: [record.type, record.sheet, record.city].filter(Boolean),
+    sourceType: record.type,
+    sheet: record.sheet,
+  };
+}
 
 export const coloradoMediaListings: ColoradoMediaListing[] = [
   {

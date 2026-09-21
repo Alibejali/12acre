@@ -111,7 +111,7 @@ export default function SundanceGuide() {
           <h2 id="guide-welcome-title" className="mt-2 text-2xl font-semibold">A quick way to use this kit</h2>
           <ul className="mt-4 space-y-2 text-sm leading-6 text-white/75">
             <li><b className="text-white">Map</b> · find venue pockets.</li>
-            <li><b className="text-white">Plan</b> · add your own stops and times.</li>
+            <li><b className="text-white">Itinerary</b> · add your own stops and times.</li>
             <li><b className="text-white">Ask</b> · get source-first guidance.</li>
             <li><b className="text-white">Lodging / Stay</b> · consider Sanitas View for your group.</li>
           </ul>
