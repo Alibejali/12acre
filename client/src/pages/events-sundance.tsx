@@ -333,10 +333,10 @@ export default function EventsSundance() {
                   Inquire
                 </a>
                 <a
-                  href="/sundance/guide"
+                  href="/sundance/guide/plan"
                   className="inline-flex items-center justify-center rounded-full text-base font-medium h-12 px-8 border border-white/50 text-white transition-all duration-200 bg-transparent hover:bg-white hover:text-primary hover:border-white"
                 >
-                  Festival week guide
+                  Plan your itinerary
                 </a>
               </div>
             </motion.div>
