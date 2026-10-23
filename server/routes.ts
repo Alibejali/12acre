@@ -6,6 +6,7 @@ import { storage } from "./storage";
 import { insertContactSubmissionSchema } from "@shared/schema";
 import { fromError } from "zod-validation-error";
 import { sendContactNotification } from "./email";
+import { requireAdmin } from "./admin-auth";
 
 const askVenues = [
   { name: "Boulder Theater", address: "Boulder Theater, Boulder, CO", pocket: "Pearl / Downtown", walk: 24, drive: 9 },
@@ -212,8 +213,8 @@ export async function registerRoutes(
     }
   });
 
-  // Get all contact submissions (for admin use)
-  app.get("/api/contact", async (req, res) => {
+  // Get all contact submissions (admin token required)
+  app.get("/api/contact", requireAdmin, async (req, res) => {
     try {
       const submissions = await storage.getAllContactSubmissions();
       return res.json(submissions);
@@ -225,10 +226,14 @@ export async function registerRoutes(
     }
   });
 
-  // Delete a contact submission
-  app.delete("/api/contact/:id", async (req, res) => {
+  // Delete a contact submission (admin token required)
+  app.delete("/api/contact/:id", requireAdmin, async (req, res) => {
     try {
-      await storage.deleteContactSubmission(req.params.id);
+      const id = req.params.id;
+      if (typeof id !== "string" || id.length === 0) {
+        return res.status(400).json({ error: "Failed to delete submission" });
+      }
+      await storage.deleteContactSubmission(id);
       return res.json({ success: true });
     } catch (error) {
       console.error("Error deleting contact submission:", error);

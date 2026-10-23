@@ -38,9 +38,14 @@ app.use((req, res, next) => {
   const path = req.path;
   let capturedJsonResponse: Record<string, any> | undefined = undefined;
 
+  // Contact payloads and admin errors stay out of the logs. The status line is enough.
+  const isContactApi = path === "/api/contact" || path.startsWith("/api/contact/");
+
   const originalResJson = res.json;
   res.json = function (bodyJson, ...args) {
-    capturedJsonResponse = bodyJson;
+    if (!isContactApi) {
+      capturedJsonResponse = bodyJson;
+    }
     return originalResJson.apply(res, [bodyJson, ...args]);
   };
 
