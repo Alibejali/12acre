@@ -541,9 +541,6 @@ export default function EventsSundance() {
                   </TableBody>
                 </Table>
               </div>
-              <p className="mt-6 text-sm leading-6 text-muted-foreground">
-                Pending with the City (not yet available to book): 3305, 3311, 3315, 3317, 3339 Broadway
-              </p>
             </div>
           </div>
         </section>
