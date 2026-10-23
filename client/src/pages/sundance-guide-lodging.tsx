@@ -62,7 +62,7 @@ export default function SundanceGuideLodging() {
             <p className="text-xs font-semibold uppercase tracking-widest text-amber-700">Sponsored stays</p>
             <h2 className="mt-4 text-2xl font-semibold">Listings are coming.</h2>
             <p className="mt-3 leading-7 text-slate-600">Future paid placements will be clearly labeled Sponsored. No sponsor inventory or checkout is live in this Phase-1 guide.</p>
-            <a href="mailto:sundance@12acre.com?subject=Sundance%20guide%20sponsorship" className="mt-5 inline-flex items-center gap-2 font-semibold underline underline-offset-4"><Mail className="h-4 w-4" />Advertise a stay</a>
+            <a href="mailto:sundance@12acre.us?subject=Sundance%20guide%20sponsorship" className="mt-5 inline-flex items-center gap-2 font-semibold underline underline-offset-4"><Mail className="h-4 w-4" />Advertise a stay</a>
           </article>
         </section>
 
