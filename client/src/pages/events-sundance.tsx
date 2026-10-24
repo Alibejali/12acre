@@ -25,6 +25,14 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import eventsHero from "@/assets/events-hero.jpg";
@@ -106,6 +114,19 @@ const useCases = [
     description:
       "Use all 11 contiguous homes as one cared-for Boulder base for a larger team across the full festival window.",
   },
+];
+
+const rentalLicenseRegistry = "3a3939b51a36";
+const rentalLicenseValidity = "valid Sep 24, 2026 – Sep 24, 2027";
+const rentalLicenseOccupancy = "⟨TO BE CONFIRMED⟩";
+
+const rentalLicenses = [
+  { home: "3303 Broadway", license: "RHL-01007507" },
+  { home: "3319 Broadway", license: "RHL-01007508" },
+  { home: "3321 Broadway", license: "RHL-01007509" },
+  { home: "3329 Broadway", license: "RHL-01007510" },
+  { home: "3335 Broadway", license: "RHL-01007511" },
+  { home: "3337 Broadway", license: "RHL-01007512" },
 ];
 
 const bookingTiers = [
@@ -426,7 +447,7 @@ export default function EventsSundance() {
                 arrivals, meals, preparation, recovery, and private conversations.
               </p>
               <div className="mt-8 grid gap-4 md:grid-cols-3">
-                {["Stay together across adjacent homes", "Give talent, family, and crews separate rhythms", "Coordinate concierge, black car, and catering from one base"].map((item) => (
+                {["Stay together across adjacent homes", "Give talent, family, and crews separate rhythms", "Coordinate concierge and catering from one base, with black car service available on request as an optional paid add-on"].map((item) => (
                   <div key={item} className="rounded-2xl bg-muted/40 p-5">
                     <CheckCircle2 className="mb-3 h-5 w-5 text-primary" />
                     <p className="font-medium leading-6">{item}</p>
@@ -464,8 +485,9 @@ export default function EventsSundance() {
                   Eleven contiguous, fully furnished townhomes form a private campus on Broadway in
                   Boulder’s Newlands neighborhood. Each residence offers approximately 3,000 square
                   feet, with rooftop decks, gas fireplaces, chef's kitchens, EV charging, and
-                  mountain views. Concierge coordination, black car service, and private catering
-                  can support the week as hospitality care rather than a sales spectacle.
+                  mountain views. Concierge coordination and private catering can support the
+                  week as hospitality care rather than a sales spectacle. Black car service is
+                  an optional paid add-on, available on request at extra cost.
                 </p>
                 <div className="flex items-center gap-2 text-muted-foreground mb-8">
                   <MapPin className="w-4 h-4" />
@@ -483,6 +505,42 @@ export default function EventsSundance() {
                   ))}
                 </div>
               </motion.div>
+            </div>
+
+            <div
+              id="rental-licenses"
+              className="mx-auto mt-16 max-w-4xl scroll-mt-24 border-t border-border pt-12"
+              data-registry={rentalLicenseRegistry}
+            >
+              <p className="text-sm font-bold text-primary tracking-widest uppercase mb-3">
+                Licensing
+              </p>
+              <h3 className="font-display text-2xl md:text-3xl font-bold tracking-tight">
+                City of Boulder Festival Lodging Rental Licenses
+              </h3>
+              <p className="mt-2 text-muted-foreground">({rentalLicenseValidity})</p>
+              <div className="mt-6 overflow-hidden rounded-lg border border-border bg-card">
+                <Table>
+                  <TableHeader>
+                    <TableRow className="hover:bg-transparent">
+                      <TableHead className="px-4 text-foreground">Home</TableHead>
+                      <TableHead className="px-4 text-foreground">License</TableHead>
+                      <TableHead className="px-4 text-foreground">Max occupancy</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {rentalLicenses.map((row) => (
+                      <TableRow key={row.license}>
+                        <TableCell className="px-4 font-medium">{row.home}</TableCell>
+                        <TableCell className="px-4">{row.license}</TableCell>
+                        <TableCell className="px-4 text-muted-foreground">
+                          {rentalLicenseOccupancy}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
             </div>
           </div>
         </section>
@@ -641,7 +699,7 @@ export default function EventsSundance() {
                   {
                     question: "How do we inquire?",
                     answer:
-                      "Use the inquiry form below or email sundance@12acre.com with your group size and preferred number of residences.",
+                      "Use the inquiry form below or email sundance@12acre.us with your group size and preferred number of residences.",
                   },
                 ].map((item) => (
                   <div key={item.question}>
@@ -680,10 +738,10 @@ export default function EventsSundance() {
                     <div>
                       <p className="text-sm text-white/60">Rental Inquiries</p>
                       <a
-                        href="mailto:sundance@12acre.com"
+                        href="mailto:sundance@12acre.us"
                         className="text-lg font-medium hover:text-secondary transition-colors"
                       >
-                        sundance@12acre.com
+                        sundance@12acre.us
                       </a>
                     </div>
                   </div>
